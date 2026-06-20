@@ -7,8 +7,12 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
-export default defineConfig([
-  globalIgnores(['dist']),
+/**
+ * 모노레포 전역에서 공유하는 ESLint 베이스.
+ * 각 앱/패키지의 eslint.config.js 에서 import 해서 그대로 export 한다.
+ */
+export const baseConfig = defineConfig([
+  globalIgnores(['dist', 'node_modules']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -29,3 +33,5 @@ export default defineConfig([
     },
   },
 ])
+
+export default baseConfig

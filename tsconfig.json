@@ -1,4 +1,5 @@
 {
+  "//": "모노레포 루트 솔루션 파일. 직접 컴파일하지 않고 각 앱/패키지를 참조만 한다.",
   "files": [],
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./apps/landing" }, { "path": "./packages/ui" }]
 }
