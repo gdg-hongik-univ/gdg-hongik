@@ -4,9 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./tsconfig.base.json": "./tsconfig.base.json",
-    "./tsconfig.app.json": "./tsconfig.app.json",
-    "./eslint": "./eslint.config.js"
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/app.json": "./tsconfig/app.json",
+    "./eslint/base": "./eslint/base.js",
+    "./eslint/react": "./eslint/react.js"
   },
   "dependencies": {
     "@eslint/js": "^10.0.1",

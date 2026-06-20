@@ -1,5 +1,5 @@
 {
-  "extends": "@gdg/config/tsconfig.app.json",
+  "extends": "@gdg/config/tsconfig/app.json",
   "compilerOptions": {
     "composite": true,
     "noEmit": false,

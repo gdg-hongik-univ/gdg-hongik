@@ -1,5 +1,5 @@
 {
-  "extends": "@gdg/config/tsconfig.app.json",
+  "extends": "@gdg/config/tsconfig/app.json",
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
   },

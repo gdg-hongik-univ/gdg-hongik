@@ -1,3 +1,3 @@
-import baseConfig from '@gdg/config/eslint'
+import reactConfig from '@gdg/config/eslint/react'
 
-export default baseConfig
+export default reactConfig
