@@ -1,0 +1,25 @@
+/* wowds @font-face. 앱 전역에서 1회 import. 폰트/라이선스는 README 참고. */
+
+/* SUIT Variable — 한글·UI 전역 (fontFamily.primary) */
+@font-face {
+  font-family: 'SUIT Variable';
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./fonts/SUIT-Variable.woff2') format('woff2-variations');
+}
+
+/* Google Sans Flex Variable — 영문·타이틀 (fontFamily.title) */
+@font-face {
+  font-family: 'Google Sans Flex Variable';
+  font-weight: 1 1000;
+  font-display: swap;
+  src: url('./fonts/GoogleSansFlex.woff2') format('woff2-variations');
+}
+
+/* Google Sans Code Variable — 코드 (fontFamily.code) */
+@font-face {
+  font-family: 'Google Sans Code Variable';
+  font-weight: 300 800;
+  font-display: swap;
+  src: url('./fonts/GoogleSansCode.woff2') format('woff2-variations');
+}
