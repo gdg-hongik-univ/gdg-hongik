@@ -6,7 +6,7 @@ import { baseConfig } from './base.js'
 
 /**
  * React 앱/패키지용 ESLint (base + react-hooks + react-refresh + 브라우저 globals).
- * @gdg/landing, @gdg/ui 등 React 를 쓰는 곳은 이걸 쓴다.
+ * @gdg/landing, @gdg/wowds 등 React 를 쓰는 곳은 이걸 쓴다.
  */
 export const reactConfig = defineConfig([
   ...baseConfig,

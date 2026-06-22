@@ -9,5 +9,5 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
     "types": []
   },
-  "include": ["src"]
+  "include": ["tokens", "ui", "icon", "index.ts"]
 }

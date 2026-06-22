@@ -1,11 +1,23 @@
 {
-  "name": "@gdg/ui",
+  "name": "@gdg/wowds",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./index.ts",
+    "./tokens": "./tokens/index.ts",
+    "./ui": "./ui/index.ts",
+    "./icon": "./icon/index.ts",
+    "./fonts.css": "./fonts.css"
   },
+  "files": [
+    "tokens",
+    "ui",
+    "icon",
+    "fonts",
+    "fonts.css",
+    "index.ts"
+  ],
   "scripts": {
     "lint": "eslint .",
     "build": "tsc -b"
