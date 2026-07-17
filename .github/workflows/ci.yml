@@ -1,0 +1,82 @@
+name: Continuous Integration & Synchronization
+
+on:
+  pull_request:
+    branches:
+      - master
+      - dev
+
+  push:
+    branches:
+      - master
+      - dev
+
+# 중복 실행 방지: 동일 PR에서 새 커밋이 푸시되면 이전 CI 빌드를 즉시 취소하여 자원 절약
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-assurance:
+    name: QA & Build Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Linter
+        run: pnpm lint
+
+      - name: Run Type Check
+        run: pnpm -r exec tsc --noEmit
+
+      - name: Run Unit Tests
+        run: pnpm test
+
+      - name: Verify Production Build
+        run: pnpm build
+
+  sync:
+    name: Sync forked repo
+    runs-on: ubuntu-latest
+    needs: quality-assurance
+    if: github.event_name == 'push' && (github.ref_name == 'dev' || github.ref_name == 'master')
+
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTO_ACTIONS }}
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Add remote-url
+        run: |
+          git remote add forked-repo https://wawoo-dev:${{ secrets.AUTO_ACTIONS }}@github.com/wawoo-dev/gdg-hongik
+          git config user.name "wawoo-dev"
+          git config user.email "${{ secrets.EMAIL }}"
+
+      - name: Push changes to forked-repo
+        run: |
+          git push -f forked-repo ${{ github.ref_name }}
+
+      - name: Clean up
+        run: |
+          git remote remove forked-repo
