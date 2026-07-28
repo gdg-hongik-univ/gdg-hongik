@@ -1,11 +1,7 @@
 import { type ComponentPropsWithRef } from 'react'
 import { cn } from '../../utils/cn'
 
-export interface TabsListProps extends ComponentPropsWithRef<'div'> {
-  children: React.ReactNode
-  className?: string
-  ref?: React.RefObject<HTMLDivElement>
-}
+export type TabsListProps = ComponentPropsWithRef<'div'>
 
 export const TabsList = ({ children, className, ref, ...props }: TabsListProps) => {
   return (
