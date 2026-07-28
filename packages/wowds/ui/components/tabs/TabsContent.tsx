@@ -22,7 +22,7 @@ export const TabsContent = ({ value, children, className, ref, ...props }: TabsC
       id={`${baseId}-panel-${value}`}
       aria-labelledby={`${baseId}-tab-${value}`}
       tabIndex={0}
-      className={cn('w-full flex flex-start pt-9 outline-none', className)}
+      className={cn('w-full pt-9 outline-none', className)}
       {...props}
     >
       {children}
