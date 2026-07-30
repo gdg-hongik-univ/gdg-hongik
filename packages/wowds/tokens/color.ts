@@ -4,10 +4,10 @@
 export const palette = {
   // Core colors — 브랜드 핵심 4색 (Google 계열). status 와는 별개 값·의미.
   core: {
-    blue: { 25: '#E3F2FD', 50: '#BBDEFB', 500: '#4285F4' },
-    green: { 25: '#E8F5E9', 50: '#C8E6C9', 500: '#34A853' },
-    yellow: { 25: '#FFF8E1', 50: '#FFECB3', 500: '#F9AB00' },
-    red: { 25: '#FFEBEE', 50: '#FFCDD2', 500: '#EA4335' },
+    blue: { 25: '#E3F2FD', 50: '#BBDEFB', 100: '#73B6FF', 500: '#4285F4' },
+    green: { 25: '#E8F5E9', 50: '#C8E6C9', 100: '#85CB98', 500: '#34A853' },
+    yellow: { 25: '#FFF8E1', 50: '#FFECB3', 100: '#FBCD66', 500: '#F9AB00' },
+    red: { 25: '#FFEBEE', 50: '#FFCDD2', 100: '#FB8379', 500: '#EA4335' },
   },
 
   // Main Bluescale — Core Blue(500) 확장 스케일. 주 브랜드 컬러.
