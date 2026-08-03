@@ -1,3 +1,9 @@
+@import 'tailwindcss';
+@import '@gdg/wowds/fonts.css';
+@import '@gdg/wowds/theme.css';
+
+@source '../../../packages/wowds/ui';
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;

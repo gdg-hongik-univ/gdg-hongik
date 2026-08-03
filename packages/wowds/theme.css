@@ -1,0 +1,114 @@
+@theme {
+  --color-core-blue-25: #e3f2fd;
+  --color-core-blue-50: #bbdefb;
+  --color-core-blue-500: #4285f4;
+  --color-core-green-25: #e8f5e9;
+  --color-core-green-50: #c8e6c9;
+  --color-core-green-500: #34a853;
+  --color-core-yellow-25: #fff8e1;
+  --color-core-yellow-50: #ffecb3;
+  --color-core-yellow-500: #f9ab00;
+  --color-core-red-25: #ffebee;
+  --color-core-red-50: #ffcdd2;
+  --color-core-red-500: #ea4335;
+
+  --color-blue-100: #e2ecfd;
+  --color-blue-200: #bcd3fb;
+  --color-blue-300: #90b7f9;
+  --color-blue-400: #659bf6;
+  --color-blue-500: #4285f4;
+  --color-blue-600: #2170f2;
+  --color-blue-700: #0d5fe7;
+
+  --color-gray-50: #f4f5f6;
+  --color-gray-100: #e6e8ea;
+  --color-gray-200: #cdd1d5;
+  --color-gray-300: #b1b8be;
+  --color-gray-400: #8a949e;
+  --color-gray-500: #6d7882;
+  --color-gray-600: #58616a;
+  --color-gray-700: #464c53;
+  --color-gray-800: #33363d;
+  --color-gray-900: #1e2124;
+  --color-gray-950: #131416;
+
+  --color-white: #ffffff;
+  --color-black: #080808;
+
+  --color-background: #ffffff;
+  --color-primary: #4285f4;
+  --color-sub: #58616a;
+  --color-outline: #cdd1d5;
+  --color-text-black: #080808;
+  --color-text-white: #ffffff;
+
+  --color-disabled-dark: #cdd1d5;
+  --color-disabled-light: #f4f5f6;
+  --color-disabled-text-blue: #90b7f9;
+  --color-disabled-blue: #e2ecfd;
+
+  --color-hover-blue: #2170f2;
+  --color-hover-mono: #33363d;
+  --color-hover-elevated: #e6e8ea;
+
+  --color-pressed-blue: #659bf6;
+  --color-pressed-blue-background: #e2ecfd;
+  --color-pressed-mono-background: #f4f5f6;
+
+  --color-status-danger: #de3412;
+  --color-status-warning: #ffb114;
+  --color-status-success: #228738;
+  --color-status-information: #096ab3;
+
+  --font-primary: 'SUIT Variable', 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --font-title: 'Google Sans Flex Variable', 'Google Sans', 'Roboto', system-ui, sans-serif;
+  --font-code: 'Google Sans Code Variable', ui-monospace, 'SFMono-Regular', monospace;
+
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+
+  --text-display1: 52px;
+  --text-display1--line-height: 140%;
+  --text-display1--letter-spacing: -1.5%;
+  --text-display2: 48px;
+  --text-display2--line-height: 140%;
+  --text-display2--letter-spacing: -1.5%;
+  --text-display3: 44px;
+  --text-display3--line-height: 140%;
+  --text-display3--letter-spacing: -1.5%;
+
+  --text-title1: 36px;
+  --text-title1--line-height: 140%;
+  --text-title1--letter-spacing: -1.5%;
+  --text-title2: 32px;
+  --text-title2--line-height: 140%;
+  --text-title2--letter-spacing: -1.5%;
+
+  --text-subtitle1: 28px;
+  --text-subtitle1--line-height: 150%;
+  --text-subtitle1--letter-spacing: -1.5%;
+  --text-subtitle2: 24px;
+  --text-subtitle2--line-height: 150%;
+  --text-subtitle2--letter-spacing: -1.5%;
+  --text-subtitle3: 22px;
+  --text-subtitle3--line-height: 150%;
+  --text-subtitle3--letter-spacing: -1.5%;
+  --text-subtitle4: 20px;
+  --text-subtitle4--line-height: 150%;
+  --text-subtitle4--letter-spacing: -1.5%;
+
+  --text-body1: 18px;
+  --text-body1--line-height: 150%;
+  --text-body1--letter-spacing: -1.5%;
+  --text-body2: 16px;
+  --text-body2--line-height: 150%;
+  --text-body2--letter-spacing: -1.5%;
+
+  --text-caption1: 14px;
+  --text-caption1--line-height: 150%;
+  --text-caption1--letter-spacing: -1.5%;
+  --text-caption2: 12px;
+  --text-caption2--line-height: 150%;
+  --text-caption2--letter-spacing: -1.5%;
+}
