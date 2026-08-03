@@ -8,6 +8,7 @@
     "./tokens": "./tokens/index.ts",
     "./ui": "./ui/index.ts",
     "./icon": "./icon/index.ts",
+    "./theme.css": "./theme.css",
     "./fonts.css": "./fonts.css"
   },
   "files": [
@@ -15,6 +16,7 @@
     "ui",
     "icon",
     "fonts",
+    "theme.css",
     "fonts.css",
     "index.ts"
   ],
@@ -28,9 +30,16 @@
   },
   "devDependencies": {
     "@gdg/config": "workspace:*",
-    "eslint": "^10.3.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.2",
+    "eslint": "^10.3.0",
+    "postcss": "^8.5.16",
+    "tailwindcss": "^4.3.1",
     "typescript": "~6.0.2"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
   }
 }
