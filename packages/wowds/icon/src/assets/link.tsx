@@ -28,7 +28,7 @@ const LINK_VARIANTS: Record<IconSize, { viewBox: string; path: (color: string) =
     ),
   },
   sm: {
-    viewBox: '0 0 16 16',
+    viewBox: '0 0 20 20',
     path: (color) => (
       <>
         <path
