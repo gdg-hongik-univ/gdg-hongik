@@ -59,7 +59,6 @@ export const StatusIndicator = ({
       viewBox={variant.viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      role="img"
       className={className}
       {...props}
     >
