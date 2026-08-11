@@ -1,18 +1,18 @@
 import { type ComponentPropsWithRef, type ReactNode } from 'react'
 
-export type StatusIndicatorSize = 'sm' | 'md' | 'lg'
+export type TrackIndicatorSize = 'sm' | 'md' | 'lg'
 
-const SIZE_MAP: Record<StatusIndicatorSize, number> = {
+const SIZE_MAP: Record<TrackIndicatorSize, number> = {
   sm: 24,
   md: 28,
   lg: 32,
 } as const
 
-export interface StatusIndicatorProps extends ComponentPropsWithRef<'svg'> {
-  size?: StatusIndicatorSize
+export interface TrackIndicatorProps extends ComponentPropsWithRef<'svg'> {
+  size?: TrackIndicatorSize
 }
 
-const STATUS_VARIANTS: Record<StatusIndicatorSize, { viewBox: string; elements: ReactNode }> = {
+const TRACK_VARIANTS: Record<TrackIndicatorSize, { viewBox: string; elements: ReactNode }> = {
   sm: {
     viewBox: '0 0 24 24',
     elements: (
@@ -42,14 +42,9 @@ const STATUS_VARIANTS: Record<StatusIndicatorSize, { viewBox: string; elements: 
   },
 }
 
-export const StatusIndicator = ({
-  ref,
-  size = 'md',
-  className,
-  ...props
-}: StatusIndicatorProps) => {
+export const TrackIndicator = ({ ref, size = 'md', className, ...props }: TrackIndicatorProps) => {
   const pixelSize = SIZE_MAP[size]
-  const variant = STATUS_VARIANTS[size]
+  const variant = TRACK_VARIANTS[size]
 
   return (
     <svg
