@@ -23,24 +23,16 @@ export {
 
 export { KakaotalkIcon, type KakaotalkIconProps, type KakaotalkSize } from './src/assets/kakaotalk'
 
-export {
-  LinkIcon,
-  type IconProps as LinkIconProps,
-  type IconSize as LinkIconSize,
-} from './src/assets/link'
+export { LinkIcon, type LinkIconProps, type LinkIconSize } from './src/assets/link'
 
 export { PortfolioIcon, type PortfolioIconProps, type PortfolioSize } from './src/assets/portfolio'
 
 export { RadioIcon, type RadioIconProps, type RadioStatus } from './src/assets/radioButton'
 
-export {
-  StarIcon,
-  type IconProps as StarIconProps,
-  type IconSize as StarIconSize,
-} from './src/assets/star'
+export { StarIcon, type StarIconProps, type StarIconSize } from './src/assets/star'
 
 export {
-  StatusIndicator,
-  type StatusIndicatorProps,
-  type StatusIndicatorSize,
+  TrackIndicator,
+  type TrackIndicatorProps,
+  type TrackIndicatorSize,
 } from './src/assets/trackIndicator'
