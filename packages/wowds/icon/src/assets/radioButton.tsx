@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef } from 'react'
+import { palette } from '../../../tokens'
 
 export type RadioStatus = 'default' | 'selected'
 
@@ -15,7 +16,7 @@ export const RadioIcon = ({
   ...props
 }: RadioIconProps) => {
   const isSelected = status === 'selected'
-  const strokeColor = isSelected ? '#4285F4' : '#B1B8BE'
+  const strokeColor = isSelected ? palette.blue[500] : palette.gray[300]
 
   return (
     <svg
@@ -39,7 +40,7 @@ export const RadioIcon = ({
       {isSelected && (
         <path
           d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z"
-          fill="#4285F4"
+          fill={strokeColor}
         />
       )}
     </svg>

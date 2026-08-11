@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef, type ReactNode } from 'react'
+import { palette } from '../../../tokens'
 
 export type LinkIconSize = 'sm' | 'md'
 
@@ -47,7 +48,7 @@ const LINK_VARIANTS: Record<LinkIconSize, { viewBox: string; path: (color: strin
 export const LinkIcon = ({
   ref,
   size = 'md',
-  color = '#6D7882',
+  color = palette.gray[500],
   className,
   ...props
 }: LinkIconProps) => {

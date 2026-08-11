@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef, type ReactNode } from 'react'
+import { palette } from '../../../tokens'
 
 export type TrackIndicatorSize = 'sm' | 'md' | 'lg'
 
@@ -17,8 +18,8 @@ const TRACK_VARIANTS: Record<TrackIndicatorSize, { viewBox: string; elements: Re
     viewBox: '0 0 24 24',
     elements: (
       <>
-        <rect width="24" height="24" rx="12" fill="#4285F4" fillOpacity="0.2" />
-        <circle cx="12" cy="12" r="6" fill="#659BF6" />
+        <rect width="24" height="24" rx="12" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="12" cy="12" r="6" fill={palette.blue[400]} />
       </>
     ),
   },
@@ -26,8 +27,8 @@ const TRACK_VARIANTS: Record<TrackIndicatorSize, { viewBox: string; elements: Re
     viewBox: '0 0 28 28',
     elements: (
       <>
-        <rect width="28" height="28" rx="14" fill="#4285F4" fillOpacity="0.2" />
-        <circle cx="14" cy="14" r="7" fill="#659BF6" />
+        <rect width="28" height="28" rx="14" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="14" cy="14" r="7" fill={palette.blue[400]} />
       </>
     ),
   },
@@ -35,8 +36,8 @@ const TRACK_VARIANTS: Record<TrackIndicatorSize, { viewBox: string; elements: Re
     viewBox: '0 0 32 32',
     elements: (
       <>
-        <rect width="32" height="32" rx="16" fill="#4285F4" fillOpacity="0.2" />
-        <circle cx="16" cy="16" r="8" fill="#659BF6" />
+        <rect width="32" height="32" rx="16" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="16" cy="16" r="8" fill={palette.blue[400]} />
       </>
     ),
   },

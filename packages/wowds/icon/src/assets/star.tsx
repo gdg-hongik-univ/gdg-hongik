@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef, type ReactNode } from 'react'
+import { palette } from '../../../tokens'
 
 export type StarIconSize = 'sm' | 'md'
 
@@ -37,7 +38,7 @@ const STAR_VARIANTS: Record<StarIconSize, { viewBox: string; path: (color: strin
 export const StarIcon = ({
   ref,
   size = 'md',
-  color = '#F9AB00',
+  color = palette.core.yellow[500],
   className,
   ...props
 }: StarIconProps) => {
