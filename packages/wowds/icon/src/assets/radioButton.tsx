@@ -4,7 +4,7 @@ import { palette } from '../../../tokens'
 export type RadioStatus = 'default' | 'selected'
 
 export interface RadioIconProps extends ComponentPropsWithRef<'svg'> {
-  size?: number | string
+  size?: number
   status?: RadioStatus
 }
 
