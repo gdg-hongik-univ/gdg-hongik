@@ -4,6 +4,14 @@
 
 @source '../../../packages/wowds/ui';
 
+@theme {
+  --breakpoint-xl: 1440px;
+  --breakpoint-l: 1024px;
+  --breakpoint-m: 768px;
+  --breakpoint-s: 600px;
+  --breakpoint-xs: 360px;
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
