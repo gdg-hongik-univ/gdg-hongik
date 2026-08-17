@@ -9,11 +9,11 @@ const SIZE_MAP: Record<ChevronSize, number> = {
   lg: 24,
 } as const
 
-const ROTATION_MAP: Record<ChevronDirection, string> = {
-  right: 'rotate-0',
-  down: 'rotate-90',
-  left: 'rotate-180',
-  up: '-rotate-90',
+const ROTATION_DEGREE: Record<ChevronDirection, number> = {
+  right: 0,
+  down: 90,
+  left: 180,
+  up: 270,
 }
 
 export interface ChevronIconProps extends ComponentPropsWithRef<'svg'> {
@@ -27,6 +27,7 @@ export const ChevronIcon = ({
   direction = 'right',
   color = 'currentColor',
   className = '',
+  style,
   ...props
 }: ChevronIconProps) => {
   const pixelSize = SIZE_MAP[size]
@@ -37,7 +38,11 @@ export const ChevronIcon = ({
       height={pixelSize}
       viewBox="0 0 24 24"
       fill="none"
-      className={`transition-transform duration-200 ${ROTATION_MAP[direction]} ${className}`}
+      style={{
+        transform: `rotate(${ROTATION_DEGREE[direction]}deg)`,
+        ...style,
+      }}
+      className={`transition-transform duration-200 ${className}`}
       {...props}
     >
       <path
