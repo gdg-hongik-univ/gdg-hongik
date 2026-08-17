@@ -1,4 +1,5 @@
 import { type ComponentPropsWithRef } from 'react'
+import { palette } from '../../../tokens'
 
 export type BlogSize = 'sm' | 'md'
 
@@ -14,7 +15,7 @@ export interface BlogIconProps extends ComponentPropsWithRef<'svg'> {
 
 export const BlogIcon = ({
   size = 'md',
-  color = 'currentColor',
+  color = palette.gray[300],
   className = '',
   ...props
 }: BlogIconProps) => {
@@ -29,10 +30,10 @@ export const BlogIcon = ({
       className={className}
       {...props}
     >
-      <rect x="3" y="3" width="18" height="18" rx="1" fill="#B1B8BE" />
-      <path d="M7 8L15 8" stroke={color} strokeWidth="1.75" strokeLinecap="round" />
-      <path d="M7 12L13 12" stroke={color} strokeWidth="1.75" strokeLinecap="round" />
-      <path d="M7 16L15 16" stroke={color} strokeWidth="1.75" strokeLinecap="round" />
+      <rect x="3" y="3" width="18" height="18" rx="1" fill={color} />
+      <path d="M7 8L15 8" stroke={palette.white} strokeWidth="1.75" strokeLinecap="round" />
+      <path d="M7 12L13 12" stroke={palette.white} strokeWidth="1.75" strokeLinecap="round" />
+      <path d="M7 16L15 16" stroke={palette.white} strokeWidth="1.75" strokeLinecap="round" />
     </svg>
   )
 }
