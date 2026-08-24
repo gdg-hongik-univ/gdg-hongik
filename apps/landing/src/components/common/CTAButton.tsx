@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 
 export type CTAButtonProperty = 'main' | 'sub'
-export type CTAButtonSize = 'sm' | 'md' | 'lg'
+export type CTAButtonSize = 'auto' | 'sm' | 'md' | 'lg'
 
 export interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   property: CTAButtonProperty
@@ -23,11 +23,13 @@ const PROPERTY_BASE_STYLES: Record<CTAButtonProperty, { border: string; inner: s
 
 const PROPERTY_SIZE_STYLES: Record<CTAButtonProperty, Record<CTAButtonSize, string>> = {
   main: {
+    auto: 'px-[26.5px] py-[12.5px] text-[14px] leading-[150%] tracking-[-0.015em] s:px-[34.5px] m:py-[16.5px] m:text-subtitle4 l:px-[52.5px] l:py-[22.5px] l:text-subtitle4',
     sm: 'px-[26.5px] py-[12.5px] text-[14px] leading-[150%] tracking-[-0.015em]', // s 사이즈는 수동 조정
     md: 'px-[34.5px] py-[16.5px] text-subtitle4',
     lg: 'px-[52.5px] py-[22.5px] text-subtitle4',
   },
   sub: {
+    auto: 'px-[26.5px] py-[10.5px] l:px-[34.5px] l:py-[18.5px]',
     sm: 'px-[26.5px] py-[10.5px]', // s사이즈는 정의X, 오류 방지용 md로 대체
     md: 'px-[26.5px] py-[10.5px]',
     lg: 'px-[34.5px] py-[18.5px]',
@@ -38,7 +40,7 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
   (
     {
       property = 'main',
-      size = 'md',
+      size = 'auto',
       type = 'button',
       disabled = false,
       className = '',
