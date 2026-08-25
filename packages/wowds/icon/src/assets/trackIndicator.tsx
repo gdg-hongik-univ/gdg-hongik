@@ -1,0 +1,64 @@
+import { type ComponentPropsWithRef, type ReactNode } from 'react'
+import { palette } from '../../../tokens'
+
+export type TrackIndicatorSize = 'sm' | 'md' | 'lg'
+
+const SIZE_MAP: Record<TrackIndicatorSize, number> = {
+  sm: 24,
+  md: 28,
+  lg: 32,
+} as const
+
+export interface TrackIndicatorProps extends ComponentPropsWithRef<'svg'> {
+  size?: TrackIndicatorSize
+}
+
+const TRACK_VARIANTS: Record<TrackIndicatorSize, { viewBox: string; elements: ReactNode }> = {
+  sm: {
+    viewBox: '0 0 24 24',
+    elements: (
+      <>
+        <rect width="24" height="24" rx="12" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="12" cy="12" r="6" fill={palette.blue[400]} />
+      </>
+    ),
+  },
+  md: {
+    viewBox: '0 0 28 28',
+    elements: (
+      <>
+        <rect width="28" height="28" rx="14" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="14" cy="14" r="7" fill={palette.blue[400]} />
+      </>
+    ),
+  },
+  lg: {
+    viewBox: '0 0 32 32',
+    elements: (
+      <>
+        <rect width="32" height="32" rx="16" fill={palette.blue[500]} fillOpacity="0.2" />
+        <circle cx="16" cy="16" r="8" fill={palette.blue[400]} />
+      </>
+    ),
+  },
+}
+
+export const TrackIndicator = ({ ref, size = 'md', className, ...props }: TrackIndicatorProps) => {
+  const pixelSize = SIZE_MAP[size]
+  const variant = TRACK_VARIANTS[size]
+
+  return (
+    <svg
+      ref={ref}
+      width={pixelSize}
+      height={pixelSize}
+      viewBox={variant.viewBox}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      {...props}
+    >
+      {variant.elements}
+    </svg>
+  )
+}
