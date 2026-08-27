@@ -28,22 +28,26 @@ export function CountUp({ end, duration = 1100 }: CountUpProps) {
   useEffect(() => {
     if (!isVisible) return
 
+    const isInvalidDuration = !Number.isFinite(duration) || duration <= 0
+
     let startTime: number | null = null
     let animationFrameId: number
 
-    // 후반부로 갈수록 천천히 멈추는 이징 함수
     const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -7 * t))
 
     const step = (currentTime: number) => {
+      if (isInvalidDuration) {
+        setCount(end)
+        return
+      }
+
       if (!startTime) startTime = currentTime
       const progress = Math.min((currentTime - startTime) / duration, 1)
 
-      setCount(Math.floor(easeOutExpo(progress) * end))
+      setCount(progress === 1 ? end : Math.floor(easeOutExpo(progress) * end))
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(step)
-      } else {
-        setCount(end)
       }
     }
 
