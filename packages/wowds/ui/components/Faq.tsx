@@ -18,10 +18,10 @@ export const Faq = () => {
           FAQ
         </Typography>
         <a
-          href="http://pf.kakao.com/_dWxmen"
+          href="https://pf.kakao.com/_dWxmen"
           target="_blank"
           rel="noreferrer"
-          aria-label="GitHub"
+          aria-label="KakaoTalk"
           className="hover:text-gray-900 transition-colors"
         >
           <KakaotalkBarIcon size="xs" />
@@ -31,6 +31,8 @@ export const Faq = () => {
       <div className="flex w-full flex-col">
         {FAQ_DATA.map((faq) => {
           const isOpen = openId === faq.id
+          const triggerId = `faq-trigger-${faq.id}`
+          const panelId = `faq-panel-${faq.id}`
 
           return (
             <div
@@ -38,7 +40,10 @@ export const Faq = () => {
               className="w-full border-t border-blue-500/30 transition-all duration-200 p-3 xl:px-6 xl:py-8"
             >
               <button
+                id={triggerId}
                 type="button"
+                aria-expanded={isOpen}
+                aria-controls={panelId}
                 onClick={() => toggleAccordion(faq.id)}
                 className="flex w-full items-center justify-between text-left focus:outline-none"
               >
@@ -59,11 +64,15 @@ export const Faq = () => {
                 <ChevronIcon
                   direction={isOpen ? 'up' : 'down'}
                   size="lg"
+                  aria-hidden="true"
                   className="h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-300"
                 />
               </button>
 
               <div
+                id={panelId}
+                aria-labelledby={triggerId}
+                aria-hidden={!isOpen}
                 className={`grid transition-all duration-300 ease-in-out ${
                   isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                 }`}
