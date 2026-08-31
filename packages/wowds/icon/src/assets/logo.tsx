@@ -1,4 +1,8 @@
-export const LogoIcon = ({ className = '', ...props }) => {
+import { type ComponentPropsWithRef } from 'react'
+
+export type LogoIconProps = ComponentPropsWithRef<'svg'>
+
+export const LogoIcon = ({ className = '', ...props }: LogoIconProps) => {
   return (
     <svg width="39" height="19" viewBox="0 0 39 19" fill="none" className={className} {...props}>
       <g clip-path="url(#clip0_1800_30363)">
