@@ -60,10 +60,10 @@ export default function LandingPage() {
           <p className="text-[12px] leading-[1.5] tracking-[-0.18px] l:text-caption1">
             스크롤해서 더 살펴보세요
           </p>
-          <div className="flex flex-col items-center animate-[bounceDown_1s_ease-in-out_infinite]">
+          <div className="flex flex-col items-center animate-[bounceDown_1.5s_ease-in-out_infinite]">
             <ChevronIcon size={isM ? 'lg' : 'sm'} direction="down" color={palette.gray[200]} />
           </div>
-          <div className="flex flex-col items-center animate-[bounceDown_1s_ease-in-out_infinite_0.2s_both]">
+          <div className="flex flex-col items-center animate-[bounceDown_1.5s_ease-in-out_infinite]">
             <ChevronIcon
               size={isM ? 'lg' : 'sm'}
               direction="down"
