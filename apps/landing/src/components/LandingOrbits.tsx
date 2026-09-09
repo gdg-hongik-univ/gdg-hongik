@@ -1,10 +1,10 @@
-import { palette } from '@gdg/wowds'
+import { palette, Typography } from '@gdg/wowds'
 import OrbitStar from './endlessConnections/OrbitStar'
 import OrbitLine from './endlessConnections/OrbitLine'
 
 const LandingOrbits = () => {
   return (
-    <div className="relative flex justify-center w-full h-[650px] overflow-hidden">
+    <div className="relative flex justify-center w-full h-162.5 overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-137 rounded-full z-20 border border-[#57ABFF] opacity-70 pointer-events-none bg-orbit-core" />
         {/* 1번 궤도 (가장 안쪽: 810px, 15초) */}
@@ -28,7 +28,12 @@ const LandingOrbits = () => {
       </div>
 
       {/* 궤도보다 높은 z-index의 하단 페이드 그라데이션 (높이 300px, 100% 지점 white) */}
-      <div className="absolute bottom-0 left-0 right-0 h-75 z-30 pointer-events-none bg-gradient-to-b from-transparent to-white" />
+      <div className="absolute bottom-0 left-0 right-0 h-75 z-30 pointer-events-none bg-linear-to-b from-transparent to-white flex flex-col items-center justify-center">
+        <Typography variant="display1.1" isEn>
+          Endless Connections
+        </Typography>
+        <Typography variant="subtitle3.2">함께 배우고 다시 연결되는 멤버들</Typography>
+      </div>
     </div>
   )
 }
