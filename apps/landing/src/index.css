@@ -4,6 +4,12 @@
 
 @source '../../../packages/wowds/ui';
 
+@layer base {
+  body {
+    font-family: var(--font-primary);
+  }
+}
+
 @theme {
   --breakpoint-xl: 1440px;
   --breakpoint-l: 1024px;
