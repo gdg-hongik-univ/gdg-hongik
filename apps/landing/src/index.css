@@ -38,3 +38,11 @@
     transform: translateY(6px);
   }
 }
+
+.landing-background {
+  background-image: url('./assets/LandingBackgroundMobile.webp');
+
+  @variant s {
+    background-image: url('./assets/LandingBackground.webp');
+  }
+}

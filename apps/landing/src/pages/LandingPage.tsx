@@ -1,4 +1,3 @@
-import LandingBackground from '../assets/LandingBackground.webp'
 import { CountUp } from '../hooks/CountUp'
 import CTAButton from '../components/common/CTAButton'
 import { GoogleColorText } from '../components/common/GoogleColorText'
@@ -30,14 +29,12 @@ export default function LandingPage() {
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full pt-50 s:pt-61 min-h-[100dvh] flex items-center justify-between  px-4 flex-col">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-          <img
-            src={LandingBackground}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-top opacity-90 "
-          />
-        </div>
+        <div
+          aria-hidden="true"
+          className="landing-background absolute inset-0 z-0
+    bg-cover bg-top bg-no-repeat opacity-90
+    pointer-events-none select-none"
+        />
 
         <section className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center pb-58.5">
           <p className="font-medium font-title text-subtitle4 l:text-subtitle2 text-blue-500 pb-6">
