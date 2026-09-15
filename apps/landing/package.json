@@ -10,20 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gdg/wowds": "workspace:*",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "@gdg/wowds": "workspace:*"
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@gdg/config": "workspace:*",
-    "eslint": "^10.3.0",
+    "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@tailwindcss/vite": "^4.3.1",
     "@vitejs/plugin-react": "^6.0.1",
-    "typescript": "~6.0.2",
+    "eslint": "^10.3.0",
     "tailwindcss": "^4.3.1",
+    "typescript": "~6.0.2",
     "vite": "^8.0.12"
   }
 }
