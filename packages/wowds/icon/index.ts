@@ -36,3 +36,5 @@ export {
   type TrackIndicatorProps,
   type TrackIndicatorSize,
 } from './src/assets/trackIndicator'
+
+export { LogoIcon } from './src/assets/logo'
