@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 interface OrbitProfileProps {
   imageSrc: string
   label: string
+  description: string
   to: string
   orbitSize: number
   angle: number
@@ -13,6 +14,7 @@ interface OrbitProfileProps {
 const OrbitProfile = ({
   imageSrc,
   label,
+  description,
   to,
   orbitSize,
   angle,
@@ -31,6 +33,17 @@ const OrbitProfile = ({
           aria-label={label}
         >
           <figure className="m-0">
+            <div className="invisible absolute bottom-[99px] left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+              <div className="rounded-[12px] bg-blue-100 px-5 py-3.5 text-center">
+                <Typography variant="body2.2" className="text-black">
+                  {description}
+                </Typography>
+              </div>
+              <span className="relative h-3 w-6 overflow-hidden" aria-hidden="true">
+                <span className="absolute top-0 left-1/2 size-[16.97px] -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-br-[3px] bg-blue-100" />
+              </span>
+            </div>
+
             <img
               className="absolute top-0 left-0 size-25 max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full object-cover transition-[width,height,box-shadow] duration-300 ease-out group-hover:size-45 group-focus-visible:size-45 group-focus-visible:ring-4 group-focus-visible:ring-blue-200"
               src={imageSrc}
