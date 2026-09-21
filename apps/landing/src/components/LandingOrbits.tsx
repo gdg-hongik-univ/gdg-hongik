@@ -1,14 +1,13 @@
 import { palette, Typography } from '@gdg/wowds'
-import profilePlaceholder from '../assets/Image.png'
 import OrbitStar from './endlessConnections/OrbitStar'
 import OrbitLine from './endlessConnections/OrbitLine'
 import OrbitProfile from './endlessConnections/OrbitProfile'
 
 const orbitProfiles = [
   {
-    imageSrc: profilePlaceholder,
+    imageSrc: '/img/crew.jpg',
     label: 'Community Member',
-    description: '다양한 행사와 프로그램에 참여하며 함께 배우고 교류하는 커뮤니티 멤버예요.',
+    description: '부담 없이 원하는 세션에 참여하면서 개발과 커뮤니티를 처음 경험해가요.',
     to: '/community-member',
     orbitSize: 1053,
     angle: -42,
@@ -18,9 +17,9 @@ const orbitProfiles = [
     lAngle: -42,
   },
   {
-    imageSrc: profilePlaceholder,
+    imageSrc: '/img/frontend.jpg',
     label: 'Part Member',
-    description: '같은 관심사를 가진 멤버들과 프로젝트와 스터디를 함께하며 성장해요.',
+    description: '관심 있는 파트에 들어가 같은 방향을 보는 멤버들과 꾸준히 함께 공부해가요.',
     to: '/part-member',
     orbitSize: 810,
     xsOrbitSize: 870,
@@ -31,10 +30,9 @@ const orbitProfiles = [
     lAngle: 0,
   },
   {
-    imageSrc: profilePlaceholder,
+    imageSrc: '/img/alumni.jpg',
     label: 'Alumni',
-    description:
-      '활동이 끝난 뒤에도 커뮤니티와 연결되어, 선배와 후배 기수가 경험을 나누며 꾸준히 교류해요.',
+    description: '활동을 마친 뒤에도 다시 돌아와 경험과 이야기를 후배들과 나눠요.',
     to: '/alumni',
     orbitSize: 1247,
     angle: 27,
@@ -47,7 +45,7 @@ const orbitProfiles = [
 
 const LandingOrbits = () => {
   return (
-    <div className="relative flex justify-center w-full h-162.5 overflow-hidden">
+    <div className="relative flex justify-center w-full h-205.75 overflow-hidden">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center justify-center">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-137 rounded-full z-20 border border-[#57ABFF] opacity-70 pointer-events-none bg-orbit-core" />
         {/* 1번 궤도 (가장 안쪽: 810px, 15초) */}
@@ -94,11 +92,11 @@ const LandingOrbits = () => {
         <Typography
           variant="display1.1"
           isEn
-          className="xs:!text-subtitle1 s:!text-display3 m:!text-display3 l:!text-display3"
+          className="xs:text-subtitle1! s:text-display3! m:text-display3! l:text-display3!"
         >
           Endless Connections
         </Typography>
-        <Typography variant="subtitle3.2" className="xs:!text-caption1">
+        <Typography variant="subtitle3.2" className="xs:text-caption1!">
           함께 배우고 다시 연결되는 멤버들
         </Typography>
       </div>

@@ -1,0 +1,55 @@
+{
+  "semester": "2026-1",
+  "items": [
+    {
+      "id": "1",
+      "name": "AI 정규 스터디",
+      "mentors": [
+        "김수진",
+        "조규형"
+      ],
+      "thumbnail": "./img/ai.jpg"
+    },
+    {
+      "id": "2",
+      "name": "개발 입문 스터디",
+      "mentors": [
+        "김동현"
+      ],
+      "thumbnail": "./img/dev-basic.jpg"
+    },
+    {
+      "id": "3",
+      "name": "기초 웹 스터디",
+      "mentors": [
+        "김동현"
+      ],
+      "thumbnail": "./img/js.jpg"
+    },
+    {
+      "id": "4",
+      "name": "백엔드 정규 스터디",
+      "mentors": [
+        "박유정",
+        "이건"
+      ],
+      "thumbnail": "./img/spring.jpg"
+    },
+    {
+      "id": "5",
+      "name": "스프링 시큐리티 스터디",
+      "mentors": [
+        "김재원"
+      ],
+      "thumbnail": "./img/spring-security.jpg"
+    },
+    {
+      "id": "6",
+      "name": "프론트엔드 정규 스터디",
+      "mentors": [
+        "김동현"
+      ],
+      "thumbnail": "./img/frontend.jpg"
+    }
+  ]
+}
