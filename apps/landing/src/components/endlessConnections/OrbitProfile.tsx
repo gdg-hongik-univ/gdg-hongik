@@ -53,11 +53,11 @@ const OrbitProfile = ({
     >
       <div className="orbit-profile-angle-layer absolute inset-0">
         <Link
-          className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 cursor-pointer text-inherit no-underline outline-none"
+          className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 -mt-14 -ml-14 size-28 cursor-pointer rounded-full text-inherit no-underline outline-none xs:-mt-9.5 xs:-ml-9.5 xs:size-19 s:-mt-12 s:-ml-12 s:size-24 m:-mt-12 m:-ml-12 m:size-24"
           to={to}
           aria-label={label}
         >
-          <figure className="m-0">
+          <figure className="pointer-events-none absolute top-1/2 left-1/2 m-0">
             <div className="invisible absolute bottom-[99px] left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-[85px] m:bottom-[85px]">
               <div className="rounded-[12px] bg-blue-100 px-5 py-3.5 text-center">
                 <Typography variant="body2.2" className="text-black max-[1024px]:!text-caption1">
