@@ -8,6 +8,7 @@ interface OrbitProfileProps {
   description: string
   to: string
   orbitSize: number
+  xsOrbitSize?: number
   angle: number
   xsAngle?: number
   imageAlt?: string
@@ -19,13 +20,14 @@ const OrbitProfile = ({
   description,
   to,
   orbitSize,
+  xsOrbitSize = orbitSize,
   angle,
   xsAngle = angle,
   imageAlt = '',
 }: OrbitProfileProps) => {
   const orbitStyle = {
-    width: orbitSize,
-    height: orbitSize,
+    '--orbit-profile-size': `${orbitSize}px`,
+    '--orbit-profile-xs-size': `${xsOrbitSize}px`,
     '--orbit-profile-angle': `${angle}deg`,
     '--orbit-profile-counter-angle': `${-angle}deg`,
     '--orbit-profile-xs-angle': `${xsAngle}deg`,
@@ -34,7 +36,7 @@ const OrbitProfile = ({
 
   return (
     <div
-      className="absolute top-1/2 left-1/2 z-40 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+      className="orbit-profile-size absolute top-1/2 left-1/2 z-40 -translate-x-1/2 -translate-y-1/2 pointer-events-none hover:z-50 focus-within:z-50"
       style={orbitStyle}
     >
       <div className="orbit-profile-angle-layer absolute inset-0">
