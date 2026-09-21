@@ -45,3 +45,21 @@
     transform: translateY(6px);
   }
 }
+
+.orbit-profile-angle-layer {
+  transform: rotate(var(--orbit-profile-angle));
+}
+
+.orbit-profile-content {
+  rotate: var(--orbit-profile-counter-angle);
+}
+
+@media (min-width: 360px) and (max-width: 599px) {
+  .orbit-profile-angle-layer {
+    transform: rotate(var(--orbit-profile-xs-angle));
+  }
+
+  .orbit-profile-content {
+    rotate: var(--orbit-profile-xs-counter-angle);
+  }
+}

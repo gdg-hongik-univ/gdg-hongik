@@ -1,4 +1,5 @@
 import { Typography } from '@gdg/wowds'
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 
 interface OrbitProfileProps {
@@ -8,6 +9,7 @@ interface OrbitProfileProps {
   to: string
   orbitSize: number
   angle: number
+  xsAngle?: number
   imageAlt?: string
 }
 
@@ -18,17 +20,26 @@ const OrbitProfile = ({
   to,
   orbitSize,
   angle,
+  xsAngle = angle,
   imageAlt = '',
 }: OrbitProfileProps) => {
+  const orbitStyle = {
+    width: orbitSize,
+    height: orbitSize,
+    '--orbit-profile-angle': `${angle}deg`,
+    '--orbit-profile-counter-angle': `${-angle}deg`,
+    '--orbit-profile-xs-angle': `${xsAngle}deg`,
+    '--orbit-profile-xs-counter-angle': `${-xsAngle}deg`,
+  } as CSSProperties
+
   return (
     <div
       className="absolute top-1/2 left-1/2 z-40 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-      style={{ width: orbitSize, height: orbitSize }}
+      style={orbitStyle}
     >
-      <div className="absolute inset-0" style={{ transform: `rotate(${angle}deg)` }}>
+      <div className="orbit-profile-angle-layer absolute inset-0">
         <Link
-          className="group pointer-events-auto absolute top-0 left-1/2 cursor-pointer text-inherit no-underline outline-none"
-          style={{ rotate: `${-angle}deg` }}
+          className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 cursor-pointer text-inherit no-underline outline-none"
           to={to}
           aria-label={label}
         >
@@ -45,7 +56,7 @@ const OrbitProfile = ({
             </div>
 
             <img
-              className="absolute top-0 left-0 size-25 max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full object-cover transition-[width,height,box-shadow] duration-300 ease-out group-hover:size-45 group-focus-visible:size-45 group-focus-visible:ring-4 group-focus-visible:ring-blue-200"
+              className="absolute top-0 left-0 size-25 max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full object-cover transition-[width,height,box-shadow] duration-300 ease-out group-hover:size-45 group-focus-visible:size-45 group-focus-visible:ring-4 group-focus-visible:ring-blue-200 min-[360px]:max-[600px]:size-16"
               src={imageSrc}
               alt={imageAlt}
               width={100}
@@ -55,7 +66,7 @@ const OrbitProfile = ({
               as="figcaption"
               variant="subtitle2.2"
               isEn
-              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:!text-title2 group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:!text-title2 group-focus-visible:text-blue-700"
+              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:!text-title2 group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:!text-title2 group-focus-visible:text-blue-700 min-[360px]:max-[600px]:top-10 min-[360px]:max-[600px]:!text-subtitle6 min-[360px]:max-[600px]:group-hover:!text-subtitle3 min-[360px]:max-[600px]:group-focus-visible:!text-subtitle3"
             >
               {label}
             </Typography>
