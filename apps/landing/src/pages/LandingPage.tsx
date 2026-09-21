@@ -4,6 +4,7 @@ import CTAButton from '../components/common/CTAButton'
 import { GoogleColorText } from '../components/common/GoogleColorText'
 import { ChevronIcon, palette } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
+import LandingOrbits from '../components/LandingOrbits'
 
 function useIsMedium() {
   const query = '(min-width: 768px)'
@@ -118,6 +119,7 @@ export default function LandingPage() {
           </ol>
         </section>
       </section>
+      <LandingOrbits />
     </div>
   )
 }
