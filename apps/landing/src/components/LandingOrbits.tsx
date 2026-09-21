@@ -13,6 +13,9 @@ const orbitProfiles = [
     orbitSize: 1053,
     angle: -42,
     xsAngle: -8,
+    sAngle: -18,
+    mAngle: -28,
+    lAngle: -42,
   },
   {
     imageSrc: profilePlaceholder,
@@ -23,6 +26,9 @@ const orbitProfiles = [
     xsOrbitSize: 870,
     angle: 0,
     xsAngle: 8,
+    sAngle: 8,
+    mAngle: 0,
+    lAngle: 0,
   },
   {
     imageSrc: profilePlaceholder,
@@ -33,6 +39,9 @@ const orbitProfiles = [
     orbitSize: 1247,
     angle: 27,
     xsAngle: 8,
+    sAngle: 12,
+    mAngle: 20,
+    lAngle: 27,
   },
 ] as const
 
@@ -73,6 +82,9 @@ const LandingOrbits = () => {
             xsOrbitSize={'xsOrbitSize' in profile ? profile.xsOrbitSize : undefined}
             angle={profile.angle}
             xsAngle={profile.xsAngle}
+            sAngle={profile.sAngle}
+            mAngle={profile.mAngle}
+            lAngle={profile.lAngle}
           />
         ))}
       </div>

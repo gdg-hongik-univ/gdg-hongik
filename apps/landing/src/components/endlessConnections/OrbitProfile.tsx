@@ -11,6 +11,9 @@ interface OrbitProfileProps {
   xsOrbitSize?: number
   angle: number
   xsAngle?: number
+  sAngle?: number
+  mAngle?: number
+  lAngle?: number
   imageAlt?: string
 }
 
@@ -23,6 +26,9 @@ const OrbitProfile = ({
   xsOrbitSize = orbitSize,
   angle,
   xsAngle = angle,
+  sAngle = angle,
+  mAngle = angle,
+  lAngle = angle,
   imageAlt = '',
 }: OrbitProfileProps) => {
   const orbitStyle = {
@@ -32,6 +38,12 @@ const OrbitProfile = ({
     '--orbit-profile-counter-angle': `${-angle}deg`,
     '--orbit-profile-xs-angle': `${xsAngle}deg`,
     '--orbit-profile-xs-counter-angle': `${-xsAngle}deg`,
+    '--orbit-profile-s-angle': `${sAngle}deg`,
+    '--orbit-profile-s-counter-angle': `${-sAngle}deg`,
+    '--orbit-profile-m-angle': `${mAngle}deg`,
+    '--orbit-profile-m-counter-angle': `${-mAngle}deg`,
+    '--orbit-profile-l-angle': `${lAngle}deg`,
+    '--orbit-profile-l-counter-angle': `${-lAngle}deg`,
   } as CSSProperties
 
   return (
@@ -48,7 +60,7 @@ const OrbitProfile = ({
           <figure className="m-0">
             <div className="invisible absolute bottom-[99px] left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-[85px] m:bottom-[85px]">
               <div className="rounded-[12px] bg-blue-100 px-5 py-3.5 text-center">
-                <Typography variant="body2.2" className="text-black">
+                <Typography variant="body2.2" className="text-black max-[1024px]:!text-caption1">
                   {description}
                 </Typography>
               </div>
