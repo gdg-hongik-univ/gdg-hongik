@@ -79,7 +79,11 @@ const LandingOrbits = () => {
 
       {/* 궤도보다 높은 z-index의 하단 페이드 그라데이션 (높이 300px, 100% 지점 white) */}
       <div className="absolute bottom-0 left-0 right-0 h-75 z-30 pointer-events-none bg-linear-to-b from-transparent to-white flex flex-col items-center justify-center">
-        <Typography variant="display1.1" isEn className="xs:!text-subtitle1">
+        <Typography
+          variant="display1.1"
+          isEn
+          className="xs:!text-subtitle1 s:!text-display3 m:!text-display3 l:!text-display3"
+        >
           Endless Connections
         </Typography>
         <Typography variant="subtitle3.2" className="xs:!text-caption1">
