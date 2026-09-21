@@ -1,4 +1,12 @@
+@custom-variant xs (@media (min-width: 360px) and (max-width: 599px));
+@custom-variant s (@media (min-width: 600px) and (max-width: 767px));
+@custom-variant m (@media (min-width: 768px) and (max-width: 1023px));
+@custom-variant l (@media (min-width: 1024px) and (max-width: 1439px));
+@custom-variant xl (@media (min-width: 1440px));
+
 @theme {
+  --breakpoint-*: initial;
+
   --color-core-blue-25: #e3f2fd;
   --color-core-blue-50: #bbdefb;
   --color-core-blue-500: #4285f4;

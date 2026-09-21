@@ -58,7 +58,7 @@ const OrbitProfile = ({
             </div>
 
             <img
-              className="absolute top-0 left-0 size-25 max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full object-cover transition-[width,height,box-shadow] duration-300 ease-out group-hover:size-45 group-focus-visible:size-45 group-focus-visible:ring-4 group-focus-visible:ring-blue-200 min-[360px]:max-[600px]:size-16"
+              className="absolute top-0 left-0 size-25 max-w-none -translate-x-1/2 -translate-y-1/2 rounded-full object-cover transition-[width,height,box-shadow] duration-300 ease-out group-hover:size-45 group-focus-visible:size-45 group-focus-visible:ring-4 group-focus-visible:ring-blue-200 xs:size-16"
               src={imageSrc}
               alt={imageAlt}
               width={100}
@@ -68,7 +68,7 @@ const OrbitProfile = ({
               as="figcaption"
               variant="subtitle2.2"
               isEn
-              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:!text-title2 group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:!text-title2 group-focus-visible:text-blue-700 min-[360px]:max-[600px]:top-10 min-[360px]:max-[600px]:!text-subtitle6 min-[360px]:max-[600px]:group-hover:!text-subtitle3 min-[360px]:max-[600px]:group-focus-visible:!text-subtitle3"
+              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:!text-title2 group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:!text-title2 group-focus-visible:text-blue-700 xs:top-10 xs:!text-subtitle6 xs:group-hover:!text-subtitle3 xs:group-focus-visible:!text-subtitle3"
             >
               {label}
             </Typography>
