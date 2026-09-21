@@ -96,6 +96,36 @@
   }
 }
 
+@media (min-width: 600px) and (max-width: 767px) {
+  .orbit-profile-angle-layer {
+    transform: rotate(var(--orbit-profile-s-angle));
+  }
+
+  .orbit-profile-content {
+    rotate: var(--orbit-profile-s-counter-angle);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .orbit-profile-angle-layer {
+    transform: rotate(var(--orbit-profile-m-angle));
+  }
+
+  .orbit-profile-content {
+    rotate: var(--orbit-profile-m-counter-angle);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .orbit-profile-angle-layer {
+    transform: rotate(var(--orbit-profile-l-angle));
+  }
+
+  .orbit-profile-content {
+    rotate: var(--orbit-profile-l-counter-angle);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .orbit-line-size,
   .orbit-profile-size,
