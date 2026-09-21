@@ -68,7 +68,7 @@ color.status.danger // #DE3412
 
 ### typography — Large 스케일
 
-스케일: `display1~3`, `title1~2`, `subtitle1~4`, `body1~2`, `caption1~2`.
+스케일: `display1~3`, `title1~2`, `subtitle1~6`, `body1~2`, `caption1~2`.
 각 스타일은 크기·모양만 정의한다 — `fontSize / lineHeight / letterSpacing` (letter-spacing 은 전 스타일 `-1.5%`).
 
 **굵기(fontWeight)는 스케일과 독립된 축**이라 따로 조합한다. (`bold` 700 / `semibold` 600 / `medium` 500)

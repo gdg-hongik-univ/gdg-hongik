@@ -33,6 +33,8 @@ export const typography = {
   subtitle2: { fontSize: '24px', lineHeight: '150%', letterSpacing: '-1.5%' },
   subtitle3: { fontSize: '22px', lineHeight: '150%', letterSpacing: '-1.5%' },
   subtitle4: { fontSize: '20px', lineHeight: '150%', letterSpacing: '-1.5%' },
+  subtitle5: { fontSize: '18px', lineHeight: '150%', letterSpacing: '-1.5%' },
+  subtitle6: { fontSize: '16px', lineHeight: '150%', letterSpacing: '-1.5%' },
 
   body1: { fontSize: '18px', lineHeight: '150%', letterSpacing: '-1.5%' },
   body2: { fontSize: '16px', lineHeight: '150%', letterSpacing: '-1.5%' },
