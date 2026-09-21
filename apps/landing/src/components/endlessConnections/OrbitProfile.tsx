@@ -21,7 +21,7 @@ const OrbitProfile = ({
   imageSrc,
   label,
   description,
-  to,
+  // to,
   orbitSize,
   xsOrbitSize = orbitSize,
   angle,
@@ -54,13 +54,13 @@ const OrbitProfile = ({
       <div className="orbit-profile-angle-layer absolute inset-0">
         <Link
           className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 -mt-14 -ml-14 size-28 cursor-pointer rounded-full text-inherit no-underline outline-none xs:-mt-9.5 xs:-ml-9.5 xs:size-19 s:-mt-12 s:-ml-12 s:size-24 m:-mt-12 m:-ml-12 m:size-24"
-          to={to}
+          to={'/'}
           aria-label={label}
         >
           <figure className="pointer-events-none absolute top-1/2 left-1/2 m-0">
-            <div className="invisible absolute bottom-[99px] left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-[85px] m:bottom-[85px]">
-              <div className="rounded-[12px] bg-blue-100 px-5 py-3.5 text-center">
-                <Typography variant="body2.2" className="text-black max-[1024px]:!text-caption1">
+            <div className="invisible absolute bottom-24.75 left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-21.25 m:bottom-21.25">
+              <div className="rounded-xl bg-blue-100 px-5 py-3.5 text-center">
+                <Typography variant="body2.2" className="text-black max-[1024px]:text-caption1!">
                   {description}
                 </Typography>
               </div>
@@ -80,7 +80,7 @@ const OrbitProfile = ({
               as="figcaption"
               variant="subtitle2.2"
               isEn
-              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:!text-title2 group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:!text-title2 group-focus-visible:text-blue-700 xs:top-10 xs:!text-subtitle6 xs:group-hover:!text-subtitle3 xs:group-focus-visible:!text-subtitle3 s:top-12.5 s:!text-subtitle4 s:group-hover:top-21 s:group-hover:!text-title1 s:group-focus-visible:top-21 s:group-focus-visible:!text-title1 m:top-12.5 m:!text-subtitle4 m:group-hover:top-21 m:group-hover:!text-subtitle1 m:group-focus-visible:top-21 m:group-focus-visible:!text-subtitle1"
+              className="absolute top-14.5 left-0 -translate-x-1/2 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:text-title2! group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:text-title2! group-focus-visible:text-blue-700 xs:top-10 xs:text-subtitle6! xs:group-hover:text-subtitle3! xs:group-focus-visible:text-subtitle3! s:top-12.5 s:text-subtitle4! s:group-hover:top-21 s:group-hover:text-title1! s:group-focus-visible:top-21 s:group-focus-visible:text-title1! m:top-12.5 m:text-subtitle4! m:group-hover:top-21 m:group-hover:text-subtitle1! m:group-focus-visible:top-21 m:group-focus-visible:text-subtitle1!"
             >
               {label}
             </Typography>
