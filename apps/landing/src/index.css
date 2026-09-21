@@ -5,11 +5,6 @@
 @source '../../../packages/wowds/ui';
 
 @theme {
-  --breakpoint-xl: 1440px;
-  --breakpoint-l: 1024px;
-  --breakpoint-m: 768px;
-  --breakpoint-s: 600px;
-  --breakpoint-xs: 360px;
   --animate-orbit-1: spin-reverse 15s linear infinite;
   --animate-orbit-2: spin-reverse 20s linear infinite;
   --animate-orbit-3: spin-reverse 25s linear infinite;
