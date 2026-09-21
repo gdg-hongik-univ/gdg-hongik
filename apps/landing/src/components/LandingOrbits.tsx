@@ -8,6 +8,7 @@ const orbitProfiles = [
   {
     imageSrc: profilePlaceholder,
     label: 'Community Member',
+    description: '다양한 행사와 프로그램에 참여하며 함께 배우고 교류하는 커뮤니티 멤버예요.',
     to: '/community-member',
     orbitSize: 1053,
     angle: -42,
@@ -15,6 +16,7 @@ const orbitProfiles = [
   {
     imageSrc: profilePlaceholder,
     label: 'Part Member',
+    description: '같은 관심사를 가진 멤버들과 프로젝트와 스터디를 함께하며 성장해요.',
     to: '/part-member',
     orbitSize: 810,
     angle: 0,
@@ -22,6 +24,8 @@ const orbitProfiles = [
   {
     imageSrc: profilePlaceholder,
     label: 'Alumni',
+    description:
+      '활동이 끝난 뒤에도 커뮤니티와 연결되어, 선배와 후배 기수가 경험을 나누며 꾸준히 교류해요.',
     to: '/alumni',
     orbitSize: 1247,
     angle: 27,
@@ -59,6 +63,7 @@ const LandingOrbits = () => {
             imageSrc={profile.imageSrc}
             imageAlt={`${profile.label} profile`}
             label={profile.label}
+            description={profile.description}
             to={profile.to}
             orbitSize={profile.orbitSize}
             angle={profile.angle}
