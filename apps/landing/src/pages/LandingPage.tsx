@@ -6,6 +6,7 @@ import { ChevronIcon, palette, Tabs, Typography } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import LandingOrbits from '../components/LandingOrbits'
+import { Faq } from '../components/Faq'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -154,6 +155,7 @@ export default function LandingPage() {
         <MarkUp activityType="meetNConnect" />
       </section>
       <LandingOrbits />
+      <Faq />
     </div>
   )
 }
