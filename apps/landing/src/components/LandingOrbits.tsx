@@ -1,6 +1,32 @@
 import { palette, Typography } from '@gdg/wowds'
+import profilePlaceholder from '../assets/Image.png'
 import OrbitStar from './endlessConnections/OrbitStar'
 import OrbitLine from './endlessConnections/OrbitLine'
+import OrbitProfile from './endlessConnections/OrbitProfile'
+
+const orbitProfiles = [
+  {
+    imageSrc: profilePlaceholder,
+    label: 'Community Member',
+    to: '/community-member',
+    orbitSize: 1053,
+    angle: -42,
+  },
+  {
+    imageSrc: profilePlaceholder,
+    label: 'Part Member',
+    to: '/part-member',
+    orbitSize: 810,
+    angle: 0,
+  },
+  {
+    imageSrc: profilePlaceholder,
+    label: 'Alumni',
+    to: '/alumni',
+    orbitSize: 1247,
+    angle: 27,
+  },
+] as const
 
 const LandingOrbits = () => {
   return (
@@ -25,6 +51,19 @@ const LandingOrbits = () => {
           <OrbitStar color={palette.core.blue[100]} angle={58} />
           <OrbitStar color="#FFE27C" angle={86} />
         </OrbitLine>
+
+        {/* 회전하는 궤도와 분리해 사진과 텍스트는 제자리에 고정한다. */}
+        {orbitProfiles.map((profile) => (
+          <OrbitProfile
+            key={profile.label}
+            imageSrc={profile.imageSrc}
+            imageAlt={`${profile.label} profile`}
+            label={profile.label}
+            to={profile.to}
+            orbitSize={profile.orbitSize}
+            angle={profile.angle}
+          />
+        ))}
       </div>
 
       {/* 궤도보다 높은 z-index의 하단 페이드 그라데이션 (높이 300px, 100% 지점 white) */}
