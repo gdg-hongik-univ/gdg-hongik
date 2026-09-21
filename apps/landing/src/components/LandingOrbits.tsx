@@ -12,6 +12,7 @@ const orbitProfiles = [
     to: '/community-member',
     orbitSize: 1053,
     angle: -42,
+    xsAngle: -8,
   },
   {
     imageSrc: profilePlaceholder,
@@ -20,6 +21,7 @@ const orbitProfiles = [
     to: '/part-member',
     orbitSize: 810,
     angle: 0,
+    xsAngle: 8,
   },
   {
     imageSrc: profilePlaceholder,
@@ -29,6 +31,7 @@ const orbitProfiles = [
     to: '/alumni',
     orbitSize: 1247,
     angle: 27,
+    xsAngle: 8,
   },
 ] as const
 
@@ -67,6 +70,7 @@ const LandingOrbits = () => {
             to={profile.to}
             orbitSize={profile.orbitSize}
             angle={profile.angle}
+            xsAngle={profile.xsAngle}
           />
         ))}
       </div>
