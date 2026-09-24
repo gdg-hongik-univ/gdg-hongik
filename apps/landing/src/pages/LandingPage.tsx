@@ -34,7 +34,6 @@ function useIsMedium() {
 export default function LandingPage() {
   const isM = useIsMedium()
   const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
-  const activeActivityLabel = ACTIVITY_TABS.find((tab) => tab.value === activeActivity)?.label
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -138,10 +137,6 @@ export default function LandingPage() {
                 {tab.label}
               </Tabs.Trigger>
             ))}
-            <Tabs.Detail
-              className="hidden s:flex"
-              endIcon={<ChevronIcon direction="right" size="sm" />}
-            />
           </Tabs.List>
 
           {ACTIVITY_TABS.map((tab) => (
@@ -149,12 +144,6 @@ export default function LandingPage() {
               <MarkUp activityType={tab.value} />
             </Tabs.Content>
           ))}
-          <Tabs.Detail
-            className="mt-6 ml-0 w-full s:hidden rounded-[4px] border-1 border-gray-200 text-black"
-            endIcon={<ChevronIcon direction="right" size="sm" />}
-          >
-            {activeActivityLabel} 더보기
-          </Tabs.Detail>
         </Tabs>
       </section>
       <section className="flex flex-col gap-12 w-[95%] px-4 pb-35" aria-label="지난 학기 활동 소개">
