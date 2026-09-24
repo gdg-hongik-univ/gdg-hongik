@@ -2,7 +2,7 @@ import { Typography } from '@gdg/wowds'
 
 type ActivityType = 'regularStudy' | 'projectTrack' | 'partStudy' | 'meetNConnect'
 
-interface MarkUpProps {
+interface ActivityInfoProps {
   activityType: ActivityType
 }
 
@@ -28,7 +28,7 @@ const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: strin
   },
 }
 
-export default function MarkUp({ activityType }: MarkUpProps) {
+export default function ActivityInfo({ activityType }: ActivityInfoProps) {
   const { title, description } = ACTIVITY_CONTENT[activityType]
 
   return (

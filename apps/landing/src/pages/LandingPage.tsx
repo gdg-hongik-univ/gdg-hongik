@@ -4,7 +4,7 @@ import CTAButton from '../components/common/CTAButton'
 import { GoogleColorText } from '../components/common/GoogleColorText'
 import { ChevronIcon, palette, Tabs, Typography } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
-import MarkUp from '../components/MarkUp'
+import MarkUp from '../components/ActivityInfo'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
