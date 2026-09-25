@@ -82,7 +82,7 @@ export const TabsTrigger = ({
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={cn(
-        'm-0 -mb-[2px] px-4 py-3.5 bg-transparent border-t-0 border-x-0 border-solid rounded-none appearance-none cursor-pointer outline-none',
+        'm-0 -mb-[2px] px-4 py-3.5 bg-transparent border-t-0 border-x-0 border-solid rounded-none appearance-none cursor-pointer  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600',
         'border-b-2 border-gray-100 font-semibold text-gray-300 transition-all',
         isActive && 'border-black text-black',
         isDisabled && 'cursor-not-allowed opacity-50',

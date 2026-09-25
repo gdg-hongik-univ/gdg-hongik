@@ -2,8 +2,15 @@ import LandingBackground from '../assets/LandingBackground.webp'
 import { CountUp } from '../hooks/CountUp'
 import CTAButton from '../components/common/CTAButton'
 import { GoogleColorText } from '../components/common/GoogleColorText'
-import { ChevronIcon, palette } from '@gdg/wowds'
+import { ChevronIcon, palette, Tabs, Typography } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
+import MarkUp from '../components/ActivityInfo'
+
+const ACTIVITY_TABS = [
+  { value: 'regularStudy', label: '정규 스터디' },
+  { value: 'projectTrack', label: '프로젝트 트랙' },
+  { value: 'partStudy', label: '파트' },
+] as const
 
 function useIsMedium() {
   const query = '(min-width: 768px)'
@@ -26,6 +33,7 @@ function useIsMedium() {
 
 export default function LandingPage() {
   const isM = useIsMedium()
+  const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -117,6 +125,32 @@ export default function LandingPage() {
             </li>
           </ol>
         </section>
+      </section>
+      <section className="flex flex-col gap-4 w-[95%]  px-4 pb-35" aria-label="스터디 소개">
+        <Typography as="h2" variant="display3.1" isEn={true}>
+          Learn & Build
+        </Typography>
+        <Tabs value={activeActivity} onValueChange={setActiveActivity}>
+          <Tabs.List aria-label="스터디 종류">
+            {ACTIVITY_TABS.map((tab) => (
+              <Tabs.Trigger key={tab.value} value={tab.value}>
+                {tab.label}
+              </Tabs.Trigger>
+            ))}
+          </Tabs.List>
+
+          {ACTIVITY_TABS.map((tab) => (
+            <Tabs.Content key={tab.value} value={tab.value}>
+              <MarkUp activityType={tab.value} />
+            </Tabs.Content>
+          ))}
+        </Tabs>
+      </section>
+      <section className="flex flex-col gap-12 w-[95%] px-4 pb-35" aria-label="지난 학기 활동 소개">
+        <Typography as="h2" variant="display3.1" isEn={true}>
+          Meet & Connect
+        </Typography>
+        <MarkUp activityType="meetNConnect" />
       </section>
     </div>
   )
