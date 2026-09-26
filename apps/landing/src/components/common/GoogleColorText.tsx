@@ -9,7 +9,7 @@ const GOOGLE_COLORS = [
 
 export function GoogleColorText() {
   return (
-    <span className="font-medium inline-block">
+    <span className="font-medium font-title inline-block">
       {'Google'.split('').map((char, index) => (
         <span key={index} className={GOOGLE_COLORS[index]}>
           {char}

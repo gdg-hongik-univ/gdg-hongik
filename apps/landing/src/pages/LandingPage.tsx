@@ -1,4 +1,3 @@
-import LandingBackground from '../assets/LandingBackground.webp'
 import { CountUp } from '../hooks/CountUp'
 import CTAButton from '../components/common/CTAButton'
 import { GoogleColorText } from '../components/common/GoogleColorText'
@@ -38,17 +37,15 @@ export default function LandingPage() {
   return (
     <div className="w-full flex flex-col items-center">
       <section className="relative w-full pt-50 s:pt-61 min-h-[100dvh] flex items-center justify-between  px-4 flex-col">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-          <img
-            src={LandingBackground}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover object-top opacity-90 "
-          />
-        </div>
+        <div
+          aria-hidden="true"
+          className="landing-background absolute inset-0 z-0
+    bg-cover bg-top bg-no-repeat opacity-90
+    pointer-events-none select-none"
+        />
 
         <section className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center pb-58.5">
-          <p className="font-medium text-subtitle4 l:text-subtitle2 text-blue-500 pb-6">
+          <p className="font-medium font-title text-subtitle4 l:text-subtitle2 text-blue-500 pb-6">
             <GoogleColorText /> Developer Groups <br className="block l:hidden" /> on Campus Hongik
             University
           </p>
@@ -83,7 +80,7 @@ export default function LandingPage() {
       </section>
       <section className="relative w-full flex items-center justify-center overflow-hidden px-4 flex-col mx-auto text-center">
         <section className="pb-11">
-          <h1 className="text-[48px] s:text-[56px] m:text-[80px] l:text-[100px] xl:text-[120px] font-medium bg-gradient-to-r from-blue-700/70 via-blue-400/70 to-blue-700/70 to-[96.29%] bg-clip-text text-transparent leading-[1.2] tracking-[-1.44px] [text-shadow:_0_0_30px_rgb(255_255_255_/_0.1)]">
+          <h1 className="font-title text-[48px] s:text-[56px] m:text-[80px] l:text-[100px] xl:text-[120px] font-medium bg-gradient-to-r from-blue-700/70 via-blue-400/70 to-blue-700/70 to-[96.29%] bg-clip-text text-transparent leading-[1.2] tracking-[-1.44px] [text-shadow:_0_0_30px_rgb(255_255_255_/_0.1)]">
             GDG <br className="block s:hidden" />
             Hongik Univ.
           </h1>
