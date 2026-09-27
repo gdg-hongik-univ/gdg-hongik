@@ -1,3 +1,5 @@
+import { cn } from '@gdg/wowds'
+
 interface OrbitStarProps {
   color?: string
   angle?: number
@@ -12,7 +14,10 @@ const OrbitStar = ({ color, angle = 0, size = 14, className }: OrbitStarProps) =
       style={{ transform: `rotate(${angle}deg)` }}
     >
       <div
-        className={`absolute left-1/2 -translate-x-1/2 rounded-full z-20 transition-transform duration-300 hover:scale-125 cursor-pointer ${className ?? ''}`}
+        className={cn(
+          'absolute left-1/2 -translate-x-1/2 rounded-full z-20 transition-transform duration-300',
+          className,
+        )}
         style={{
           width: size,
           height: size,
