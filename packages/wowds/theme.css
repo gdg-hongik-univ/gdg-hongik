@@ -1,4 +1,12 @@
+@custom-variant xs (@media (min-width: 360px) and (max-width: 599px));
+@custom-variant s (@media (min-width: 600px) and (max-width: 767px));
+@custom-variant m (@media (min-width: 768px) and (max-width: 1023px));
+@custom-variant l (@media (min-width: 1024px) and (max-width: 1439px));
+@custom-variant xl (@media (min-width: 1440px));
+
 @theme {
+  --breakpoint-*: initial;
+
   --color-core-blue-25: #e3f2fd;
   --color-core-blue-50: #bbdefb;
   --color-core-blue-500: #4285f4;
@@ -97,6 +105,12 @@
   --text-subtitle4: 20px;
   --text-subtitle4--line-height: 150%;
   --text-subtitle4--letter-spacing: -1.5%;
+  --text-subtitle5: 18px;
+  --text-subtitle5--line-height: 150%;
+  --text-subtitle5--letter-spacing: -1.5%;
+  --text-subtitle6: 16px;
+  --text-subtitle6--line-height: 150%;
+  --text-subtitle6--letter-spacing: -1.5%;
 
   --text-body1: 18px;
   --text-body1--line-height: 150%;
