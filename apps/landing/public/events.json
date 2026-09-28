@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "name": "개강총회",
+      "date": "2026-03-13",
+      "description": "새로운 학기를 맞아 앞으로의 활동을 소개하고, 멤버들과 처음 인사를 나눴어요.",
+      "image": "./img/opening-class.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "2",
+      "name": "크루 대면식",
+      "date": "2026-03-20",
+      "description": "크루 멤버들이 처음으로 한자리에 모여 얼굴을 익히고 가까워지는 시간을 가졌어요.",
+      "image": "./img/crew.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "3",
+      "name": "만우절 간식행사",
+      "date": "2026-04-01",
+      "description": "중간고사를 앞둔 멤버들을 응원하기 위해 만우절 간식을 준비했어요.",
+      "image": "./img/fool.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "4",
+      "name": "한강 나들이",
+      "date": "2026-04-29",
+      "description": "멤버들과 한강에 모여 맛있는 것도 먹고 편하게 이야기하며 즐거운 시간을 보냈어요.",
+      "image": "./img/river.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "5",
+      "name": "어셈블 세미나",
+      "date": "2026-05-04",
+      "description": "프론트엔드, 백엔드, AI 세 파트가 모여 각자의 지식과 경험을 공유했어요.",
+      "image": "./img/assemble.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "6",
+      "name": "종강총회",
+      "date": "2026-06-19",
+      "description": "한 학기 동안 함께한 활동을 돌아보고, 각자의 소감을 나누며 학기를 마무리했어요.",
+      "image": "./img/closing-class.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "7",
+      "name": "알럼나이 커피챗",
+      "date": "2026-06-22",
+      "description": "GDG 선배들과 파트별로 이야기를 나눴어요. 선배들이 직접 겪은 경험과 조언을 편하게 들을 수 있었어요.",
+      "image": "./img/alumni.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "8",
+      "name": "하지톤",
+      "date": "2026-08-01",
+      "description": "시각디자인, UX/UI 소모임 '하이픈'과 함께 1박 2일 해커톤을 열었어요. 서로의 분야를 살려 아이디어를 하나의 결과물로 만들었어요.",
+      "image": "./img/hackathon.jpg",
+      "emphasis": false
+    },
+    {
+      "id": "9",
+      "name": "개강총회",
+      "date": "2026-09-14",
+      "description": "새 학기를 맞아 앞으로의 활동을 소개하고 멤버들과 첫인사를 나눠요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "10",
+      "name": "GDG 크루 대면식",
+      "date": "2026-09-18",
+      "description": "크루 멤버들이 처음 한자리에 모여 서로 얼굴을 익히는 시간이에요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "11",
+      "name": "한강 나들이",
+      "date": "2026-10-02",
+      "description": "멤버들과 한강에 모여 편하게 이야기 나누며 함께 시간을 보내요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "12",
+      "name": "어셈블 세미나",
+      "date": "2026-11-09",
+      "description": "프론트엔드, 백엔드, AI 세 파트가 모여 각자의 지식과 경험을 나눠요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "13",
+      "name": "기말고사 간식행사",
+      "date": "2026-11-23",
+      "description": "기말고사를 앞둔 멤버들을 응원하며 간식을 나눠요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "14",
+      "name": "종강총회",
+      "date": "2026-12-18",
+      "description": "한 학기 활동을 함께 돌아보고 소감을 나누며 학기를 마무리해요.",
+      "image": null,
+      "emphasis": false
+    },
+    {
+      "id": "15",
+      "name": "알럼나이 커피챗",
+      "date": "2026-12-21",
+      "description": "GDG 선배들과 파트별로 만나 경험과 조언을 편하게 들어봐요.",
+      "image": null,
+      "emphasis": false
+    }
+  ]
+}

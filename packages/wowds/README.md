@@ -44,7 +44,15 @@ body {
 ## 토큰
 
 ```ts
-import { color, palette, typography, fontFamily, fontWeight, space } from '@gdg/wowds/tokens'
+import {
+  breakpoint,
+  color,
+  palette,
+  typography,
+  fontFamily,
+  fontWeight,
+  space,
+} from '@gdg/wowds/tokens'
 // 또는: import { color, ... } from '@gdg/wowds'
 ```
 
@@ -66,9 +74,27 @@ color.status.danger // #DE3412
 
 > Status(danger/warning/success/information)는 베이스 색만 정의. Figma 의 농도 단계(50/10/5)는 동일 색 변형이라 생략했다.
 
+### breakpoint — 반응형 화면 크기
+
+| 이름 | 범위        | Tailwind variant |
+| ---- | ----------- | ---------------- |
+| XS   | 360–599px   | `xs:`            |
+| S    | 600–767px   | `s:`             |
+| M    | 768–1023px  | `m:`             |
+| L    | 1024–1439px | `l:`             |
+| XL   | 1440px 이상 | `xl:`            |
+
+```ts
+breakpoint.xs // { min: 360, max: 599 }
+breakpoint.xl // { min: 1440, max: null }
+```
+
+각 variant는 최소 너비 방식이 아니라 해당 구간에서만 적용된다. 예를 들어 `l:flex`는
+1024–1439px에서만 활성화되며 XL에는 이어지지 않는다.
+
 ### typography — Large 스케일
 
-스케일: `display1~3`, `title1~2`, `subtitle1~4`, `body1~2`, `caption1~2`.
+스케일: `display1~3`, `title1~2`, `subtitle1~6`, `body1~2`, `caption1~2`.
 각 스타일은 크기·모양만 정의한다 — `fontSize / lineHeight / letterSpacing` (letter-spacing 은 전 스타일 `-1.5%`).
 
 **굵기(fontWeight)는 스케일과 독립된 축**이라 따로 조합한다. (`bold` 700 / `semibold` 600 / `medium` 500)
