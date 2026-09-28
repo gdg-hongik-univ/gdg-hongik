@@ -10,7 +10,7 @@ const Header = () => {
           aria-label="GDG Hongik Univ. 홈으로 이동"
           className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
         >
-          <LogoIcon className="flex h-3.5 s:h-4" />
+          <LogoIcon className="flex h-4 w-8 xs:h-3.5 xs:w-7" />
           <div className="flex gap-1 items-center">
             <h1 className="flex h-3.5 items-center font-title font-bold text-[18px] s:text-[20px] leading-none">
               GDG
