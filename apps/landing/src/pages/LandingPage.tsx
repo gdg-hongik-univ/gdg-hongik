@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
-import TopBanner from '../components/banner/TopBanner'
+import TopBanner from '../components/TopBanner'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
