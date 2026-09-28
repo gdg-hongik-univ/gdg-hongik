@@ -67,6 +67,7 @@ const UpcomingEvents = () => {
   const [activeEventId, setActiveEventId] = useState<string | null>(null)
   const [hasInteracted, setHasInteracted] = useState(false)
   const [hasTimelineEntered, setHasTimelineEntered] = useState(false)
+  const [isTimelineAnimationComplete, setIsTimelineAnimationComplete] = useState(false)
   const [loadState, setLoadState] = useState<'loading' | 'success' | 'error'>('loading')
   const [today] = useState(getToday)
   const size = useUpcomingEventSize()
@@ -254,13 +255,13 @@ const UpcomingEvents = () => {
                       onMouseEnter: () => {
                         if (isPast) return
                         setActiveEventId(event.id)
-                        setHasInteracted(true)
+                        if (isTimelineAnimationComplete) setHasInteracted(true)
                       },
                       onMouseLeave: () => setActiveEventId(null),
                       onFocus: () => {
                         if (isPast) return
                         setActiveEventId(event.id)
-                        setHasInteracted(true)
+                        if (isTimelineAnimationComplete) setHasInteracted(true)
                       },
                       onBlur: () => setActiveEventId(null),
                     } as const
@@ -278,6 +279,11 @@ const UpcomingEvents = () => {
                         style={
                           hasTimelineEntered
                             ? { animationDelay: `${1.2 + index * 0.15}s` }
+                            : undefined
+                        }
+                        onAnimationEnd={
+                          index === visibleEvents.length - 1
+                            ? () => setIsTimelineAnimationComplete(true)
                             : undefined
                         }
                       >
