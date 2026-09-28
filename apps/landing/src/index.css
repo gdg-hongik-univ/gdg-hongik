@@ -41,6 +41,34 @@
   }
 }
 
+@keyframes timelineLineDraw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes timelineEventReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*='timelineLineDraw'],
+  [class*='timelineEventReveal'] {
+    animation-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
 .orbit-line-size {
   width: var(--orbit-line-size);
   height: var(--orbit-line-size);
