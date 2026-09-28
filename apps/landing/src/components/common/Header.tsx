@@ -12,12 +12,12 @@ const Header = () => {
         >
           <LogoIcon className="flex h-4 w-8 xs:h-3.5 xs:w-7" />
           <div className="flex gap-1 items-center">
-            <h1 className="flex h-3.5 items-center font-title font-bold text-[18px] s:text-[20px] leading-none">
+            <span className="flex h-3.5 items-center font-title font-bold text-[18px] s:text-[20px] leading-none">
               GDG
-            </h1>
-            <h1 className="font-title font-semibold text-caption1 text-[12px] s:text-[14px] leading-none">
+            </span>
+            <span className="font-title font-semibold text-caption1 text-[12px] s:text-[14px] leading-none">
               Hongik Univ.
-            </h1>
+            </span>
           </div>
         </Link>
       </div>
