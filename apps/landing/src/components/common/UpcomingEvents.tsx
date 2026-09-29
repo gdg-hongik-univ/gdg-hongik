@@ -83,6 +83,7 @@ export const UpcomingEvents = ({
         'relative flex flex-col items-center font-primary',
         isSmall ? 'gap-3' : 'gap-6',
         isHovered ? (isSmall ? 'w-[209px]' : 'w-[247px]') : isSmall ? 'w-32' : 'w-[152px]',
+        isDisabled ? 'cursor-default' : 'cursor-pointer',
         className,
       )}
       aria-disabled={isDisabled || undefined}
@@ -98,7 +99,7 @@ export const UpcomingEvents = ({
             className={cn(
               'flex shrink-0 items-center justify-center rounded-lg bg-blue-500 font-bold [color:var(--color-white)]',
               isSmall
-                ? 'h-[35px] px-2.5 py-1 text-[18px] leading-[1.5] tracking-[-0.015em]'
+                ? 'h-[35px] px-2.5 py-1 text-[18px] leading-[1.5] tracking-[-0.015em] s:text-[16px] m:text-[16px] l:text-[16px]'
                 : 'min-w-[63px] px-3 py-1.5 text-subtitle4',
               isHovered && (isSmall ? 'ring-[7px] ring-blue-500/20' : 'ring-8 ring-blue-500/20'),
             )}
@@ -121,10 +122,10 @@ export const UpcomingEvents = ({
             'flex w-full flex-col items-center gap-1 text-center',
             isHovered
               ? isSmall
-                ? 'text-body1 font-bold'
+                ? 'text-body1 font-bold s:text-[16px] m:text-[16px] l:text-[16px]'
                 : 'text-subtitle3 font-bold'
               : isSmall
-                ? 'text-body2 font-semibold'
+                ? 'text-body2 font-semibold s:text-[14px] m:text-[14px] l:text-[14px]'
                 : 'text-body1 font-semibold',
           )}
         >
@@ -178,7 +179,9 @@ export const UpcomingEvents = ({
               <p
                 className={cn(
                   'break-keep text-center font-semibold text-black',
-                  isSmall ? 'w-[181px] text-caption1' : 'w-[207px] text-body2',
+                  isSmall
+                    ? 'w-[181px] text-caption1 s:text-[12px] m:text-[12px] l:text-[12px]'
+                    : 'w-[207px] text-body2',
                 )}
               >
                 {descriptionText}
