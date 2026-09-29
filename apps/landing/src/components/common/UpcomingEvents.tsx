@@ -1,18 +1,11 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from '@gdg/wowds'
-import defaultLargeMarker from '../../assets/upcoming-events/default-large.svg'
-import defaultSmallMarker from '../../assets/upcoming-events/default-small.svg'
-import disabledLargeMarker from '../../assets/upcoming-events/disabled-large.svg'
-import disabledSmallMarker from '../../assets/upcoming-events/disabled-small.svg'
-import hoverLargeMarker from '../../assets/upcoming-events/hover-large.svg'
-import hoverSmallMarker from '../../assets/upcoming-events/hover-small.svg'
 import tooltipLarge from '../../assets/upcoming-events/tooltip-large.svg'
 import tooltipSmall from '../../assets/upcoming-events/tooltip-small.svg'
-import tooltipStrongLarge from '../../assets/upcoming-events/tooltip-strong-large.svg'
 
 export type UpcomingEventsEmphasis = 'default' | 'strong'
 export type UpcomingEventsSize = 'large' | 'small'
-export type UpcomingEventsState = 'default' | 'hover' | 'disabled'
+export type UpcomingEventsState = 'default' | 'active' | 'disabled'
 
 type UpcomingEventsBaseProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
   dateText?: string
@@ -34,17 +27,17 @@ export type UpcomingEventsProps = UpcomingEventsBaseProps &
       }
   )
 
-const VARIANT_NODE_IDS = {
+const FIGMA_VARIANT_NODE_IDS = {
   'default-default-large': '1354:22155',
   'default-default-small': '1354:22207',
-  'default-hover-large': '1354:22161',
-  'default-hover-small': '1354:22213',
+  'default-active-large': '1354:22161',
+  'default-active-small': '1354:22213',
   'default-disabled-large': '1354:22185',
   'default-disabled-small': '1354:22262',
   'strong-default-large': '1354:22191',
   'strong-default-small': '1354:22268',
-  'strong-hover-large': '1354:22196',
-  'strong-hover-small': '1354:22275',
+  'strong-active-large': '1354:22196',
+  'strong-active-small': '1354:22275',
 } as const
 
 export const UpcomingEvents = ({
@@ -60,35 +53,23 @@ export const UpcomingEvents = ({
 }: UpcomingEventsProps) => {
   const isSmall = size === 'small'
   const isStrong = emphasis === 'strong'
-  const isHovered = state === 'hover'
+  const isActive = state === 'active'
   const isDisabled = state === 'disabled'
 
-  const variantKey = `${emphasis}-${state}-${size}` as keyof typeof VARIANT_NODE_IDS
-
-  const marker = isHovered
-    ? isSmall
-      ? hoverSmallMarker
-      : hoverLargeMarker
-    : isDisabled
-      ? isSmall
-        ? disabledSmallMarker
-        : disabledLargeMarker
-      : isSmall
-        ? defaultSmallMarker
-        : defaultLargeMarker
+  const variantKey = `${emphasis}-${state}-${size}` as keyof typeof FIGMA_VARIANT_NODE_IDS
 
   return (
     <div
       className={cn(
         'relative flex flex-col items-center font-primary',
         isSmall ? 'gap-3' : 'gap-6',
-        isHovered ? (isSmall ? 'w-[209px]' : 'w-[247px]') : isSmall ? 'w-32' : 'w-[152px]',
+        isActive ? (isSmall ? 'w-[209px]' : 'w-[247px]') : isSmall ? 'w-32' : 'w-[152px]',
         isDisabled ? 'cursor-default' : 'cursor-pointer',
         className,
       )}
       aria-disabled={isDisabled || undefined}
       data-emphasis={emphasis}
-      data-node-id={VARIANT_NODE_IDS[variantKey]}
+      data-node-id={FIGMA_VARIANT_NODE_IDS[variantKey]}
       data-size={size}
       data-state={state}
       {...restProps}
@@ -101,26 +82,43 @@ export const UpcomingEvents = ({
               isSmall
                 ? 'h-[35px] px-2.5 py-1 text-[18px] leading-[1.5] tracking-[-0.015em] s:text-[16px] m:text-[16px] l:text-[16px]'
                 : 'min-w-[63px] px-3 py-1.5 text-subtitle4',
-              isHovered && (isSmall ? 'ring-[7px] ring-blue-500/20' : 'ring-8 ring-blue-500/20'),
+              isActive && (isSmall ? 'ring-[7px] ring-blue-500/20' : 'ring-8 ring-blue-500/20'),
             )}
           >
             <span className="whitespace-nowrap">{dDayText}</span>
           </div>
         ) : (
-          <img src={marker} alt="" aria-hidden="true" />
+          <div
+            aria-hidden="true"
+            className={cn(
+              'flex items-center justify-center rounded-full',
+              isActive
+                ? isSmall
+                  ? 'size-8 bg-blue-500/20'
+                  : 'size-10 bg-blue-500/20'
+                : isSmall
+                  ? 'size-3'
+                  : 'size-4',
+              !isActive && (isDisabled ? 'bg-blue-300' : 'bg-blue-500'),
+            )}
+          >
+            {isActive && (
+              <span className={cn('rounded-full bg-[#2a73ee]', isSmall ? 'size-4' : 'size-5')} />
+            )}
+          </div>
         )}
       </div>
 
       <div
         className={cn(
           'relative flex w-full flex-col items-center',
-          isHovered && (isSmall ? 'gap-2' : 'gap-5'),
+          isActive && (isSmall ? 'gap-2' : 'gap-5'),
         )}
       >
         <div
           className={cn(
             'flex w-full flex-col items-center gap-1 text-center',
-            isHovered
+            isActive
               ? isSmall
                 ? 'text-body1 font-bold s:text-[16px] m:text-[16px] l:text-[16px]'
                 : 'text-subtitle3 font-bold'
@@ -135,15 +133,15 @@ export const UpcomingEvents = ({
           <p
             className={cn(
               'break-words',
-              isHovered ? (isSmall ? 'w-[148px]' : 'w-[180px]') : 'w-full',
-              isDisabled ? 'text-gray-300' : isHovered ? 'text-blue-700' : 'text-black',
+              isActive ? (isSmall ? 'w-[148px]' : 'w-[180px]') : 'w-full',
+              isDisabled ? 'text-gray-300' : isActive ? 'text-blue-700' : 'text-black',
             )}
           >
             {labelText}
           </p>
         </div>
 
-        {isHovered && (
+        {isActive && (
           <div className="relative flex shrink-0 flex-col items-center">
             {isSmall && (
               <div className="-mb-1.5 h-[18.75px] shrink-0 pt-[3px]">
@@ -158,7 +156,7 @@ export const UpcomingEvents = ({
             {!isSmall && isStrong && (
               <img
                 className="absolute top-[-12px] left-1/2 -translate-x-1/2"
-                src={tooltipStrongLarge}
+                src={tooltipLarge}
                 alt=""
                 aria-hidden="true"
               />
