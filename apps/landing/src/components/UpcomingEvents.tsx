@@ -150,7 +150,8 @@ const UpcomingEvents = () => {
     if (!container || !activeEvent) return
 
     const containerBounds = container.getBoundingClientRect()
-    const activeEventBounds = activeEvent.getBoundingClientRect()
+    const activeEventBounds =
+      activeEvent.firstElementChild?.getBoundingClientRect() ?? activeEvent.getBoundingClientRect()
 
     if (
       activeEventBounds.left >= containerBounds.left &&
@@ -253,7 +254,7 @@ const UpcomingEvents = () => {
 
               <div
                 ref={scrollContainerRef}
-                className="w-full overflow-x-auto [scrollbar-width:none] l:overflow-visible xl:overflow-visible [&::-webkit-scrollbar]:hidden"
+                className="-mt-2 w-full overflow-x-auto pt-2 [scrollbar-width:none] s:mt-0 s:pt-0 l:overflow-visible xl:overflow-visible [&::-webkit-scrollbar]:hidden"
               >
                 <div
                   ref={timelineRef}
@@ -322,7 +323,8 @@ const UpcomingEvents = () => {
                             if (isHighlighted) highlightedEventRef.current = node
                           }}
                           className={cn(
-                            'flex shrink-0 justify-center',
+                            'relative flex w-32 shrink-0 justify-center l:w-[152px] xl:w-[152px]',
+                            activeEventId === event.id && 'z-20',
                             hasTimelineEntered
                               ? 'animate-[timelineEventReveal_0.4s_ease-out_forwards] opacity-0'
                               : 'translate-y-3 opacity-0',
