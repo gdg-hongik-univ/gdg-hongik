@@ -5,7 +5,7 @@ import { GoogleColorText } from '../components/common/GoogleColorText'
 import { ChevronIcon, palette, Tabs, Typography } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
-import UpcomingEvents from '../components/UpcomingEvents'
+import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
 
