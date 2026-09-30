@@ -3,3 +3,4 @@
 export * from './components/tabs'
 export * from './components/Typography'
 export * from './utils/cn'
+export * from './components/typography/Typography'
