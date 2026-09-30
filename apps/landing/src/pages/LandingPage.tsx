@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
+import PartCardList from '../components/common/PartCardList'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -144,6 +145,7 @@ export default function LandingPage() {
           {ACTIVITY_TABS.map((tab) => (
             <Tabs.Content key={tab.value} value={tab.value}>
               <MarkUp activityType={tab.value} />
+              {tab.value === 'partStudy' && <PartCardList />}
             </Tabs.Content>
           ))}
         </Tabs>
