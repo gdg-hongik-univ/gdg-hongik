@@ -199,7 +199,10 @@ export default function LandingPage() {
           </ol>
         </section>
       </section>
-      <section className="flex flex-col gap-4 w-[95%]  px-4 pb-35" aria-label="스터디 소개">
+      <section
+        className="flex flex-col gap-4 w-[95%] px-4 pt-18 pb-8 s:pt-30 s:pb-15 m:pt-30 m:pb-15 l:pt-35 l:pb-20 xl:pt-35 xl:pb-20"
+        aria-label="스터디 소개"
+      >
         <Typography as="h2" variant="display3.1" isEn={true}>
           Learn & Build
         </Typography>
@@ -220,7 +223,10 @@ export default function LandingPage() {
           ))}
         </Tabs>
       </section>
-      <section className="flex flex-col w-[95%] px-4 pb-35" aria-label="지난 학기 활동 소개">
+      <section
+        className="flex flex-col w-[95%] px-4 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
+        aria-label="지난 학기 활동 소개"
+      >
         <Typography as="h2" variant="display3.1" isEn={true} className="pb-12">
           Meet & Connect
         </Typography>
