@@ -15,13 +15,25 @@ export default function CaracelCardList(props: CaracelCardListProps) {
           image: study.thumbnail,
           details: (
             <div className="flex flex-row gap-1">
-              <Typography as="p" variant="body2.2" className="text-gray-100">
+              <Typography
+                as="p"
+                variant="body2.2"
+                className="text-gray-100 xs:text-[12px]! s:text-[14px]! m:text-[14px]!"
+              >
                 멘토
               </Typography>
-              <Typography as="span" variant="body2.2" className="text-gray-200">
+              <Typography
+                as="span"
+                variant="body2.2"
+                className="text-gray-200 xs:text-[12px]! s:text-[14px]! m:text-[14px]!"
+              >
                 |
               </Typography>
-              <Typography as="p" variant="body2.3">
+              <Typography
+                as="p"
+                variant="body2.3"
+                className="xs:text-[12px]! s:text-[14px]! m:text-[14px]!"
+              >
                 {study.mentors.join(', ')}
               </Typography>
             </div>
@@ -32,7 +44,11 @@ export default function CaracelCardList(props: CaracelCardListProps) {
           title: event.name,
           image: event.image,
           details: (
-            <Typography as="p" variant="body2.3" className="text-gray-100">
+            <Typography
+              as="p"
+              variant="body2.3"
+              className="text-gray-100 xs:text-[12px]! s:text-[14px]! m:text-[14px]!"
+            >
               <time dateTime={event.date}>
                 {event.date.replace(/^\d{2}(\d{2})-(\d{2})-(\d{2})$/, '$1. $2. $3.')}
               </time>
@@ -69,7 +85,11 @@ export default function CaracelCardList(props: CaracelCardListProps) {
               }}
             />
             <div className="w-full p-6 text-white">
-              <Typography as="h4" variant="subtitle3.2">
+              <Typography
+                as="h4"
+                variant="subtitle3.2"
+                className="xs:text-[16px]! s:text-[20px]! m:text-[20px]!"
+              >
                 {card.title}
               </Typography>
               {card.details}
