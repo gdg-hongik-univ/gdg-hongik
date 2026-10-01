@@ -36,7 +36,7 @@ export default function ActivityInfo({ activityType }: ActivityInfoProps) {
       <Typography
         as="h3"
         variant="body2.3"
-        className="text-blue-600 bg-blue-100 w-fit px-4 py-1.5 rounded-[8px]"
+        className="text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px]"
       >
         {title}
       </Typography>
