@@ -240,7 +240,10 @@ export default function LandingPage() {
           ))}
         </Tabs>
       </section>
-      <section className="flex flex-col w-[95%] px-4 pb-35" aria-label="지난 학기 활동 소개">
+      <section
+        className="flex flex-col w-[95%] px-4 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
+        aria-label="지난 학기 활동 소개"
+      >
         <Typography as="h2" variant="display3.1" isEn={true} className="pb-12">
           Meet & Connect
         </Typography>
