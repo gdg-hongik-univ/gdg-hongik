@@ -5,7 +5,7 @@ export type LogoIconProps = ComponentPropsWithRef<'svg'>
 export const LogoIcon = ({ className = '', ...props }: LogoIconProps) => {
   return (
     <svg width="39" height="19" viewBox="0 0 39 19" fill="none" className={className} {...props}>
-      <g clip-path="url(#clip0_1800_30363)">
+      <g clipPath="url(#clip0_1800_30363)">
         <path
           d="M9.168 9.45881L15.3969 5.80908C16.8588 4.95694 17.3673 3.05972 16.5251 1.56446C15.6829 0.069196 13.8079 -0.429225 12.3301 0.422914L1.55664 6.70945L9.168 9.45881Z"
           fill="#EA4335"

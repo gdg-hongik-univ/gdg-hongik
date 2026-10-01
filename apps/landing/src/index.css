@@ -4,6 +4,12 @@
 
 @source '../../../packages/wowds/ui';
 
+@layer base {
+  body {
+    font-family: var(--font-primary);
+  }
+}
+
 @theme {
   --animate-orbit-1: spin-reverse 15s linear infinite;
   --animate-orbit-2: spin-reverse 20s linear infinite;
@@ -38,6 +44,14 @@
   }
   50% {
     transform: translateY(6px);
+  }
+}
+
+.landing-background {
+  background-image: url('./assets/LandingBackgroundMobile.webp');
+
+  @variant s {
+    background-image: url('./assets/LandingBackground.webp');
   }
 }
 
