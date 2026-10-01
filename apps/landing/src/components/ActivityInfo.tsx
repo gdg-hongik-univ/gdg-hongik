@@ -19,7 +19,8 @@ const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: strin
   },
   partStudy: {
     title: '특정 분야를 더 깊게 공부하고 싶다면?',
-    description: '파트별로 관심 있는 주제를 깊이 공부하고 지식을 나눠요.',
+    description:
+      '코드를 따라 쓰는 것을 넘어, 기술의 배경과 원리를 깊이 있게 이해하는 것을 목표로 해요.',
   },
   meetNConnect: {
     title: '지난 학기의 기록',

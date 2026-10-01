@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Typography } from '../../../../packages/wowds/ui/components/Typography'
-import { ChevronIcon } from '../../../../packages/wowds/icon/index'
-import { FAQ_DATA } from '../../../../packages/wowds/ui/components/faqData'
-import { KakaotalkBarIcon } from '../../../../packages/wowds/icon/index'
+import { Typography } from '@gdg/wowds/ui'
+import { ChevronIcon } from '@gdg/wowds/icon'
+import { FAQ_DATA } from '../constants/faqData'
+import { KakaotalkBarIcon } from '@gdg/wowds/icon'
 
 export const Faq = () => {
   const [openId, setOpenId] = useState<string | null>(null)
