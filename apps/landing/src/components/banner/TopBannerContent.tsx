@@ -51,7 +51,7 @@ const TopBannerContent = () => (
     <Typography
       variant="caption1.3"
       as="p"
-      className="w-full break-keep text-[14px]! tracking-[-0.21px]! [text-shadow:0_0_8px_rgba(8,8,8,0.12)] s:w-full s:max-w-full s:text-center s:whitespace-normal m:w-117.75 m:max-w-full m:text-center m:whitespace-normal m:tracking-normal! l:w-115.5 l:shrink-0 l:whitespace-nowrap l:text-[16px]! l:tracking-normal! xl:w-150.75 xl:shrink-0 xl:whitespace-nowrap xl:text-[18px]! xl:tracking-normal!"
+      className="w-full break-keep text-[14px]! tracking-[-0.21px]! [text-shadow:0_0_8px_rgba(8,8,8,0.12)] s:w-full s:max-w-full s:text-center s:whitespace-normal m:w-128 m:max-w-full m:text-center m:whitespace-normal m:tracking-normal! l:w-115.5 l:shrink-0 l:whitespace-nowrap l:text-[16px]! l:tracking-normal! xl:w-150.75 xl:shrink-0 xl:whitespace-nowrap xl:text-[18px]! xl:tracking-normal!"
     >
       <span className="s:hidden m:hidden l:hidden xl:hidden">
         <DescriptionLines lines={DESCRIPTION_LINES.mobile} />
