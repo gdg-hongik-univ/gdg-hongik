@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
+import TopBanner from '../components/TopBanner'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -80,6 +81,7 @@ export default function LandingPage() {
           </div>
         </section>
       </section>
+      <TopBanner />
       <section className="relative w-full flex items-center justify-center overflow-hidden px-4 flex-col mx-auto text-center">
         <section className="pb-11">
           <h1 className="font-title text-[48px] s:text-[56px] m:text-[80px] l:text-[100px] xl:text-[120px] font-medium bg-gradient-to-r from-blue-700/70 via-blue-400/70 to-blue-700/70 to-[96.29%] bg-clip-text text-transparent leading-[1.2] tracking-[-1.44px] [text-shadow:_0_0_30px_rgb(255_255_255_/_0.1)]">
