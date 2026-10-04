@@ -1,8 +1,8 @@
 import type { HTMLAttributes } from 'react'
-import { cn } from '../utils/cn'
-import { GithubIcon, InstagramIcon, LogoIcon } from '../../icon/index'
-import { Typography } from './Typography'
-import { palette } from '../../tokens'
+import { cn } from '@gdg/wowds/ui'
+import { GithubIcon, InstagramIcon, LogoIcon } from '@gdg/wowds/icon'
+import { Typography } from '@gdg/wowds/ui'
+import { palette } from '@gdg/wowds/tokens'
 
 export type FooterProps = HTMLAttributes<HTMLElement>
 
