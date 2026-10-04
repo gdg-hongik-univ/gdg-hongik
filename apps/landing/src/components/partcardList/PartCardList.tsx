@@ -1,6 +1,6 @@
 import { useState, type ComponentType } from 'react'
 import { Typography } from '@gdg/wowds'
-import { Tag, type TagVariant } from '../Tag'
+import { Tag, type TagVariant } from '../common/Tag'
 import { FrontendCardBg, BackendCardBg, AiCardBg } from './PartCardListBg'
 
 type Breakpoint = 'xs' | 's' | 'm' | 'l' | 'xl'
