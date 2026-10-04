@@ -55,5 +55,9 @@ export function CountUp({ end, duration = 1100 }: CountUpProps) {
     return () => cancelAnimationFrame(animationFrameId)
   }, [isVisible, end, duration])
 
-  return <span ref={ref}>{count}</span>
+  return (
+    <span className="font-title" ref={ref}>
+      {count}
+    </span>
+  )
 }
