@@ -1,4 +1,4 @@
-import { type PointerEvent, useEffect, useRef, useState } from 'react'
+import { type KeyboardEvent, type PointerEvent, useEffect, useRef, useState } from 'react'
 
 type UseUpcomingEventTimelineParams = {
   nextEventId: string | null
@@ -97,6 +97,15 @@ export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimeli
       },
       onPointerUp: (pointerEvent: PointerEvent<HTMLDivElement>) => {
         if (pointerEvent.pointerType !== 'mouse') showEventDetails()
+      },
+      onClick: showEventDetails,
+      onKeyDown: (keyboardEvent: KeyboardEvent<HTMLDivElement>) => {
+        if (isPast) return
+        if (keyboardEvent.key === 'Enter') showEventDetails()
+        if (keyboardEvent.key === ' ') keyboardEvent.preventDefault()
+      },
+      onKeyUp: (keyboardEvent: KeyboardEvent<HTMLDivElement>) => {
+        if (keyboardEvent.key === ' ') showEventDetails()
       },
       onFocus: showEventDetails,
       onBlur: () => setExpandedEventId(null),

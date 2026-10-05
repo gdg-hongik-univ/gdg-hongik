@@ -35,6 +35,8 @@ const UpcomingEventCard = ({
         className,
       )}
       aria-disabled={isDisabled || undefined}
+      role={isDisabled ? undefined : 'button'}
+      aria-expanded={isDisabled ? undefined : isActive}
       {...restProps}
     >
       <UpcomingEventMarker countdownLabel={countdownLabel} emphasis={emphasis} state={state} />

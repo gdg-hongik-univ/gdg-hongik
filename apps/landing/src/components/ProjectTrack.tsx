@@ -132,7 +132,7 @@ export default function ProjectTrack() {
             </h3>
             <img
               src={projectTrackPhoto}
-              alt="강의실에서 노트북으로 함께 활동하는 GDG Hongik 멤버들"
+              alt=""
               width={2000}
               height={917}
               loading="lazy"

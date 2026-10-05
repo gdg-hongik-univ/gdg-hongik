@@ -51,7 +51,7 @@ const UpcomingEvents = () => {
   return (
     <section
       aria-labelledby="upcoming-events-title"
-      className="relative flex h-[581.75px] w-full flex-col items-center gap-10 overflow-hidden pt-[140px] pb-[60px] text-center s:h-[810.75px] s:gap-[52px] s:pb-[120px] m:h-[810.75px] m:gap-[52px] m:pb-[120px] l:h-[914.75px] l:gap-[52px] l:pt-[160px] l:pb-[120px] xl:h-[914.75px] xl:gap-[52px] xl:pt-[160px] xl:pb-[120px]"
+      className="relative flex min-h-[581.75px] w-full flex-col items-center gap-10 overflow-hidden pt-[140px] pb-[60px] text-center s:min-h-[810.75px] s:gap-[52px] s:pb-[120px] m:min-h-[810.75px] m:gap-[52px] m:pb-[120px] l:min-h-[914.75px] l:gap-[52px] l:pt-[160px] l:pb-[120px] xl:min-h-[914.75px] xl:gap-[52px] xl:pt-[160px] xl:pb-[120px]"
       style={{
         backgroundImage:
           'radial-gradient(ellipse 100% 100% at 50% 0%, rgb(255 255 255 / 0%) 35.313%, #fff 100%), linear-gradient(90deg, rgb(175 205 255 / 52.8%) 29.724%, rgb(255 249 214 / 39.2%) 100%), linear-gradient(90deg, #f4f8ff 0%, #f4f8ff 100%)',
