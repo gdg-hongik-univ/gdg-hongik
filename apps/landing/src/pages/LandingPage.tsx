@@ -8,6 +8,7 @@ import MarkUp from '../components/ActivityInfo'
 import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
+import ProjectTrack from '../components/ProjectTrack'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -129,22 +130,39 @@ export default function LandingPage() {
           </ol>
         </section>
       </section>
-      <section className="flex flex-col gap-4 w-[95%]  px-4 pb-35" aria-label="스터디 소개">
-        <Typography as="h2" variant="display3.1" isEn={true}>
+      <section
+        className="mx-auto flex w-[95%] flex-col gap-3 px-4 pb-20 min-[600px]:gap-4"
+        aria-label="스터디 소개"
+      >
+        <Typography
+          as="h2"
+          variant="display3.1"
+          isEn={true}
+          className="text-[24px]! leading-[1.5]! tracking-[-0.015em]! min-[600px]:text-[36px]! min-[600px]:leading-[1.4]! min-[1024px]:text-[44px]!"
+        >
           Learn & Build
         </Typography>
         <Tabs value={activeActivity} onValueChange={setActiveActivity}>
           <Tabs.List aria-label="스터디 종류">
             {ACTIVITY_TABS.map((tab) => (
-              <Tabs.Trigger key={tab.value} value={tab.value}>
+              <Tabs.Trigger
+                key={tab.value}
+                value={tab.value}
+                className="px-3 py-2 font-primary text-[14px] leading-[1.5] tracking-[-0.015em] min-[600px]:px-4 min-[600px]:py-3.5 min-[600px]:text-[18px] min-[1024px]:text-[20px] aria-selected:font-bold"
+              >
                 {tab.label}
               </Tabs.Trigger>
             ))}
           </Tabs.List>
 
           {ACTIVITY_TABS.map((tab) => (
-            <Tabs.Content key={tab.value} value={tab.value}>
+            <Tabs.Content
+              key={tab.value}
+              value={tab.value}
+              className="flex flex-col gap-7 pt-7 min-[600px]:gap-9 min-[600px]:pt-9"
+            >
               <MarkUp activityType={tab.value} />
+              {tab.value === 'projectTrack' && <ProjectTrack />}
             </Tabs.Content>
           ))}
         </Tabs>
