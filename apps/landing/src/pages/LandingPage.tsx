@@ -83,7 +83,6 @@ export default function LandingPage() {
           </div>
         </section>
       </section>
-      <TopBanner />
       <section className="relative w-full flex items-center justify-center overflow-hidden px-4 flex-col mx-auto text-center">
         <section className="pb-11">
           <h1 className="font-title text-[48px] s:text-[56px] m:text-[80px] l:text-[100px] xl:text-[120px] font-medium bg-gradient-to-r from-blue-700/70 via-blue-400/70 to-blue-700/70 to-[96.29%] bg-clip-text text-transparent leading-[1.2] tracking-[-1.44px] [text-shadow:_0_0_30px_rgb(255_255_255_/_0.1)]">
@@ -129,8 +128,9 @@ export default function LandingPage() {
           </ol>
         </section>
       </section>
+      <TopBanner />
       <section
-        className="mx-auto flex w-[95%] flex-col gap-3 px-4 pb-20 min-[600px]:gap-4"
+        className="mx-auto flex w-[95%] flex-col gap-3 px-4 pt-18 pb-20 min-[600px]:gap-4 min-[600px]:pt-30 min-[1024px]:pt-35"
         aria-label="스터디 소개"
       >
         <Typography
