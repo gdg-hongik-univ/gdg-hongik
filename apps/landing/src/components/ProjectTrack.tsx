@@ -61,7 +61,7 @@ export default function ProjectTrack() {
         'grid gap-(--course-gap) font-primary leading-[1.5] tracking-[-0.015em] [--course-gap:20px] [--marker-x:14px] [--marker-y:14px] [--content-delay:1100ms]',
         'min-[600px]:[--course-gap:24px] min-[600px]:[--image-width:210px] min-[600px]:[--image-gap:20px] min-[600px]:[--marker-x:calc(var(--image-width)+var(--image-gap)+14px)] min-[600px]:[--marker-y:26px]',
         'm:[--image-width:230px] m:[--image-gap:24px]',
-        'min-[1024px]:grid-cols-3 min-[1024px]:[--course-gap:12px] min-[1024px]:[--marker-x:18px] min-[1024px]:[--marker-y:18px] min-[1024px]:[--content-delay:1400ms]',
+        'min-[1024px]:grid-cols-3 min-[1024px]:pr-(--marker-x) min-[1024px]:[--course-gap:12px] min-[1024px]:[--marker-x:18px] min-[1024px]:[--marker-y:18px] min-[1024px]:[--content-delay:1400ms]',
         'xl:px-6 xl:[--course-gap:16px]',
       )}
     >
@@ -140,7 +140,7 @@ export default function ProjectTrack() {
                 revealClass,
                 'col-start-2 row-start-2 aspect-[3/2] w-full rounded-lg object-cover',
                 'min-[600px]:col-start-1 min-[600px]:row-span-2 min-[600px]:row-start-1 min-[600px]:h-[140px] min-[600px]:w-(--image-width)',
-                'min-[1024px]:col-start-2 min-[1024px]:row-span-1 min-[1024px]:row-start-3 min-[1024px]:mx-2 min-[1024px]:w-[calc(100%-16px)]',
+                'min-[1024px]:col-span-2 min-[1024px]:col-start-1 min-[1024px]:row-span-1 min-[1024px]:row-start-3 min-[1024px]:ml-(--marker-x) min-[1024px]:w-full',
               )}
             />
             <p
