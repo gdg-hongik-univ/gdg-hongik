@@ -21,6 +21,7 @@ export const RecruitmentNoticeModal = ({ isOpen, onClose }: ModalProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={onClose}
           aria-label="닫기"
           className="absolute top-8 right-8 xs:top-5 xs:right-5"
