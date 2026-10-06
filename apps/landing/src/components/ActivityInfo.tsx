@@ -1,4 +1,4 @@
-import { Typography } from '@gdg/wowds'
+import { cn, Typography } from '@gdg/wowds'
 
 type ActivityType = 'regularStudy' | 'projectTrack' | 'partStudy' | 'meetNConnect'
 
@@ -30,13 +30,18 @@ const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: strin
 
 export default function ActivityInfo({ activityType }: ActivityInfoProps) {
   const { title, description } = ACTIVITY_CONTENT[activityType]
+  const isProjectTrack = activityType === 'projectTrack'
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className={cn('flex flex-col gap-4', isProjectTrack && 'gap-3 min-[600px]:gap-4')}>
       <Typography
         as="h3"
         variant="body2.3"
-        className="text-blue-600 bg-blue-100 w-fit px-4 py-1.5 rounded-[8px]"
+        className={cn(
+          'text-blue-600 bg-blue-100 w-fit px-4 py-1.5 rounded-[8px]',
+          isProjectTrack &&
+            'max-w-full px-3 text-[12px]! tracking-[-0.015em]! min-[600px]:text-[14px]! min-[1024px]:text-[16px]!',
+        )}
       >
         {title}
       </Typography>
@@ -44,7 +49,11 @@ export default function ActivityInfo({ activityType }: ActivityInfoProps) {
       <Typography
         as="p"
         variant="body1.3"
-        className="whitespace-pre-line pl-4 border-l-2 border-blue-500 text-gray-950"
+        className={cn(
+          'whitespace-pre-line pl-4 border-l-2 border-blue-500 text-gray-950',
+          isProjectTrack &&
+            'ml-1 min-w-0 break-keep text-[14px]! tracking-[-0.015em]! min-[600px]:text-[16px]! min-[1024px]:text-[18px]!',
+        )}
       >
         {description}
       </Typography>
