@@ -13,18 +13,18 @@ export const RecruitmentNoticeModal = ({ isOpen, onClose }: ModalProps) => {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 cursor-pointer"
       onClick={onClose}
     >
       <div
-        className="relative rounded-[20px] bg-white pt-22 px-18 pb-16 xs:pt-16 xs:px-8 xs:pb-11 s:px-14"
+        className="relative rounded-[20px] bg-white pt-22 px-18 pb-16 xs:pt-16 xs:px-8 xs:pb-11 s:px-14 cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="닫기"
-          className="absolute top-8 right-8 xs:top-5 xs:right-5"
+          className="absolute top-8 right-8 xs:top-5 xs:right-5 cursor-pointer"
         >
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <path
@@ -63,10 +63,24 @@ export const RecruitmentNoticeModal = ({ isOpen, onClose }: ModalProps) => {
           </div>
 
           <div className="flex items-center justify-center gap-4 mt-16 xs:gap-3 xs:mt-8">
-            <InstagramIcon className="xs:hidden" size="xl" />
-            <InstagramIcon className="hidden xs:block" size="xs" />
-            <KakaotalkIcon className="xs:hidden" size="xl" />
-            <KakaotalkIcon className="hidden xs:block" size="xs" />
+            <a
+              href="https://www.instagram.com/gdg.hongikuniv/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+            >
+              <InstagramIcon className="xs:hidden" size="xl" />
+              <InstagramIcon className="hidden xs:block" size="xs" />
+            </a>
+            <a
+              href="https://pf.kakao.com/_dWxmen"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="KakaoTalk"
+            >
+              <KakaotalkIcon className="xs:hidden" size="xl" />
+              <KakaotalkIcon className="hidden xs:block" size="xs" />
+            </a>
           </div>
         </div>
       </div>
