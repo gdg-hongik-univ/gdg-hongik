@@ -29,7 +29,7 @@ const PROPERTY_SIZE_STYLES: Record<CTAButtonProperty, Record<CTAButtonSize, stri
     lg: 'px-[52.5px] py-[22.5px] text-subtitle4',
   },
   sub: {
-    auto: 'px-[26.5px] py-[10.5px] l:px-[34.5px] l:py-[18.5px]',
+    auto: 'px-[26.5px] py-[10.5px] l:px-[34.5px] l:py-[18.5px] xl:px-[34.5px] xl:py-[18.5px]',
     sm: 'px-[26.5px] py-[10.5px]', // s사이즈는 정의X, 오류 방지용 md로 대체
     md: 'px-[26.5px] py-[10.5px]',
     lg: 'px-[34.5px] py-[18.5px]',
