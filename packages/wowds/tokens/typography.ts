@@ -1,4 +1,4 @@
-// 타이포그래피 토큰 (Figma 5.0 Renewal, Large 스케일 기준). 사용법은 README 참고.
+// 타이포그래피 토큰 (Figma 5.0 Renewal, 반응형 스케일). 사용법은 README 참고.
 
 /** 폰트 패밀리. family 이름은 fonts.css 의 @font-face 와 일치. */
 export const fontFamily = {
@@ -18,27 +18,26 @@ export const fontWeight = {
 } as const
 
 /**
- * 타이포그래피 스케일 (Large 기준, letter-spacing 일괄 -1.5%).
+ * 반응형 타이포그래피. 크기는 theme.css의 CSS 변수로 화면 너비에 따라 자동 전환된다.
+ * Small: XS, Medium: S·M, Large: L·XL. 자간은 일괄 -0.015em.
  * 굵기(fontWeight)는 포함하지 않는다 — fontWeight 토큰과 조합한다.
  */
 export const typography = {
-  display1: { fontSize: '52px', lineHeight: '140%', letterSpacing: '-1.5%' },
-  display2: { fontSize: '48px', lineHeight: '140%', letterSpacing: '-1.5%' },
-  display3: { fontSize: '44px', lineHeight: '140%', letterSpacing: '-1.5%' },
+  display1: { fontSize: 'var(--text-display1)', lineHeight: '140%', letterSpacing: '-0.015em' },
+  display2: { fontSize: 'var(--text-display2)', lineHeight: '140%', letterSpacing: '-0.015em' },
+  display3: { fontSize: 'var(--text-display3)', lineHeight: '140%', letterSpacing: '-0.015em' },
 
-  title1: { fontSize: '36px', lineHeight: '140%', letterSpacing: '-1.5%' },
-  title2: { fontSize: '32px', lineHeight: '140%', letterSpacing: '-1.5%' },
+  title1: { fontSize: 'var(--text-title1)', lineHeight: '140%', letterSpacing: '-0.015em' },
+  title2: { fontSize: 'var(--text-title2)', lineHeight: '140%', letterSpacing: '-0.015em' },
 
-  subtitle1: { fontSize: '28px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  subtitle2: { fontSize: '24px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  subtitle3: { fontSize: '22px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  subtitle4: { fontSize: '20px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  subtitle5: { fontSize: '18px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  subtitle6: { fontSize: '16px', lineHeight: '150%', letterSpacing: '-1.5%' },
+  subtitle1: { fontSize: 'var(--text-subtitle1)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  subtitle2: { fontSize: 'var(--text-subtitle2)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  subtitle3: { fontSize: 'var(--text-subtitle3)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  subtitle4: { fontSize: 'var(--text-subtitle4)', lineHeight: '150%', letterSpacing: '-0.015em' },
 
-  body1: { fontSize: '18px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  body2: { fontSize: '16px', lineHeight: '150%', letterSpacing: '-1.5%' },
+  body1: { fontSize: 'var(--text-body1)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  body2: { fontSize: 'var(--text-body2)', lineHeight: '150%', letterSpacing: '-0.015em' },
 
-  caption1: { fontSize: '14px', lineHeight: '150%', letterSpacing: '-1.5%' },
-  caption2: { fontSize: '12px', lineHeight: '150%', letterSpacing: '-1.5%' },
+  caption1: { fontSize: 'var(--text-caption1)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  caption2: { fontSize: 'var(--text-caption2)', lineHeight: '150%', letterSpacing: '-0.015em' },
 } as const
