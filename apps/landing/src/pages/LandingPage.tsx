@@ -210,7 +210,7 @@ export default function LandingPage() {
       </section>
       <TopBanner />
       <section
-        className="mx-auto flex w-[95%] flex-col gap-3 px-4 pt-18 pb-20 min-[600px]:gap-4 min-[600px]:pt-30 min-[1024px]:pt-35"
+        className="mx-auto flex w-[95%] flex-col gap-3 px-4 pt-18 pb-8 s:pt-30 s:pb-15 m:pt-30 m:pb-15 l:pt-35 l:pb-20 xl:pt-35 xl:pb-20 min-[600px]:gap-4"
         aria-label="스터디 소개"
       >
         <Typography
@@ -250,7 +250,12 @@ export default function LandingPage() {
         className="flex flex-col gap-12 w-[95%] px-4 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
         aria-label="지난 학기 활동 소개"
       >
-        <Typography as="h2" variant="display3.1" isEn={true}>
+        <Typography
+          as="h2"
+          variant="display3.1"
+          isEn={true}
+          className="text-[24px]! leading-[1.5]! tracking-[-0.015em]! min-[600px]:text-[36px]! min-[600px]:leading-[1.4]! min-[1024px]:text-[44px]!"
+        >
           Meet & Connect
         </Typography>
         <MarkUp activityType="meetNConnect" />
