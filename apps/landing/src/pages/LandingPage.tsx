@@ -13,6 +13,7 @@ import { getStudies } from '../api/study'
 import type { regularStudyType } from '../types/study'
 import { getEvents } from '../api/event'
 import type { eventItems } from '../types/event'
+import BottomBanner from '../components/BottomBanner'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -88,6 +89,17 @@ export default function LandingPage() {
   ) : (
     <CaracelCardList type="event" events={events} />
   )
+  const [isRecruiting, setIsRecruiting] = useState(false)
+
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}config.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Failed to load config: ${response.status}`)
+        return response.json()
+      })
+      .then((config) => setIsRecruiting(config?.is_recruitment === true))
+      .catch((error) => console.error('Failed to load recruitment config', error))
+  }, [])
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -149,6 +161,7 @@ export default function LandingPage() {
       </section>
       <UpcomingEvents />
       <LandingOrbits />
+      <BottomBanner isRecruiting={isRecruiting} />
       <Faq />
     </div>
   )
