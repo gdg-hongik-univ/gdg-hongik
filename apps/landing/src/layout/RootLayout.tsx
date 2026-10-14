@@ -1,5 +1,6 @@
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import Header from '../components/common/Header'
+import { Footer } from '../components/common/Footer'
 
 export default function RootLayout() {
   return (
@@ -11,7 +12,7 @@ export default function RootLayout() {
         <Outlet />
       </main>
 
-      {/*푸터 자리 */}
+      <Footer />
     </div>
   )
 }
