@@ -10,6 +10,7 @@ import { Faq } from '../components/Faq'
 import PartCardList from '../components/partcardList/PartCardList'
 import TopBanner from '../components/TopBanner'
 import ProjectTrack from '../components/ProjectTrack'
+import BottomBanner from '../components/BottomBanner'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -39,6 +40,17 @@ function useIsMedium() {
 export default function LandingPage() {
   const isM = useIsMedium()
   const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
+  const [isRecruiting, setIsRecruiting] = useState(false)
+
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}config.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`Failed to load config: ${response.status}`)
+        return response.json()
+      })
+      .then((config) => setIsRecruiting(config?.is_recruitment === true))
+      .catch((error) => console.error('Failed to load recruitment config', error))
+  }, [])
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -176,6 +188,7 @@ export default function LandingPage() {
       </section>
       <UpcomingEvents />
       <LandingOrbits />
+      <BottomBanner isRecruiting={isRecruiting} />
       <Faq />
     </div>
   )
