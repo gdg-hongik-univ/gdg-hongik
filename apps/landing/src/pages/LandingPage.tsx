@@ -7,6 +7,7 @@ import MarkUp from '../components/ActivityInfo'
 import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
+import PartCardList from '../components/partcardList/PartCardList'
 import TopBanner from '../components/TopBanner'
 import ProjectTrack from '../components/ProjectTrack'
 
@@ -161,6 +162,7 @@ export default function LandingPage() {
               className="flex flex-col gap-7 pt-7 min-[600px]:gap-9 min-[600px]:pt-9"
             >
               <MarkUp activityType={tab.value} />
+              {tab.value === 'partStudy' && <PartCardList />}
               {tab.value === 'projectTrack' && <ProjectTrack />}
             </Tabs.Content>
           ))}

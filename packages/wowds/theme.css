@@ -9,15 +9,19 @@
 
   --color-core-blue-25: #e3f2fd;
   --color-core-blue-50: #bbdefb;
+  --color-core-blue-100: #73b6ff;
   --color-core-blue-500: #4285f4;
   --color-core-green-25: #e8f5e9;
   --color-core-green-50: #c8e6c9;
+  --color-core-green-100: #85cb98;
   --color-core-green-500: #34a853;
   --color-core-yellow-25: #fff8e1;
   --color-core-yellow-50: #ffecb3;
+  --color-core-yellow-100: #fbcd66;
   --color-core-yellow-500: #f9ab00;
   --color-core-red-25: #ffebee;
   --color-core-red-50: #ffcdd2;
+  --color-core-red-100: #fb8379;
   --color-core-red-500: #ea4335;
 
   --color-blue-100: #e2ecfd;
