@@ -47,17 +47,23 @@ export const Footer = ({ className, ...props }: FooterProps) => {
           {/* 이후 링크 연결 필요 */}
           <div className="flex flex-col items-start">
             <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
-              <a href="" className="underline">
+              <a href="https://docs.gdghongik.com/onboarding" className="underline">
                 학회소개
               </a>
             </Typography>
             <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
-              <a href="" className="underline">
+              <a
+                href="https://docs.gdghongik.com/onboard-guide/community-rule"
+                className="underline"
+              >
                 GDG 홍익대학교 회칙
               </a>
             </Typography>
             <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
-              <a href="" className="underline">
+              <a
+                href="https://docs.gdghongik.com/onboard-guide/community-guideline"
+                className="underline"
+              >
                 GDG 홍익대학교 가이드라인
               </a>
             </Typography>
@@ -104,15 +110,24 @@ export const Footer = ({ className, ...props }: FooterProps) => {
                 className="xs:text-[12px]! s:text-[12px]! m:text-[12px]!"
               >
                 <div className="flex flex-wrap items-center gap-1">
-                  <a href="" className="transition-colors">
+                  <a
+                    href="https://docs.gdghongik.com/wowdevelopers/privacy-policy"
+                    className="transition-colors"
+                  >
                     개인정보처리방침
                   </a>
                   <p> | </p>
-                  <a href="" className="transition-colors">
+                  <a
+                    href="https://docs.gdghongik.com/wowdevelopers/term-of-use"
+                    className="transition-colors"
+                  >
                     이용약관
                   </a>
                   <p> | </p>
-                  <a href="" className="transition-colors">
+                  <a
+                    href="https://docs.gdghongik.com/wowdevelopers/refund"
+                    className="transition-colors"
+                  >
                     규제정책
                   </a>
                 </div>
