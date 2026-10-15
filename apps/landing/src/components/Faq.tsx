@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { Typography } from '@gdg/wowds/ui'
-import { ChevronIcon } from '@gdg/wowds/icon'
+import { ChevronIcon, KakaotalkBarIcon } from '@gdg/wowds/icon'
 import { FAQ_DATA } from '../constants/faqData'
-import { KakaotalkBarIcon } from '@gdg/wowds/icon'
 
 export const Faq = () => {
   const [openId, setOpenId] = useState<string | null>(null)
@@ -12,9 +11,21 @@ export const Faq = () => {
   }
 
   return (
-    <section className="mx-auto flex w-full max-w-360 flex-col pt-18 pb-30 px-4 xl:flex-row xl:pt-35 xl:pb-40 xl:px-20 xl:gap-13 xl:max-w-7xl">
-      <div className="flex flex-row justify-between items-center mb-6 xl:flex-col xl:gap-6 xl:justify-start xl:items-start">
-        <Typography variant="subtitle2.1" isEn className="text-black xl:text-[44px]!">
+    <section
+      className="mx-auto flex w-full flex-row pt-30 pb-40 gap-13
+                        xs:flex-col xs:px-4 xs:pt-18 xs:pb-30 xs:gap-6 s:flex-col s:px-5 s:pt-23 s:pb-30 s:gap-10
+                        m:px-6 l:px-7 xl:px-20 xl:pt-35"
+    >
+      <div
+        className="flex flex-col justify-start items-start gap-6
+                      xs:flex-row xs:justify-between xs:items-center
+                      s:flex-row s:justify-between s:items-center"
+      >
+        <Typography
+          variant="display3.1"
+          isEn
+          className="xs:text-[24px]! s:text-[36px]! m:text-[36px]!"
+        >
           FAQ
         </Typography>
         <a
@@ -22,9 +33,9 @@ export const Faq = () => {
           target="_blank"
           rel="noreferrer"
           aria-label="KakaoTalk"
-          className="hover:text-gray-900 transition-colors"
         >
-          <KakaotalkBarIcon size="xs" />
+          <KakaotalkBarIcon size="xs" className="hidden xs:block" />
+          <KakaotalkBarIcon size="xl" className="block xs:hidden" />
         </a>
       </div>
 
@@ -37,7 +48,7 @@ export const Faq = () => {
           return (
             <div
               key={faq.id}
-              className="w-full border-t border-blue-500/30 transition-all duration-200 p-3 xl:px-6 xl:py-8"
+              className="w-full border-t border-blue-500/30 transition-all duration-200 px-6 py-8 xs:p-3 s:pl-5 s:py-5 s:pr-4"
             >
               <button
                 id={triggerId}
@@ -48,14 +59,18 @@ export const Faq = () => {
                 className="flex w-full items-center justify-between text-left focus:outline-none"
               >
                 <div className="items-start">
-                  <Typography variant="caption1.2" as="span" className="text-black xl:text-[20px]!">
+                  <Typography
+                    variant="subtitle4.2"
+                    as="span"
+                    className="xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
+                  >
                     Q.
                   </Typography>
 
                   <Typography
-                    variant="caption1.2"
+                    variant="subtitle4.2"
                     as="span"
-                    className="pl-1 text-black xl:text-[20px]!"
+                    className="pl-1 xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
                   >
                     {faq.question}
                   </Typography>
@@ -65,7 +80,7 @@ export const Faq = () => {
                   direction={isOpen ? 'up' : 'down'}
                   size="lg"
                   aria-hidden="true"
-                  className="h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-300"
+                  className="h-5 w-5 shrink-0 text-gray-400 transition-transform duration-300"
                 />
               </button>
 
@@ -80,9 +95,9 @@ export const Faq = () => {
                 <div className="overflow-hidden">
                   <div className="mt-2.5 text-left">
                     <Typography
-                      variant="caption1.2"
+                      variant="subtitle4.2"
                       as="p"
-                      className="leading-relaxed text-neutral-400 whitespace-pre-line xl:text-[20px]!"
+                      className="leading-relaxed text-gray-400 whitespace-pre-line xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
                     >
                       {faq.answer}
                     </Typography>
