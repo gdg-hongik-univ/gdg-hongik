@@ -64,7 +64,7 @@ const UpcomingEventTimeline = ({
               />
             </div>
 
-            <ol className="relative z-10 flex min-h-[150px] w-max min-w-full items-start justify-center s:min-h-[164px] m:min-h-[164px] l:min-h-[220px] l:gap-5 xl:min-h-[220px] xl:gap-20">
+            <ol className="relative z-10 flex min-h-[230px] w-max min-w-full items-start justify-center s:min-h-[164px] m:min-h-[164px] l:min-h-[220px] l:gap-5 xl:min-h-[220px] xl:gap-20">
               {events.map((event, index) => {
                 const daysUntil = getDaysUntil(parseEventDate(event.date), today)
                 const isPast = daysUntil < 0

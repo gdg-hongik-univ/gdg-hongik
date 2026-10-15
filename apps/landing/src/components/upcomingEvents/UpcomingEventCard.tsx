@@ -41,12 +41,7 @@ const UpcomingEventCard = ({
     >
       <UpcomingEventMarker countdownLabel={countdownLabel} emphasis={emphasis} state={state} />
 
-      <div
-        className={cn(
-          'relative flex w-full flex-col items-center',
-          isActive && 'gap-2 l:gap-5 xl:gap-5',
-        )}
-      >
+      <div className="relative flex w-full flex-col items-center">
         <div
           className={cn(
             'flex w-full flex-col items-center gap-1 text-center',
@@ -69,7 +64,11 @@ const UpcomingEventCard = ({
           </p>
         </div>
 
-        {isActive && <UpcomingEventDetails description={description} emphasis={emphasis} />}
+        {isActive && (
+          <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 l:pt-5 xl:pt-5">
+            <UpcomingEventDetails description={description} emphasis={emphasis} />
+          </div>
+        )}
       </div>
     </div>
   )
