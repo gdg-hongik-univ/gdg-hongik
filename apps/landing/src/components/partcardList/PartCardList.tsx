@@ -253,7 +253,7 @@ export default function PartCardList() {
       <div className="hidden xs:block mt-6">
         <button className="flex w-82 h-10.5 justify-center items-center border border-gray-200 rounded-sm cursor-pointer">
           <Typography variant="caption1.3">파트 더보기</Typography>
-          <ChevronIcon size="sm" className="p-0.75" />
+          <ChevronIcon size="md" className="p-0.75" />
         </button>
       </div>
     </div>
