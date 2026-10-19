@@ -49,8 +49,10 @@
 
 .landing-background {
   background-image: url('./assets/LandingBackgroundMobile.webp');
+}
 
-  @variant s {
+@media (min-width: 600px) {
+  .landing-background {
     background-image: url('./assets/LandingBackground.webp');
   }
 }
