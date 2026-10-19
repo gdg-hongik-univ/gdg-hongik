@@ -1,4 +1,5 @@
 import { Typography } from '@gdg/wowds'
+import { useRef, useState } from 'react'
 import type { regularStudyType } from '../types/study'
 import type { eventItems } from '../types/event'
 
@@ -7,6 +8,14 @@ type CaracelCardListProps =
   | { type: 'event'; events: eventItems }
 
 export default function CaracelCardList(props: CaracelCardListProps) {
+  const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
+  const [isDragging, setIsDragging] = useState(false)
+
+  function endDrag() {
+    dragStart.current = null
+    setIsDragging(false)
+  }
+
   const cards =
     props.type === 'study'
       ? props.studies.items.map((study) => ({
@@ -61,7 +70,27 @@ export default function CaracelCardList(props: CaracelCardListProps) {
       <ul
         aria-label={props.type === 'study' ? '정규 스터디 활동 카드' : '이벤트 활동 카드'}
         tabIndex={0}
-        className="flex w-full gap-4 overflow-x-auto overscroll-x-contain snap-x snap-proximity pb-4 focus-visible:outline-2 focus-visible:outline-blue-600"
+        onPointerDown={(event) => {
+          if (event.pointerType !== 'mouse' || event.button !== 0) return
+
+          dragStart.current = {
+            pointerId: event.pointerId,
+            x: event.clientX,
+            scrollLeft: event.currentTarget.scrollLeft,
+          }
+          event.currentTarget.setPointerCapture(event.pointerId)
+          setIsDragging(true)
+        }}
+        onPointerMove={(event) => {
+          const start = dragStart.current
+          if (!start || start.pointerId !== event.pointerId) return
+
+          event.currentTarget.scrollLeft = start.scrollLeft + start.x - event.clientX
+        }}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onLostPointerCapture={endDrag}
+        className={`flex w-full gap-4 overflow-x-auto overscroll-x-contain select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-4 focus-visible:outline-2 focus-visible:outline-blue-600 ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab snap-x snap-proximity'}`}
       >
         {cards.map((card) => (
           <li
@@ -73,6 +102,7 @@ export default function CaracelCardList(props: CaracelCardListProps) {
                 src={card.image}
                 alt=""
                 loading="lazy"
+                draggable={false}
                 className="absolute inset-0 -z-20 h-full w-full object-cover"
               />
             )}
