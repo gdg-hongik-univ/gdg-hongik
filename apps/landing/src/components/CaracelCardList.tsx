@@ -1,5 +1,5 @@
 import { Typography } from '@gdg/wowds'
-import { useRef, useState } from 'react'
+import { useRef, useState, type PointerEvent } from 'react'
 import type { regularStudyType } from '../types/study'
 import type { eventItems } from '../types/event'
 
@@ -10,6 +10,25 @@ type CaracelCardListProps =
 export default function CaracelCardList(props: CaracelCardListProps) {
   const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+
+  function handlePointerDown(event: PointerEvent<HTMLUListElement>) {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return
+
+    dragStart.current = {
+      pointerId: event.pointerId,
+      x: event.clientX,
+      scrollLeft: event.currentTarget.scrollLeft,
+    }
+    event.currentTarget.setPointerCapture(event.pointerId)
+    setIsDragging(true)
+  }
+
+  function handlePointerMove(event: PointerEvent<HTMLUListElement>) {
+    const start = dragStart.current
+    if (!start || start.pointerId !== event.pointerId) return
+
+    event.currentTarget.scrollLeft = start.scrollLeft + start.x - event.clientX
+  }
 
   function endDrag() {
     dragStart.current = null
@@ -70,23 +89,8 @@ export default function CaracelCardList(props: CaracelCardListProps) {
       <ul
         aria-label={props.type === 'study' ? '정규 스터디 활동 카드' : '이벤트 활동 카드'}
         tabIndex={0}
-        onPointerDown={(event) => {
-          if (event.pointerType !== 'mouse' || event.button !== 0) return
-
-          dragStart.current = {
-            pointerId: event.pointerId,
-            x: event.clientX,
-            scrollLeft: event.currentTarget.scrollLeft,
-          }
-          event.currentTarget.setPointerCapture(event.pointerId)
-          setIsDragging(true)
-        }}
-        onPointerMove={(event) => {
-          const start = dragStart.current
-          if (!start || start.pointerId !== event.pointerId) return
-
-          event.currentTarget.scrollLeft = start.scrollLeft + start.x - event.clientX
-        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onLostPointerCapture={endDrag}
