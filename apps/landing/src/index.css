@@ -54,7 +54,6 @@
 @media (min-width: 600px) {
   .landing-background {
     background-image: url('./assets/LandingBackground.webp');
-    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
   }
 }
 

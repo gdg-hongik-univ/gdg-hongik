@@ -47,7 +47,7 @@ const PROPERTY_TYPOGRAPHY: Record<
   main: {
     auto: {
       variant: 'subtitle4.1',
-      className: 'max-[600px]:text-[14px]! min-[600px]:max-[1024px]:text-[18px]!',
+      className: 'max-[600px]:text-[14px]! min-[600px]:max-[1024px]:text-[16px]!',
     },
     sm: { variant: 'body2.1', className: 'text-[14px]!' },
     md: { variant: 'body1.1' },
