@@ -39,7 +39,7 @@ export default function ActivityInfo({ activityType }: ActivityInfoProps) {
         as="h3"
         variant="body2.3"
         className={cn(
-          'text-blue-600 bg-blue-100 w-fit px-4 py-1.5 rounded-[8px]',
+          'text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px]',
           isProjectTrack &&
             'max-w-full px-3 text-[12px]! tracking-[-0.015em]! min-[600px]:text-[14px]! min-[1024px]:text-[16px]!',
         )}

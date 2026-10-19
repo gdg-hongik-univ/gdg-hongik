@@ -10,6 +10,11 @@ import { Faq } from '../components/Faq'
 import PartCardList from '../components/partcardList/PartCardList'
 import TopBanner from '../components/TopBanner'
 import ProjectTrack from '../components/ProjectTrack'
+import CaracelCardList from '../components/CaracelCardList'
+import { getStudies } from '../api/study'
+import type { regularStudyType } from '../types/study'
+import { getEvents } from '../api/event'
+import type { eventItems } from '../types/event'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -39,6 +44,72 @@ function useIsMedium() {
 export default function LandingPage() {
   const isM = useIsMedium()
   const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
+
+  const [studies, setStudies] = useState<regularStudyType | null>(null)
+  const [studiesError, setStudiesError] = useState(false)
+
+  const [events, setEvents] = useState<eventItems | null>(null)
+  const [eventsError, setEventsError] = useState(false)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadEvents() {
+      try {
+        const data = await getEvents(controller.signal)
+        if (!controller.signal.aborted) setEvents(data)
+      } catch {
+        if (!controller.signal.aborted) setEventsError(true)
+      }
+    }
+
+    void loadEvents()
+    return () => controller.abort()
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadStudies() {
+      try {
+        const data = await getStudies(controller.signal)
+        if (!controller.signal.aborted) setStudies(data)
+      } catch {
+        if (!controller.signal.aborted) setStudiesError(true)
+      }
+    }
+
+    void loadStudies()
+    return () => controller.abort()
+  }, [])
+
+  const studyCards = studiesError ? (
+    <p role="alert" className="mt-9">
+      스터디 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.
+    </p>
+  ) : studies === null ? (
+    <p role="status" className="mt-9">
+      스터디 정보를 불러오는 중이에요.
+    </p>
+  ) : studies.items.length === 0 ? (
+    <p className="mt-9">등록된 스터디가 없어요.</p>
+  ) : (
+    <CaracelCardList type="study" studies={studies} />
+  )
+
+  const eventCards = eventsError ? (
+    <p role="alert" className="mt-9">
+      이벤트 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.
+    </p>
+  ) : events === null ? (
+    <p role="status" className="mt-9">
+      이벤트 정보를 불러오는 중이에요.
+    </p>
+  ) : events.items.length === 0 ? (
+    <p className="mt-9">등록된 이벤트가 없어요.</p>
+  ) : (
+    <CaracelCardList type="event" events={events} />
+  )
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -164,15 +235,20 @@ export default function LandingPage() {
               <MarkUp activityType={tab.value} />
               {tab.value === 'partStudy' && <PartCardList />}
               {tab.value === 'projectTrack' && <ProjectTrack />}
+              {tab.value === 'regularStudy' && studyCards}
             </Tabs.Content>
           ))}
         </Tabs>
       </section>
-      <section className="flex flex-col gap-12 w-[95%] px-4 pb-35" aria-label="지난 학기 활동 소개">
-        <Typography as="h2" variant="display3.1" isEn={true}>
+      <section
+        className="flex flex-col w-[95%] px-4 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
+        aria-label="지난 학기 활동 소개"
+      >
+        <Typography as="h2" variant="display3.1" isEn={true} className="pb-12">
           Meet & Connect
         </Typography>
         <MarkUp activityType="meetNConnect" />
+        {eventCards}
       </section>
       <UpcomingEvents />
       <LandingOrbits />
