@@ -10,7 +10,7 @@ const BottomBanner = ({ isRecruiting }: RecruitmentStatusProps) => {
   return (
     <section className="relative w-full overflow-hidden xs:h-73 s:h-75 m:h-75 h-87">
       <BottomBannerBg />
-      <div className="absolute inset-0 z-10 flex flex-col justify-center xs:items-start xs:text-left pl-8 items-center text-center gap-8 text-white">
+      <div className="absolute inset-0 z-10 flex flex-col justify-center xs:items-start xs:text-left xs:pl-8 items-center text-center gap-8 text-white">
         <div className="flex flex-col xs:gap-2 s:gap-2 gap-3">
           <Typography
             variant="display2.1"
