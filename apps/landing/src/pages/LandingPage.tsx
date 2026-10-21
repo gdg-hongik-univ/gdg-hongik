@@ -31,7 +31,7 @@ export default function LandingPage() {
 
   const [events, setEvents] = useState<eventItems | null>(null)
   const [eventsError, setEventsError] = useState(false)
-  const [isRecruiting, setIsRecruiting] = useState(false)
+  const [isRecruiting, setIsRecruiting] = useState<boolean | null>(null)
   const [isNoticeOpen, setIsNoticeOpen] = useState(false)
 
   useEffect(() => {
@@ -105,6 +105,8 @@ export default function LandingPage() {
   }, [])
 
   const handleRecruitmentClick = () => {
+    if (isRecruiting === null) return
+
     if (isRecruiting) {
       window.location.assign('https://onboarding.wawoo.dev/')
       return

@@ -24,7 +24,7 @@ function useIsMedium() {
 }
 
 interface HeroProps {
-  isRecruiting: boolean
+  isRecruiting: boolean | null
   onRecruitmentClick: () => void
 }
 
@@ -118,8 +118,14 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
             property="main"
             className="min-w-42 min-[600px]:min-w-50 min-[1024px]:min-w-67"
             onClick={onRecruitmentClick}
+            disabled={isRecruiting === null}
+            aria-busy={isRecruiting === null}
           >
-            {isRecruiting ? 'GDG 가입하러 가기' : '가입 전 GDG 채널 둘러보기'}
+            {isRecruiting === null
+              ? '모집 정보 확인 중'
+              : isRecruiting
+                ? 'GDG 가입하러 가기'
+                : '가입 전 GDG 채널 둘러보기'}
           </CTAButton>
         </section>
 
