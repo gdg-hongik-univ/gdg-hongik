@@ -23,7 +23,12 @@ function useIsMedium() {
   return isMedium
 }
 
-export default function Hero() {
+interface HeroProps {
+  isRecruiting: boolean
+  onRecruitmentClick: () => void
+}
+
+export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
   const isM = useIsMedium()
   const introductionRef = useRef<HTMLElement>(null)
   const scrollFrameRef = useRef(0)
@@ -109,8 +114,12 @@ export default function Hero() {
               혼자 공부하지 않아도 되는 <br className="block min-[1024px]:hidden" /> 개발 커뮤니티
             </Typography>
           </section>
-          <CTAButton property="main" className="w-42 min-[600px]:w-50 min-[1024px]:w-67">
-            GDG 가입하러 가기
+          <CTAButton
+            property="main"
+            className="min-w-42 min-[600px]:min-w-50 min-[1024px]:min-w-67"
+            onClick={onRecruitmentClick}
+          >
+            {isRecruiting ? 'GDG 가입하러 가기' : '가입 전 GDG 채널 둘러보기'}
           </CTAButton>
         </section>
 

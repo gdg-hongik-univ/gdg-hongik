@@ -15,6 +15,7 @@ import { getEvents } from '../api/event'
 import type { eventItems } from '../types/event'
 import BottomBanner from '../components/BottomBanner'
 import { fetcher } from '../api/fetcher'
+import { RecruitmentNoticeModal } from '../components/modal/RecruitmentNoticeModal'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -30,6 +31,8 @@ export default function LandingPage() {
 
   const [events, setEvents] = useState<eventItems | null>(null)
   const [eventsError, setEventsError] = useState(false)
+  const [isRecruiting, setIsRecruiting] = useState(false)
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -84,7 +87,6 @@ export default function LandingPage() {
   ) : (
     <CaracelCardList type="event" events={events} />
   )
-  const [isRecruiting, setIsRecruiting] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -102,9 +104,18 @@ export default function LandingPage() {
     return () => controller.abort()
   }, [])
 
+  const handleRecruitmentClick = () => {
+    if (isRecruiting) {
+      window.location.assign('https://onboarding.wawoo.dev/')
+      return
+    }
+
+    setIsNoticeOpen(true)
+  }
+
   return (
     <div className="w-full flex flex-col items-center">
-      <Hero />
+      <Hero isRecruiting={isRecruiting} onRecruitmentClick={handleRecruitmentClick} />
       <TopBanner />
       <section
         className="mx-auto flex w-[95%] flex-col gap-3 px-4 pt-18 pb-8 s:pt-30 s:pb-15 m:pt-30 m:pb-15 l:pt-35 l:pb-20 xl:pt-35 xl:pb-20 min-[600px]:gap-4"
@@ -162,8 +173,9 @@ export default function LandingPage() {
       </section>
       <UpcomingEvents />
       <LandingOrbits />
-      <BottomBanner isRecruiting={isRecruiting} />
+      <BottomBanner isRecruiting={isRecruiting} onRecruitmentClick={handleRecruitmentClick} />
       <Faq />
+      <RecruitmentNoticeModal isOpen={isNoticeOpen} onClose={() => setIsNoticeOpen(false)} />
     </div>
   )
 }

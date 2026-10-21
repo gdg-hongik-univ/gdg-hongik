@@ -1,16 +1,13 @@
 import { Typography } from '@gdg/wowds'
-import { useState } from 'react'
 import CTAButton from './common/CTAButton'
 import { BottomBannerBg } from './banner/BottomBannerBg'
-import { RecruitmentNoticeModal } from './modal/RecruitmentNoticeModal'
 
 interface RecruitmentStatusProps {
   isRecruiting: boolean
+  onRecruitmentClick: () => void
 }
 
-const BottomBanner = ({ isRecruiting }: RecruitmentStatusProps) => {
-  const [isNoticeOpen, setIsNoticeOpen] = useState(false)
-
+const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusProps) => {
   return (
     <section className="relative w-full overflow-hidden xs:h-73 s:h-75 m:h-75 h-87">
       <BottomBannerBg />
@@ -48,15 +45,10 @@ const BottomBanner = ({ isRecruiting }: RecruitmentStatusProps) => {
           </Typography>
         </div>
 
-        <CTAButton
-          property="sub"
-          size="auto"
-          onClick={isRecruiting ? undefined : () => setIsNoticeOpen(true)}
-        >
+        <CTAButton property="sub" size="auto" onClick={onRecruitmentClick}>
           {isRecruiting ? 'GDG 가입하러 가기' : 'GDG 채널 둘러보기'}
         </CTAButton>
       </div>
-      <RecruitmentNoticeModal isOpen={isNoticeOpen} onClose={() => setIsNoticeOpen(false)} />
     </section>
   )
 }
