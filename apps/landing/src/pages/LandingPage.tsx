@@ -14,6 +14,7 @@ import type { regularStudyType } from '../types/study'
 import { getEvents } from '../api/event'
 import type { eventItems } from '../types/event'
 import BottomBanner from '../components/BottomBanner'
+import { fetcher } from '../api/fetcher'
 
 const ACTIVITY_TABS = [
   { value: 'regularStudy', label: '정규 스터디' },
@@ -33,32 +34,26 @@ export default function LandingPage() {
   useEffect(() => {
     const controller = new AbortController()
 
-    async function loadEvents() {
-      try {
-        const data = await getEvents(controller.signal)
-        if (!controller.signal.aborted) setEvents(data)
-      } catch {
-        if (!controller.signal.aborted) setEventsError(true)
+    getEvents(controller.signal).then((data) => {
+      if (!controller.signal.aborted) {
+        setEvents(data)
+        setEventsError(data === null)
       }
-    }
+    })
 
-    void loadEvents()
     return () => controller.abort()
   }, [])
 
   useEffect(() => {
     const controller = new AbortController()
 
-    async function loadStudies() {
-      try {
-        const data = await getStudies(controller.signal)
-        if (!controller.signal.aborted) setStudies(data)
-      } catch {
-        if (!controller.signal.aborted) setStudiesError(true)
+    getStudies(controller.signal).then((data) => {
+      if (!controller.signal.aborted) {
+        setStudies(data)
+        setStudiesError(data === null)
       }
-    }
+    })
 
-    void loadStudies()
     return () => controller.abort()
   }, [])
 
@@ -92,13 +87,19 @@ export default function LandingPage() {
   const [isRecruiting, setIsRecruiting] = useState(false)
 
   useEffect(() => {
-    fetch(`${import.meta.env.BASE_URL}config.json`)
-      .then((response) => {
-        if (!response.ok) throw new Error(`Failed to load config: ${response.status}`)
-        return response.json()
-      })
-      .then((config) => setIsRecruiting(config?.is_recruitment === true))
-      .catch((error) => console.error('Failed to load recruitment config', error))
+    const controller = new AbortController()
+
+    fetcher<{ is_recruitment?: boolean }>(
+      `${import.meta.env.BASE_URL}config.json`,
+      '모집 설정을 불러오지 못했습니다.',
+      controller.signal,
+    ).then((config) => {
+      if (!controller.signal.aborted) {
+        setIsRecruiting(config?.is_recruitment === true)
+      }
+    })
+
+    return () => controller.abort()
   }, [])
 
   return (
