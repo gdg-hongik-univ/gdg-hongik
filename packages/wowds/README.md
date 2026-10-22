@@ -14,21 +14,28 @@ WOW Design System — 모노레포 전역 공유 디자인 시스템. 도메인(
 }
 ```
 
-## 폰트 로드
+## 테마와 폰트 로드
 
-각 앱의 전역 스타일(`global.css`) 맨 위에서 **항상** import 한다. (Vite 가 woff2 를 번들에 포함)
+각 앱에서 Tailwind v4 빌드 설정을 활성화하고, 전역 스타일(`global.css`) 맨 위에서 테마와 폰트를 import 한다. (Vite 가 woff2 를 번들에 포함)
 
 ```css
 /* apps/*/src/global.css */
+@import 'tailwindcss';
 @import '@gdg/wowds/fonts.css';
+@import '@gdg/wowds/theme.css';
 
-body {
-  font-family: 'SUIT Variable', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@source '../../../packages/wowds/ui';
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
+  }
 }
 ```
 
 > `@font-face` 는 한 번만 등록되면 되므로, 컴포넌트가 아니라 전역 CSS 에서 로드한다.
 > `body` 기본 폰트도 여기서 함께 깔아 두면 Typography 로 감싸지 않은 텍스트(input 등)도 커버된다.
+> `@source` 경로는 전역 CSS 파일 기준으로 지정한다. wowds 컴포넌트의 Tailwind 클래스를 수집하는 데 사용한다.
 
 번들된 폰트 (모두 가변폰트 / SIL Open Font License):
 
@@ -58,21 +65,53 @@ import {
 
 ### color — 2계층
 
-- `palette` : 원시 색상 (SSOT). `palette.core.green[500]`, `palette.blue[500]`, `palette.gray[200]`, `palette.status.danger` …
+- 실제 색상 값과 의미 토큰의 연결은 **`theme.css`에서만 관리한다.** 컬러의 `@theme static` 선언은 TS·SVG에서만 참조하는 변수도 최종 CSS에 포함한다.
+- `palette` : 원시 색상의 CSS 변수 참조. `palette.core.green[500]`, `palette.blue[500]`, `palette.gray[200]`, `palette.status.danger` …
 - `color` : 용도별(의미) 토큰. **컴포넌트에서는 가급적 이쪽을 사용.**
 
 ```ts
-color.primary // #4285F4 (palette.blue[500])
-color.sub // #58616A
-color.outline // #CDD1D5
-color.textBlack // #080808
-color.disabled.light // #F4F5F6
-color.hover.blue // #2170F2
-color.pressed.blue // #659BF6
-color.status.danger // #DE3412
+palette.blue[500] // 'var(--color-blue-500)'
+color.primary // 'var(--color-primary)'
+color.sub // 'var(--color-sub)'
+color.outline // 'var(--color-outline)'
+color.textBlack // 'var(--color-text-black)'
+color.disabled.light // 'var(--color-disabled-light)'
+color.hover.blue // 'var(--color-hover-blue)'
+color.pressed.blue // 'var(--color-pressed-blue)'
+color.status.danger // 'var(--color-status-danger)'
 ```
 
-> Status(danger/warning/success/information)는 베이스 색만 정의. Figma 의 농도 단계(50/10/5)는 동일 색 변형이라 생략했다.
+```tsx
+// Tailwind, SVG, 인라인 스타일은 같은 CSS 변수를 참조한다.
+<button className="bg-primary text-text-white border border-outline">확인</button>
+<circle fill={palette.blue[500]} />
+<span style={{ color: color.primary }}>텍스트</span>
+```
+
+기존 `palette`·`color`의 키와 import 경로는 유지하지만, 반환값은 HEX 대신 CSS 변수 참조다.
+앱에서 `theme.css`를 반드시 로드해야 하며, HEX가 필요한 색상 계산이나 외부 API에 그대로 전달할 수는 없다.
+색상 변경은 `theme.css`만 수정한다. 새 토큰을 TS에서도 사용하려면 `tokens/color.ts`에 변수 참조를 추가한다.
+
+Status 색상은 [Figma 컬러 가이드](https://www.figma.com/design/TCjm78i5DE0mf8lAVdFRVN/5.0-Renewal?node-id=168-1001)의 실제 도형 채움 색상과 변수 값을 따른다.
+가이드의 HEX 텍스트는 단계마다 같은 값이 적혀 있지만, 실제 값은 아래처럼 다르며 모두 불투명한 색상이다. 단계 번호는 투명도 비율이 아니다.
+
+| 계열        | 밝은 단계    | 중간 단계     | 기본 단계     |
+| ----------- | ------------ | ------------- | ------------- |
+| Danger      | 5: `#FDEFEC` | 10: `#FCDFD9` | 50: `#DE3412` |
+| Warning     | 5: `#FFF3DB` | 10: `#FFE0A3` | 30: `#FFB114` |
+| Success     | 5: `#EAF6EC` | 20: `#A9DAB4` | 50: `#228738` |
+| Information | 5: `#E7F4FE` | 20: `#9ED2FA` | 60: `#096AB3` |
+
+```tsx
+// 단계별 색상은 palette.status와 color.status 양쪽에서 제공한다.
+<div className="bg-status-danger-5 border border-status-danger-10 text-status-danger-50">
+  오류가 발생했어요.
+</div>
+<span style={{ backgroundColor: color.status.success5, color: color.status.success50 }}>완료</span>
+```
+
+기존 `palette.status.danger`, `color.status.danger`, `bg-status-danger` 등의 이름은 기본 단계의 별칭으로 유지한다.
+기본 단계는 Danger 50, Warning 30, Success 50, Information 60이다.
 
 ### breakpoint — 반응형 화면 크기
 
@@ -153,6 +192,7 @@ Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
 
 ```
 packages/wowds/
+├── theme.css              # 컬러 값·의미 연결의 기준, Tailwind 테마
 ├── fonts.css              # @font-face (앱 전역 import)
 ├── fonts/                 # 벤들된 woff2 + OFL 라이선스
 │   ├── *.woff2
@@ -172,4 +212,4 @@ packages/wowds/
 └── index.ts               # 전체 barrel
 ```
 
-import 경로: `@gdg/wowds`(전체) · `@gdg/wowds/tokens` · `@gdg/wowds/ui` · `@gdg/wowds/icon` · `@gdg/wowds/fonts.css` · `@gdg/wowds/theme.css`
+import 경로: `@gdg/wowds`(전체) · `@gdg/wowds/tokens` · `@gdg/wowds/ui` · `@gdg/wowds/icon` · `@gdg/wowds/theme.css` · `@gdg/wowds/fonts.css`
