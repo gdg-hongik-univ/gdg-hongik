@@ -128,7 +128,7 @@ export const Footer = ({ className, ...props }: FooterProps) => {
                     href="https://docs.gdghongik.com/wowdevelopers/refund"
                     className="transition-colors"
                   >
-                    규제정책
+                    환불정책
                   </a>
                 </div>
               </Typography>
