@@ -62,7 +62,7 @@ const UpcomingEventDetails = ({ description, emphasis }: UpcomingEventDetailsPro
             : 'px-3.5 py-2.5 l:px-5 l:py-3.5 xl:px-5 xl:py-3.5',
         )}
       >
-        <p className="w-[181px] break-keep text-center text-caption1 font-semibold text-black s:text-[12px] m:text-[12px] l:w-[207px] l:text-body2 xl:w-[207px] xl:text-body2">
+        <p className="line-clamp-3 w-[181px] break-keep text-center text-caption1 font-semibold text-black s:text-[12px] m:text-[12px] l:w-[207px] l:text-body2 xl:w-[207px] xl:text-body2">
           {description}
         </p>
       </div>
