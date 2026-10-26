@@ -85,7 +85,7 @@ export default function CaracelCardList(props: CaracelCardListProps) {
         }))
 
   return (
-    <div className="min-w-0 w-full mt-9">
+    <div className="min-w-0 w-full">
       <ul
         aria-label={props.type === 'study' ? '정규 스터디 활동 카드' : '이벤트 활동 카드'}
         tabIndex={0}

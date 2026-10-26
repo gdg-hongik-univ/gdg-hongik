@@ -76,15 +76,11 @@ export default function LandingPage() {
   )
 
   const eventCards = eventsError ? (
-    <p role="alert" className="mt-9">
-      이벤트 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.
-    </p>
+    <p role="alert">이벤트 정보를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.</p>
   ) : events === null ? (
-    <p role="status" className="mt-9">
-      이벤트 정보를 불러오는 중이에요.
-    </p>
+    <p role="status">이벤트 정보를 불러오는 중이에요.</p>
   ) : events.items.length === 0 ? (
-    <p className="mt-9">등록된 이벤트가 없어요.</p>
+    <p>등록된 이벤트가 없어요.</p>
   ) : (
     <CaracelCardList type="event" events={events} />
   )
