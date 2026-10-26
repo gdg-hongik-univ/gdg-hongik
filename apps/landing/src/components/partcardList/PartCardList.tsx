@@ -2,6 +2,7 @@ import { useState, type ComponentType } from 'react'
 import { Typography } from '@gdg/wowds'
 import { Tag, type TagVariant } from '../common/Tag'
 import { FrontendCardBg, BackendCardBg, AiCardBg } from './PartCardListBg'
+import { ChevronIcon } from '@gdg/wowds/icon'
 
 type Breakpoint = 'xs' | 's' | 'm' | 'l' | 'xl'
 type Responsive = Record<Breakpoint, string>
@@ -138,115 +139,123 @@ export default function PartCardList() {
   const [activeCard, setActiveCard] = useState<string | null>(null)
 
   return (
-    <div className="flex xs:flex-col flex-row w-full pt-9 xs:pt-7 xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-13 overflow-x-auto [scrollbar:none] [&::-webkit-scrollbar]:hidden">
-      {PART_ITEMS.map((part) => {
-        const BgComponent = part.Background
-        const isActive = activeCard === part.id
+    <div className="flex flex-col w-full">
+      <div className="flex xs:flex-col flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-13 overflow-x-auto [scrollbar:none] [&::-webkit-scrollbar]:hidden">
+        {PART_ITEMS.map((part) => {
+          const BgComponent = part.Background
+          const isActive = activeCard === part.id
 
-        return (
-          <div
-            key={part.id}
-            onMouseEnter={() => setActiveCard(part.id)}
-            onMouseLeave={() => setActiveCard(null)}
-            onClick={() => setActiveCard(isActive ? null : part.id)}
-            className="relative overflow-hidden flex flex-col rounded-xl xs:w-82 xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
-          >
+          return (
             <div
-              className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 ${
-                isActive ? 'opacity-0' : 'opacity-100'
-              }`}
+              key={part.id}
+              onMouseEnter={() => setActiveCard(part.id)}
+              onMouseLeave={() => setActiveCard(null)}
+              onClick={() => setActiveCard(isActive ? null : part.id)}
+              className="relative overflow-hidden flex flex-col rounded-xl xs:w-82 xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
             >
-              <BgComponent />
-            </div>
-
-            <div
-              className={`pointer-events-none absolute inset-0 z-0 rounded-xl transition-opacity duration-300 ${
-                part.activeBg
-              } ${isActive ? 'opacity-100' : 'opacity-0'}`}
-            />
-
-            <div
-              className={`relative z-10 flex flex-col gap-2 p-7 transition-all duration-300 ${
-                isActive
-                  ? 'opacity-0 -translate-y-2 pointer-events-none'
-                  : 'opacity-100 translate-y-0'
-              }`}
-            >
-              <Typography variant="subtitle4.1" isEn className={`${part.titleColor}`}>
-                {part.name}
-              </Typography>
-
-              <Typography
-                variant="body1.3"
-                className={`${part.descriptionColor} whitespace-pre-line leading-relaxed xs:text-[16px]! s:text-[16px]! m:text-[16px]!`}
+              <div
+                className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 ${
+                  isActive ? 'opacity-0' : 'opacity-100'
+                }`}
               >
-                <ResponsiveText text={part.description} />
-              </Typography>
-            </div>
+                <BgComponent />
+              </div>
 
-            <div
-              className={`absolute inset-0 z-10 xs:p-5.5 s:p-6 m:p-7 p-9 transition-all duration-300 ${
-                isActive
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-2 pointer-events-none'
-              }`}
-            >
-              <Typography
-                variant="subtitle4.1"
-                className={`${part.titleColor} xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!`}
+              <div
+                className={`pointer-events-none absolute inset-0 z-0 rounded-xl transition-opacity duration-300 ${
+                  part.activeBg
+                } ${isActive ? 'opacity-100' : 'opacity-0'}`}
+              />
+
+              <div
+                className={`relative z-10 flex flex-col gap-2 p-7 transition-all duration-300 ${
+                  isActive
+                    ? 'opacity-0 -translate-y-2 pointer-events-none'
+                    : 'opacity-100 translate-y-0'
+                }`}
               >
-                파트 소개
-              </Typography>
-
-              <div className="mt-2.5 flex items-start gap-2">
-                <Typography
-                  variant="caption2.2"
-                  className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
-                >
-                  01
+                <Typography variant="subtitle4.1" isEn className={`${part.titleColor}`}>
+                  {part.name}
                 </Typography>
 
                 <Typography
-                  variant="body2.3"
-                  className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                  variant="body1.3"
+                  className={`${part.descriptionColor} whitespace-pre-line leading-relaxed xs:text-[16px]! s:text-[16px]! m:text-[16px]!`}
                 >
-                  <ResponsiveText text={part.detailDescription} />
+                  <ResponsiveText text={part.description} />
                 </Typography>
               </div>
 
-              <div className="xs:mt-5 s:mt-7 mt-8">
-                <Tag
-                  size="md"
-                  variant={part.tagVariant}
-                  className="xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+              <div
+                className={`absolute inset-0 z-10 xs:p-5.5 s:p-6 m:p-7 p-9 transition-all duration-300 ${
+                  isActive
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2 pointer-events-none'
+                }`}
+              >
+                <Typography
+                  variant="subtitle4.1"
+                  className={`${part.titleColor} xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!`}
                 >
-                  이런 사람에게 추천해요
-                </Tag>
+                  파트 소개
+                </Typography>
 
-                <div className="xs:mt-2.5 mt-3 flex flex-col xs:gap-2 gap-2.5">
-                  {part.recommendations.map((recommendation, index) => (
-                    <div key={index} className="flex items-start gap-2">
-                      <Typography
-                        variant="caption2.2"
-                        className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
-                      >
-                        0{index + 1}
-                      </Typography>
+                <div className="mt-2.5 flex items-start gap-2">
+                  <Typography
+                    variant="caption2.2"
+                    className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
+                  >
+                    01
+                  </Typography>
 
-                      <Typography
-                        variant="body2.3"
-                        className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
-                      >
-                        <ResponsiveText text={recommendation} />
-                      </Typography>
-                    </div>
-                  ))}
+                  <Typography
+                    variant="body2.3"
+                    className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                  >
+                    <ResponsiveText text={part.detailDescription} />
+                  </Typography>
+                </div>
+
+                <div className="xs:mt-5 s:mt-7 mt-8">
+                  <Tag
+                    size="md"
+                    variant={part.tagVariant}
+                    className="xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                  >
+                    이런 사람에게 추천해요
+                  </Tag>
+
+                  <div className="xs:mt-2.5 mt-3 flex flex-col xs:gap-2 gap-2.5">
+                    {part.recommendations.map((recommendation, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <Typography
+                          variant="caption2.2"
+                          className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
+                        >
+                          0{index + 1}
+                        </Typography>
+
+                        <Typography
+                          variant="body2.3"
+                          className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                        >
+                          <ResponsiveText text={recommendation} />
+                        </Typography>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
+      </div>
+      <div className="hidden xs:block mt-6">
+        <button className="flex w-82 h-10.5 justify-center items-center border border-gray-200 rounded-sm cursor-pointer">
+          <Typography variant="caption1.3">파트 더보기</Typography>
+          <ChevronIcon size="md" className="p-0.75" />
+        </button>
+      </div>
     </div>
   )
 }
