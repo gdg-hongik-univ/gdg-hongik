@@ -4,8 +4,8 @@ GDG Hongik 동아리 서비스 모노레포입니다. 도메인별로 **독립 �
 
 ## 기술 스택
 
-- **언어/런타임**: TypeScript, Node.js 20+
-- **패키지 매니저**: pnpm 10+ (workspace 모노레포)
+- **언어/런타임**: TypeScript, Node.js 24 LTS
+- **패키지 매니저**: pnpm 12.14.0 (workspace 모노레포)
 - **프레임워크**: React 19, Vite 8
 - **코드 품질**: ESLint 10, Prettier, husky + lint-staged (pre-commit 훅)
 
@@ -44,8 +44,11 @@ gdg-hongik/
 
 ## 요구사항
 
-- Node.js >= 20
-- pnpm >= 10
+- Node.js 24.x (`.nvmrc` 기준, GitHub Actions에서도 동일하게 사용)
+- pnpm 12.14.0 (`package.json`의 `packageManager`에 고정)
+
+nvm을 사용한다면 `nvm install && nvm use`로 Node.js 버전을 맞추고,
+`npm install -g pnpm@12.14.0`으로 pnpm을 설치합니다.
 
 ## 실행 방법
 
@@ -54,6 +57,7 @@ pnpm install          # 전체 워크스페이스 의존성 설치
 pnpm dev              # 랜딩 앱 dev 서버 실행 (= pnpm dev:landing)
 pnpm build            # 전체 앱·패키지 빌드
 pnpm lint             # 전체 lint 검사
+pnpm typecheck        # 전체 TypeScript 프로젝트 타입 검사
 pnpm format           # Prettier 포맷 적용
 pnpm format:check     # Prettier 포맷 검사 (수정 없이 확인)
 ```
