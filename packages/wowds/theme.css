@@ -1,11 +1,39 @@
-@custom-variant xs (@media (min-width: 360px) and (max-width: 599px));
-@custom-variant s (@media (min-width: 600px) and (max-width: 767px));
-@custom-variant m (@media (min-width: 768px) and (max-width: 1023px));
-@custom-variant l (@media (min-width: 1024px) and (max-width: 1439px));
-@custom-variant xl (@media (min-width: 1440px));
+@custom-variant xs (@media (360px <= width < 600px));
+@custom-variant s (@media (600px <= width < 768px));
+@custom-variant m (@media (768px <= width < 1024px));
+@custom-variant l (@media (1024px <= width < 1440px));
+@custom-variant xl (@media (width >= 1440px));
 
 @theme {
   --breakpoint-*: initial;
+}
+
+/* 그리드 값은 TS와 Tailwind의 임의 값 유틸리티에서 함께 참조한다. */
+@theme static {
+  --grid-xs-columns: 4;
+  --grid-xs-margin: 16px;
+  --grid-xs-gutter: 16px;
+
+  --grid-s-columns: 8;
+  --grid-s-margin: 20px;
+  --grid-s-gutter: 16px;
+
+  --grid-m-columns: 8;
+  --grid-m-margin: 24px;
+  --grid-m-gutter: 20px;
+
+  --grid-l-columns: 12;
+  --grid-l-margin: 28px;
+  --grid-l-gutter: 20px;
+
+  --grid-xl-columns: 12;
+  --grid-xl-container-width: 1280px;
+  --grid-xl-gutter: 24px;
+
+  --grid-xl-admin-sidebar-width: 250px;
+  --grid-xl-admin-columns: 12;
+  --grid-xl-admin-content-padding: 48px;
+  --grid-xl-admin-gutter: var(--grid-xl-gutter);
 }
 
 /* TS 토큰과 SVG에서만 사용하는 컬러 변수도 최종 CSS에 포함한다. */
