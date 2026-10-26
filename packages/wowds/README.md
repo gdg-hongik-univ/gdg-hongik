@@ -53,6 +53,7 @@ WOW Design System — 모노레포 전역 공유 디자인 시스템. 도메인(
 ```ts
 import {
   breakpoint,
+  grid,
   color,
   palette,
   typography,
@@ -115,21 +116,76 @@ Status 색상은 [Figma 컬러 가이드](https://www.figma.com/design/TCjm78i5D
 
 ### breakpoint — 반응형 화면 크기
 
-| 이름 | 범위        | Tailwind variant |
-| ---- | ----------- | ---------------- |
-| XS   | 360–599px   | `xs:`            |
-| S    | 600–767px   | `s:`             |
-| M    | 768–1023px  | `m:`             |
-| L    | 1024–1439px | `l:`             |
-| XL   | 1440px 이상 | `xl:`            |
+| 이름 | 범위                     | Tailwind variant |
+| ---- | ------------------------ | ---------------- |
+| XS   | 360px 이상, 600px 미만   | `xs:`            |
+| S    | 600px 이상, 768px 미만   | `s:`             |
+| M    | 768px 이상, 1024px 미만  | `m:`             |
+| L    | 1024px 이상, 1440px 미만 | `l:`             |
+| XL   | 1440px 이상, 상한 없음   | `xl:`            |
 
 ```ts
-breakpoint.xs // { min: 360, max: 599 }
+breakpoint.xs // { min: 360, max: 600 }
 breakpoint.xl // { min: 1440, max: null }
 ```
 
-각 variant는 최소 너비 방식이 아니라 해당 구간에서만 적용된다. 예를 들어 `l:flex`는
-1024–1439px에서만 활성화되며 XL에는 이어지지 않는다.
+`min`은 포함하고 `max`는 포함하지 않는 상한이다. 기존 정수 상한(599/767/1023/1439)을
+다음 구간의 시작값(600/768/1024/1440)으로 변경해 소수점 너비에서도 구간이 끊기지 않도록 했다.
+JS에서 구간을 비교할 때는 `width >= min && (max === null || width < max)`를 사용한다.
+
+각 variant는 해당 구간에서만 적용된다. 예를 들어 `l:flex`는
+1024px 이상 1440px 미만에서만 활성화되며 XL에는 이어지지 않는다.
+일반 CSS에서도 `@variant m { ... }`처럼 같은 구간을 재사용할 수 있다.
+360px 미만은 이름 있는 variant 없이 기본 스타일로 대응한다.
+
+### grid — 반응형 레이아웃
+
+[Figma 그리드 가이드](https://www.figma.com/design/TCjm78i5DE0mf8lAVdFRVN/5.0-Renewal?node-id=168-738)의 설명을 기준으로 정리했다.
+S 여백은 설명의 20px을, M 여백은 실제 그리드·변수와 일치하는 24px을 사용한다.
+XL은 1920px을 초과해도 같은 규칙을 유지한다.
+
+| 구간 | 컬럼 수 | 좌우 여백 / 컨테이너 너비 | Gutter |
+| ---- | ------- | ------------------------- | ------ |
+| XS   | 4       | 여백 16px                 | 16px   |
+| S    | 8       | 여백 20px                 | 16px   |
+| M    | 8       | 여백 24px                 | 20px   |
+| L    | 12      | 여백 28px                 | 20px   |
+| XL   | 12      | 중앙 컨테이너 1280px      | 24px   |
+
+XL Admin은 사이드바 250px, 콘텐츠 12컬럼, 콘텐츠 좌우 패딩 48px, Gutter 24px이다.
+콘텐츠 너비는 화면 너비에서 사이드바를 뺀 나머지로, 고정값 토큰을 두지 않는다.
+
+값은 `theme.css`의 `--grid-*` 변수가 원본이며, TS `grid`는 CSS 변수 참조를 제공한다.
+`columns`는 단위 없는 컬럼 수이고 나머지 길이는 px 단위다. 토큰 자체가 레이아웃을 자동 적용하지는 않는다.
+
+```tsx
+import { grid } from '@gdg/wowds/tokens'
+
+// M 그리드의 스타일을 직접 적용하는 예시
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: `repeat(${grid.m.columns}, minmax(0, 1fr))`,
+    columnGap: grid.m.gutter,
+    paddingInline: grid.m.margin,
+  }}
+/>
+
+// XL Admin 사이드바 너비
+<aside style={{ width: grid.xl.admin.sidebarWidth }} />
+```
+
+Tailwind에서는 같은 CSS 변수와 구간 variant를 조합한다. 예를 들어 반응형 콘텐츠 컨테이너는:
+
+```tsx
+<div
+  className="mx-auto w-full px-(--grid-xs-margin) s:px-(--grid-s-margin)
+    m:px-(--grid-m-margin) l:px-(--grid-l-margin)
+    xl:max-w-(--grid-xl-container-width) xl:px-0"
+>
+  콘텐츠
+</div>
+```
 
 ### typography — 반응형 스케일
 
@@ -192,13 +248,15 @@ Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
 
 ```
 packages/wowds/
-├── theme.css              # 컬러 값·의미 연결의 기준, Tailwind 테마
+├── theme.css              # 컬러·그리드 값과 Tailwind 테마
 ├── fonts.css              # @font-face (앱 전역 import)
 ├── fonts/                 # 벤들된 woff2 + OFL 라이선스
 │   ├── *.woff2
 │   └── licenses/
 ├── tokens/                # 디자인 토큰
 │   ├── color.ts
+│   ├── breakpoint.ts
+│   ├── grid.ts
 │   ├── typography.ts
 │   ├── space.ts
 │   └── index.ts
