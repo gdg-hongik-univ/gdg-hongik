@@ -13,7 +13,7 @@ export function getStudies(signal?: AbortSignal): Promise<regularStudyType | nul
       ...data,
       items: data.items.map((study) => ({
         ...study,
-        thumbnail: new URL(study.thumbnail, url).href,
+        thumbnail: study.thumbnail ? new URL(study.thumbnail, url).href : null,
       })),
     }),
   )
