@@ -94,7 +94,7 @@ export default function CaracelCardList(props: CaracelCardListProps) {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onLostPointerCapture={endDrag}
-        className={`flex w-full gap-4 overflow-x-auto overscroll-x-contain select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-4 focus-visible:outline-2 focus-visible:outline-blue-600 ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab snap-x snap-proximity'}`}
+        className={`flex w-full gap-4 overflow-x-auto overscroll-x-contain px-4 scroll-px-4 s:px-5 s:scroll-px-5 m:px-6 m:scroll-px-6 l:px-7 l:scroll-px-7 xl:px-[calc((100%-1280px)/2)] xl:scroll-px-[calc((100%-1280px)/2)] select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-4 focus-visible:outline-2 focus-visible:outline-blue-600 ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab snap-x snap-proximity'}`}
       >
         {cards.map((card) => (
           <li
