@@ -8,7 +8,7 @@ import { Faq } from '../components/Faq'
 import PartCardList from '../components/partcardList/PartCardList'
 import TopBanner from '../components/TopBanner'
 import ProjectTrack from '../components/ProjectTrack'
-import CaracelCardList from '../components/CaracelCardList'
+import CarouselCardList from '../components/CarouselCardList'
 import { getStudies } from '../api/study'
 import type { regularStudyType } from '../types/study'
 import { getEvents } from '../api/event'
@@ -74,7 +74,7 @@ export default function LandingPage() {
   ) : studies.items.length === 0 ? (
     <p className={CONTENT_LAYOUT_CLASS}>등록된 스터디가 없어요.</p>
   ) : (
-    <CaracelCardList type="study" studies={studies} />
+    <CarouselCardList type="study" studies={studies} />
   )
 
   const eventCards = eventsError ? (
@@ -88,7 +88,7 @@ export default function LandingPage() {
   ) : events.items.length === 0 ? (
     <p className={CONTENT_LAYOUT_CLASS}>등록된 이벤트가 없어요.</p>
   ) : (
-    <CaracelCardList type="event" events={events} />
+    <CarouselCardList type="event" events={events} />
   )
 
   return (

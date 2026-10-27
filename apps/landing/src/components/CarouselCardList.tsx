@@ -3,11 +3,11 @@ import { useRef, useState, type PointerEvent } from 'react'
 import type { regularStudyType } from '../types/study'
 import type { eventItems } from '../types/event'
 
-type CaracelCardListProps =
+type CarouselCardListProps =
   | { type: 'study'; studies: regularStudyType }
   | { type: 'event'; events: eventItems }
 
-export default function CaracelCardList(props: CaracelCardListProps) {
+export default function CarouselCardList(props: CarouselCardListProps) {
   const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
 
