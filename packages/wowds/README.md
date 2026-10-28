@@ -92,12 +92,33 @@ breakpoint.xl // { min: 1440, max: null }
 각 variant는 최소 너비 방식이 아니라 해당 구간에서만 적용된다. 예를 들어 `l:flex`는
 1024–1439px에서만 활성화되며 XL에는 이어지지 않는다.
 
-### typography — Large 스케일
+### typography — 반응형 스케일
 
-스케일: `display1~3`, `title1~2`, `subtitle1~6`, `body1~2`, `caption1~2`.
-각 스타일은 크기·모양만 정의한다 — `fontSize / lineHeight / letterSpacing` (letter-spacing 은 전 스타일 `-1.5%`).
+스케일: `display1~3`, `title1~2`, `subtitle1~4`, `body1~2`, `caption1~2`.
+각 스타일은 크기·모양만 정의한다 — `fontSize / lineHeight / letterSpacing` (letter-spacing 은 전 스타일 `-0.015em`).
+
+전역 CSS에서 Tailwind와 함께 테마를 import 한다. TS 토큰은 테마의 CSS 변수를 참조하므로
+`Typography`, 인라인 `typography` 스타일, Tailwind `text-*` 클래스 모두 화면 너비에 따라 자동 전환된다.
+
+```css
+@import 'tailwindcss';
+@import '@gdg/wowds/theme.css';
+```
+
+| 타이포                 | Large (L·XL, 1024px 이상) | Medium (S·M, 600–1023px) | Small (XS, 599px 이하) |
+| ---------------------- | ------------------------- | ------------------------ | ---------------------- |
+| Display 1 / 2 / 3      | 52 / 48 / 44              | 44 / 40 / 36             | 36 / 32 / 30           |
+| Title 1 / 2            | 36 / 32                   | 32 / 28                  | 28 / 26                |
+| Subtitle 1 / 2 / 3 / 4 | 28 / 24 / 22 / 20         | 24 / 22 / 20 / 18        | 24 / 22 / 20 / 18      |
+| Body 1 / 2             | 18 / 16                   | 16 / 14                  | 16 / 14                |
+| Caption 1 / 2          | 14 / 12                   | 12 / 10                  | 12 / 10                |
+
+크기 단위는 px. 360px 미만에서도 Small을 유지한다.
+Display·Title의 행간은 140%, 나머지는 150%다.
+명시적인 `style.fontSize`나 `text-[…]!` 등 크기 재정의는 자동 스케일보다 우선한다.
 
 **굵기(fontWeight)는 스케일과 독립된 축**이라 따로 조합한다. (`bold` 700 / `semibold` 600 / `medium` 500)
+`fontFamily`와 `fontWeight` 토큰은 `theme.css`의 CSS 변수를 참조하는 문자열이며, 값은 테마에서 관리한다.
 Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
 
 ```tsx
@@ -106,13 +127,13 @@ Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
   텍스트
 </span>
 
-// 제목 (영문 family + bold)
-<h1 style={{ fontFamily: fontFamily.title, ...typography.display1, fontWeight: fontWeight.bold }}>
+// 제목 (영문 family + semibold)
+<h1 style={{ fontFamily: fontFamily.title, ...typography.display1, fontWeight: fontWeight.semibold }}>
   제목
 </h1>
 ```
 
-조합이 번거로우면 Typography 컴포넌트로 감싼다 (예정 — 구현 방향은 [docs/typography-component.md](./docs/typography-component.md) 참고):
+조합이 번거로우면 Typography 컴포넌트로 감싼다:
 
 ```tsx
 <Typography variant="body2.2">텍스트</Typography>
@@ -125,8 +146,8 @@ Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
 | Display / Title           |    ✓     |      ✓       |     —      |
 | Subtitle / Body / Caption |    ✓     |      ✓       |     ✓      |
 
-> 현재 Large(데스크탑) 스케일만 정의. 반응형(Medium/Small) 은 추후 확장.
-> KO/EN 스케일은 동일하게 통합했고, 폰트 family 로만 구분한다.
+> 위 굵기 표는 한글 기준이다. 영문(`isEn`)은 `.1`이 600, `.2`가 500이며, 피그마의 Caption은 1만 정의되어 있다.
+> KO/EN의 크기·행간은 동일하게 통합하고, 폰트 family와 굵기로 구분한다.
 
 ## 구조
 
@@ -142,7 +163,7 @@ packages/wowds/
 │   ├── space.ts
 │   └── index.ts
 ├── ui/                    # 컴포넌트
-│   ├── components/        # Typography(예정) …
+│   ├── components/        # Typography …
 │   ├── hooks/
 │   ├── utils/
 │   └── index.ts
@@ -151,4 +172,4 @@ packages/wowds/
 └── index.ts               # 전체 barrel
 ```
 
-import 경로: `@gdg/wowds`(전체) · `@gdg/wowds/tokens` · `@gdg/wowds/ui` · `@gdg/wowds/icon` · `@gdg/wowds/fonts.css`
+import 경로: `@gdg/wowds`(전체) · `@gdg/wowds/tokens` · `@gdg/wowds/ui` · `@gdg/wowds/icon` · `@gdg/wowds/fonts.css` · `@gdg/wowds/theme.css`

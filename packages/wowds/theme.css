@@ -71,7 +71,10 @@
   --color-status-warning: #ffb114;
   --color-status-success: #228738;
   --color-status-information: #096ab3;
+}
 
+/* TS 토큰에서만 참조하는 폰트 변수도 빌드에 포함한다. */
+@theme static {
   --font-primary: 'SUIT Variable', 'Apple SD Gothic Neo', system-ui, sans-serif;
   --font-title: 'Google Sans Flex Variable', 'Google Sans', 'Roboto', system-ui, sans-serif;
   --font-code: 'Google Sans Code Variable', ui-monospace, 'SFMono-Regular', monospace;
@@ -79,54 +82,81 @@
   --font-weight-bold: 700;
   --font-weight-semibold: 600;
   --font-weight-medium: 500;
+}
 
-  --text-display1: 52px;
+/* Small (XS). TS 토큰에서만 참조하는 변수도 빌드에 포함한다. */
+@theme static {
+  --text-display1: 36px;
   --text-display1--line-height: 140%;
-  --text-display1--letter-spacing: -1.5%;
-  --text-display2: 48px;
+  --text-display1--letter-spacing: -0.015em;
+  --text-display2: 32px;
   --text-display2--line-height: 140%;
-  --text-display2--letter-spacing: -1.5%;
-  --text-display3: 44px;
+  --text-display2--letter-spacing: -0.015em;
+  --text-display3: 30px;
   --text-display3--line-height: 140%;
-  --text-display3--letter-spacing: -1.5%;
+  --text-display3--letter-spacing: -0.015em;
 
-  --text-title1: 36px;
+  --text-title1: 28px;
   --text-title1--line-height: 140%;
-  --text-title1--letter-spacing: -1.5%;
-  --text-title2: 32px;
+  --text-title1--letter-spacing: -0.015em;
+  --text-title2: 26px;
   --text-title2--line-height: 140%;
-  --text-title2--letter-spacing: -1.5%;
+  --text-title2--letter-spacing: -0.015em;
 
-  --text-subtitle1: 28px;
+  --text-subtitle1: 24px;
   --text-subtitle1--line-height: 150%;
-  --text-subtitle1--letter-spacing: -1.5%;
-  --text-subtitle2: 24px;
+  --text-subtitle1--letter-spacing: -0.015em;
+  --text-subtitle2: 22px;
   --text-subtitle2--line-height: 150%;
-  --text-subtitle2--letter-spacing: -1.5%;
-  --text-subtitle3: 22px;
+  --text-subtitle2--letter-spacing: -0.015em;
+  --text-subtitle3: 20px;
   --text-subtitle3--line-height: 150%;
-  --text-subtitle3--letter-spacing: -1.5%;
-  --text-subtitle4: 20px;
+  --text-subtitle3--letter-spacing: -0.015em;
+  --text-subtitle4: 18px;
   --text-subtitle4--line-height: 150%;
-  --text-subtitle4--letter-spacing: -1.5%;
-  --text-subtitle5: 18px;
-  --text-subtitle5--line-height: 150%;
-  --text-subtitle5--letter-spacing: -1.5%;
-  --text-subtitle6: 16px;
-  --text-subtitle6--line-height: 150%;
-  --text-subtitle6--letter-spacing: -1.5%;
+  --text-subtitle4--letter-spacing: -0.015em;
 
-  --text-body1: 18px;
+  --text-body1: 16px;
   --text-body1--line-height: 150%;
-  --text-body1--letter-spacing: -1.5%;
-  --text-body2: 16px;
+  --text-body1--letter-spacing: -0.015em;
+  --text-body2: 14px;
   --text-body2--line-height: 150%;
-  --text-body2--letter-spacing: -1.5%;
+  --text-body2--letter-spacing: -0.015em;
 
-  --text-caption1: 14px;
+  --text-caption1: 12px;
   --text-caption1--line-height: 150%;
-  --text-caption1--letter-spacing: -1.5%;
-  --text-caption2: 12px;
+  --text-caption1--letter-spacing: -0.015em;
+  --text-caption2: 10px;
   --text-caption2--line-height: 150%;
-  --text-caption2--letter-spacing: -1.5%;
+  --text-caption2--letter-spacing: -0.015em;
+}
+
+/* Medium (S·M) */
+@media (min-width: 600px) {
+  :root {
+    --text-display1: 44px;
+    --text-display2: 40px;
+    --text-display3: 36px;
+    --text-title1: 32px;
+    --text-title2: 28px;
+  }
+}
+
+/* Large (L·XL) */
+@media (min-width: 1024px) {
+  :root {
+    --text-display1: 52px;
+    --text-display2: 48px;
+    --text-display3: 44px;
+    --text-title1: 36px;
+    --text-title2: 32px;
+    --text-subtitle1: 28px;
+    --text-subtitle2: 24px;
+    --text-subtitle3: 22px;
+    --text-subtitle4: 20px;
+    --text-body1: 18px;
+    --text-body2: 16px;
+    --text-caption1: 14px;
+    --text-caption2: 12px;
+  }
 }
