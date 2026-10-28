@@ -118,6 +118,7 @@ Display·Title의 행간은 140%, 나머지는 150%다.
 명시적인 `style.fontSize`나 `text-[…]!` 등 크기 재정의는 자동 스케일보다 우선한다.
 
 **굵기(fontWeight)는 스케일과 독립된 축**이라 따로 조합한다. (`bold` 700 / `semibold` 600 / `medium` 500)
+`fontFamily`와 `fontWeight` 토큰은 `theme.css`의 CSS 변수를 참조하는 문자열이며, 값은 테마에서 관리한다.
 Figma 의 `body2.2`(body2 + SemiBold) 같은 변형은 이렇게 표현된다:
 
 ```tsx

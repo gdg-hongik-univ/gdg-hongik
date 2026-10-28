@@ -1,20 +1,20 @@
 // 타이포그래피 토큰 (Figma 5.0 Renewal, 반응형 스케일). 사용법은 README 참고.
 
-/** 폰트 패밀리. family 이름은 fonts.css 의 @font-face 와 일치. */
+/** 폰트 패밀리. theme.css의 CSS 변수를 참조한다. */
 export const fontFamily = {
   /** 한글·UI 전역 기본 서체 */
-  primary: "'SUIT Variable', 'Apple SD Gothic Neo', system-ui, sans-serif",
+  primary: 'var(--font-primary)',
   /** 영문·타이틀 서체 */
-  title: "'Google Sans Flex Variable', 'Google Sans', 'Roboto', system-ui, sans-serif",
+  title: 'var(--font-title)',
   /** 코드 서체 */
-  code: "'Google Sans Code Variable', ui-monospace, 'SFMono-Regular', monospace",
+  code: 'var(--font-code)',
 } as const
 
-/** 폰트 굵기. 굵기는 스케일과 독립된 축이므로 typography 와 조합해 쓴다. */
+/** 폰트 굵기. theme.css의 CSS 변수를 참조하며, typography와 조합해 쓴다. */
 export const fontWeight = {
-  bold: 700,
-  semibold: 600,
-  medium: 500,
+  bold: 'var(--font-weight-bold)',
+  semibold: 'var(--font-weight-semibold)',
+  medium: 'var(--font-weight-medium)',
 } as const
 
 /**

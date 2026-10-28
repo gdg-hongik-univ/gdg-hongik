@@ -71,7 +71,10 @@
   --color-status-warning: #ffb114;
   --color-status-success: #228738;
   --color-status-information: #096ab3;
+}
 
+/* TS 토큰에서만 참조하는 폰트 변수도 빌드에 포함한다. */
+@theme static {
   --font-primary: 'SUIT Variable', 'Apple SD Gothic Neo', system-ui, sans-serif;
   --font-title: 'Google Sans Flex Variable', 'Google Sans', 'Roboto', system-ui, sans-serif;
   --font-code: 'Google Sans Code Variable', ui-monospace, 'SFMono-Regular', monospace;
