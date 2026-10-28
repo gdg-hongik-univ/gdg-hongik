@@ -138,7 +138,7 @@ export default function PartCardList() {
   const [activeCard, setActiveCard] = useState<string | null>(null)
 
   return (
-    <div className="flex xs:flex-col flex-row w-full pt-9 xs:pt-7 xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-13 overflow-x-auto [scrollbar:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex xs:flex-col flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-7 overflow-x-auto [scrollbar:none] [&::-webkit-scrollbar]:hidden">
       {PART_ITEMS.map((part) => {
         const BgComponent = part.Background
         const isActive = activeCard === part.id
