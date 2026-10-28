@@ -3,11 +3,11 @@ import { useRef, useState, type PointerEvent } from 'react'
 import type { regularStudyType } from '../types/study'
 import type { eventItems } from '../types/event'
 
-type CaracelCardListProps =
+type CarouselCardListProps =
   | { type: 'study'; studies: regularStudyType }
   | { type: 'event'; events: eventItems }
 
-export default function CaracelCardList(props: CaracelCardListProps) {
+export default function CarouselCardList(props: CarouselCardListProps) {
   const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
 
@@ -85,7 +85,7 @@ export default function CaracelCardList(props: CaracelCardListProps) {
         }))
 
   return (
-    <div className="min-w-0 w-full mt-9">
+    <div className="min-w-0 w-full">
       <ul
         aria-label={props.type === 'study' ? '정규 스터디 활동 카드' : '이벤트 활동 카드'}
         tabIndex={0}
@@ -94,7 +94,7 @@ export default function CaracelCardList(props: CaracelCardListProps) {
         onPointerUp={endDrag}
         onPointerCancel={endDrag}
         onLostPointerCapture={endDrag}
-        className={`flex w-full gap-4 overflow-x-auto overscroll-x-contain select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-4 focus-visible:outline-2 focus-visible:outline-blue-600 ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab snap-x snap-proximity'}`}
+        className={`flex w-full gap-4 overflow-x-auto overscroll-x-contain px-4 scroll-px-4 s:px-5 s:scroll-px-5 m:px-6 m:scroll-px-6 l:px-7 l:scroll-px-7 xl:px-[calc((100%-1280px)/2)] xl:scroll-px-[calc((100%-1280px)/2)] select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-4 focus-visible:outline-2 focus-visible:outline-blue-600 ${isDragging ? 'cursor-grabbing snap-none' : 'cursor-grab snap-x snap-proximity'}`}
       >
         {cards.map((card) => (
           <li
