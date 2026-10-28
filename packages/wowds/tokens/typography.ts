@@ -18,26 +18,78 @@ export const fontWeight = {
 } as const
 
 /**
- * 반응형 타이포그래피. 크기는 theme.css의 CSS 변수로 화면 너비에 따라 자동 전환된다.
+ * 크기·행간·자간은 theme.css의 CSS 변수를 참조하며, 크기는 화면 너비에 따라 자동 전환된다.
  * Small: XS, Medium: S·M, Large: L·XL. 자간은 일괄 -0.015em.
  * 굵기(fontWeight)는 포함하지 않는다 — fontWeight 토큰과 조합한다.
  */
 export const typography = {
-  display1: { fontSize: 'var(--text-display1)', lineHeight: '140%', letterSpacing: '-0.015em' },
-  display2: { fontSize: 'var(--text-display2)', lineHeight: '140%', letterSpacing: '-0.015em' },
-  display3: { fontSize: 'var(--text-display3)', lineHeight: '140%', letterSpacing: '-0.015em' },
+  display1: {
+    fontSize: 'var(--text-display1)',
+    lineHeight: 'var(--text-display1--line-height)',
+    letterSpacing: 'var(--text-display1--letter-spacing)',
+  },
+  display2: {
+    fontSize: 'var(--text-display2)',
+    lineHeight: 'var(--text-display2--line-height)',
+    letterSpacing: 'var(--text-display2--letter-spacing)',
+  },
+  display3: {
+    fontSize: 'var(--text-display3)',
+    lineHeight: 'var(--text-display3--line-height)',
+    letterSpacing: 'var(--text-display3--letter-spacing)',
+  },
 
-  title1: { fontSize: 'var(--text-title1)', lineHeight: '140%', letterSpacing: '-0.015em' },
-  title2: { fontSize: 'var(--text-title2)', lineHeight: '140%', letterSpacing: '-0.015em' },
+  title1: {
+    fontSize: 'var(--text-title1)',
+    lineHeight: 'var(--text-title1--line-height)',
+    letterSpacing: 'var(--text-title1--letter-spacing)',
+  },
+  title2: {
+    fontSize: 'var(--text-title2)',
+    lineHeight: 'var(--text-title2--line-height)',
+    letterSpacing: 'var(--text-title2--letter-spacing)',
+  },
 
-  subtitle1: { fontSize: 'var(--text-subtitle1)', lineHeight: '150%', letterSpacing: '-0.015em' },
-  subtitle2: { fontSize: 'var(--text-subtitle2)', lineHeight: '150%', letterSpacing: '-0.015em' },
-  subtitle3: { fontSize: 'var(--text-subtitle3)', lineHeight: '150%', letterSpacing: '-0.015em' },
-  subtitle4: { fontSize: 'var(--text-subtitle4)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  subtitle1: {
+    fontSize: 'var(--text-subtitle1)',
+    lineHeight: 'var(--text-subtitle1--line-height)',
+    letterSpacing: 'var(--text-subtitle1--letter-spacing)',
+  },
+  subtitle2: {
+    fontSize: 'var(--text-subtitle2)',
+    lineHeight: 'var(--text-subtitle2--line-height)',
+    letterSpacing: 'var(--text-subtitle2--letter-spacing)',
+  },
+  subtitle3: {
+    fontSize: 'var(--text-subtitle3)',
+    lineHeight: 'var(--text-subtitle3--line-height)',
+    letterSpacing: 'var(--text-subtitle3--letter-spacing)',
+  },
+  subtitle4: {
+    fontSize: 'var(--text-subtitle4)',
+    lineHeight: 'var(--text-subtitle4--line-height)',
+    letterSpacing: 'var(--text-subtitle4--letter-spacing)',
+  },
 
-  body1: { fontSize: 'var(--text-body1)', lineHeight: '150%', letterSpacing: '-0.015em' },
-  body2: { fontSize: 'var(--text-body2)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  body1: {
+    fontSize: 'var(--text-body1)',
+    lineHeight: 'var(--text-body1--line-height)',
+    letterSpacing: 'var(--text-body1--letter-spacing)',
+  },
+  body2: {
+    fontSize: 'var(--text-body2)',
+    lineHeight: 'var(--text-body2--line-height)',
+    letterSpacing: 'var(--text-body2--letter-spacing)',
+  },
 
-  caption1: { fontSize: 'var(--text-caption1)', lineHeight: '150%', letterSpacing: '-0.015em' },
-  caption2: { fontSize: 'var(--text-caption2)', lineHeight: '150%', letterSpacing: '-0.015em' },
+  caption1: {
+    fontSize: 'var(--text-caption1)',
+    lineHeight: 'var(--text-caption1--line-height)',
+    letterSpacing: 'var(--text-caption1--letter-spacing)',
+  },
+  caption2: {
+    fontSize: 'var(--text-caption2)',
+    lineHeight: 'var(--text-caption2--line-height)',
+    letterSpacing: 'var(--text-caption2--letter-spacing)',
+  },
 } as const
