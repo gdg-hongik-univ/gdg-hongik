@@ -1,5 +1,5 @@
 import { ChevronIcon, palette, Typography } from '@gdg/wowds'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CountUp } from '../hooks/CountUp'
 import CTAButton from './common/CTAButton'
 import { GoogleColorText } from './common/GoogleColorText'
@@ -23,8 +23,43 @@ function useIsMedium() {
   return isMedium
 }
 
-export default function Hero() {
+interface HeroProps {
+  isRecruiting: boolean | null
+  onRecruitmentClick: () => void
+}
+
+export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
   const isM = useIsMedium()
+  const introductionRef = useRef<HTMLElement>(null)
+  const scrollFrameRef = useRef(0)
+
+  useEffect(() => () => cancelAnimationFrame(scrollFrameRef.current), [])
+
+  const scrollToIntroduction = () => {
+    const introduction = introductionRef.current
+    if (!introduction) return
+
+    cancelAnimationFrame(scrollFrameRef.current)
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      introduction.scrollIntoView({ behavior: 'instant', block: 'start' })
+      return
+    }
+
+    const startY = window.scrollY
+    const distance = introduction.getBoundingClientRect().top
+    const startTime = performance.now()
+
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / 650, 1)
+      const eased = (1 - Math.cos(Math.PI * progress)) / 2
+      window.scrollTo({ top: startY + distance * eased, behavior: 'instant' })
+
+      if (progress < 1) scrollFrameRef.current = requestAnimationFrame(step)
+    }
+
+    scrollFrameRef.current = requestAnimationFrame(step)
+  }
 
   return (
     <>
@@ -79,12 +114,26 @@ export default function Hero() {
               혼자 공부하지 않아도 되는 <br className="block min-[1024px]:hidden" /> 개발 커뮤니티
             </Typography>
           </section>
-          <CTAButton property="main" className="w-42 min-[600px]:w-50 min-[1024px]:w-67">
-            GDG 가입하러 가기
+          <CTAButton
+            property="main"
+            className="min-w-42 min-[600px]:min-w-50 min-[1024px]:min-w-67"
+            onClick={onRecruitmentClick}
+            disabled={isRecruiting === null}
+            aria-busy={isRecruiting === null}
+          >
+            {isRecruiting === null
+              ? '모집 정보 확인 중'
+              : isRecruiting
+                ? 'GDG 가입하러 가기'
+                : '가입 전 GDG 채널 둘러보기'}
           </CTAButton>
         </section>
 
-        <section className="text-center [&>p]:mb-3">
+        <button
+          type="button"
+          onClick={scrollToIntroduction}
+          className="relative z-10 cursor-pointer text-center [&>p]:mb-3 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
+        >
           <Typography
             as="p"
             variant="caption1.3"
@@ -104,10 +153,13 @@ export default function Hero() {
               style={{ marginTop: isM ? -14 : -12 }}
             />
           </div>
-        </section>
+        </button>
       </section>
 
-      <section className="relative w-full flex items-center justify-center overflow-hidden px-4 s:px-5 m:px-6 flex-col mx-auto text-center pt-30">
+      <section
+        ref={introductionRef}
+        className="relative w-full flex items-center justify-center overflow-hidden px-4 s:px-5 m:px-6 flex-col mx-auto text-center pt-30"
+      >
         <section className="pb-11 min-[768px]:pb-15">
           <h1 className="font-title text-[48px] s:text-[56px] m:text-[80px] l:text-[100px] xl:text-[120px] font-medium bg-gradient-to-r from-blue-700/70 via-blue-400/70 to-blue-700/70 to-[96.29%] bg-clip-text text-transparent leading-[58px] s:leading-[70px] m:leading-[100px] l:leading-[125px] xl:leading-[150px] tracking-[-0.03em] [text-shadow:_0_0_30px_rgb(255_255_255_/_0.1)]">
             GDG <br className="block min-[600px]:hidden" />
