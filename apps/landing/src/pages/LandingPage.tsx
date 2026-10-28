@@ -14,7 +14,7 @@ import type { regularStudyType } from '../types/study'
 import { getEvents } from '../api/event'
 import type { eventItems } from '../types/event'
 import BottomBanner from '../components/BottomBanner'
-import { fetcher } from '../api/fetcher'
+import { fetcher } from '@gdg/utils'
 import { RecruitmentNoticeModal } from '../components/modal/RecruitmentNoticeModal'
 
 const ACTIVITY_TABS = [

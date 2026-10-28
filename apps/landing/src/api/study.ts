@@ -1,5 +1,5 @@
 import type { regularStudyType } from '../types/study'
-import { fetcher } from './fetcher'
+import { fetcher } from '@gdg/utils'
 
 // 실제 API 연결 시 요청 주소와 응답 변환을 이 파일에서 변경합니다.
 const STUDIES_URL = '/studies.json'
