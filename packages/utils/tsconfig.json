@@ -8,7 +8,7 @@
     "declaration": true,
     "outDir": "./dist",
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
-    "types": []
+    "types": ["node"]
   },
-  "include": ["*.ts"]
+  "include": ["fetcher", "index.ts"]
 }

@@ -1,1 +1,2 @@
-export { fetcher } from './fetcher'
+export { createFetcher, HttpError } from './fetcher'
+export type { FetcherOptions } from './fetcher'

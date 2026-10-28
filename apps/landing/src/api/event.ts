@@ -1,20 +1,19 @@
 import type { eventItems } from '../types/event'
-import { fetcher } from '@gdg/utils'
+import { api } from './client'
 
 // 실제 API 연결 시 요청 주소와 응답 변환을 이 파일에서 변경합니다.
-const EVENTS_URL = '/events.json'
+const EVENTS_URL = 'events.json'
 
-export function getEvents(signal?: AbortSignal): Promise<eventItems | null> {
-  return fetcher<eventItems>(
-    EVENTS_URL,
-    '이벤트 정보를 불러오지 못했습니다.',
-    signal,
-    (data, url) => ({
-      ...data,
-      items: data.items.map((event) => ({
-        ...event,
-        image: event.image ? new URL(event.image, url).href : null,
-      })),
-    }),
-  )
+export async function getEvents(signal?: AbortSignal): Promise<eventItems> {
+  const data = await api.get<eventItems>(EVENTS_URL, { signal })
+  if (!data) throw new Error('이벤트 응답이 비어 있습니다.')
+
+  const responseUrl = new URL(`${import.meta.env.BASE_URL}${EVENTS_URL}`, window.location.href)
+  return {
+    ...data,
+    items: data.items.map((event) => ({
+      ...event,
+      image: event.image ? new URL(event.image, responseUrl).href : null,
+    })),
+  }
 }

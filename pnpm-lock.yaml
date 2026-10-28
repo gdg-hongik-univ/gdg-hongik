@@ -285,6 +285,9 @@ importers:
       '@gdg/config':
         specifier: workspace:*
         version: link:../config
+      '@types/node':
+        specifier: ^24.12.3
+        version: 24.13.2
       eslint:
         specifier: ^10.3.0
         version: 10.5.0(jiti@2.7.0)
