@@ -1,7 +1,8 @@
 name: PR title convention
 
 on:
-  pull_request:
+  # 기본 브랜치의 검사 규칙을 사용하며 PR 코드는 실행하지 않습니다.
+  pull_request_target:
     branches: [develop]
     types: [opened, edited, synchronize, reopened, ready_for_review]
 

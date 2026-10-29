@@ -17,8 +17,12 @@ jobs:
         uses: actions/github-script@v9
         with:
           script: |
-            await github.rest.issues.addAssignees({
+            const author = context.payload.pull_request.user.login;
+            const { data } = await github.rest.issues.addAssignees({
               ...context.repo,
               issue_number: context.payload.pull_request.number,
-              assignees: [context.payload.pull_request.user.login],
+              assignees: [author],
             });
+            if (!data.assignees.some(({ login }) => login.toLowerCase() === author.toLowerCase())) {
+              core.warning(`PR 작성자 ${author}를 담당자로 지정하지 못했습니다. GitHub에서 할당 가능 여부를 확인해주세요.`);
+            }
