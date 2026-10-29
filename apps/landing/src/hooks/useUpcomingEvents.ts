@@ -18,7 +18,9 @@ export const useUpcomingEvents = () => {
           signal: controller.signal,
         })
         if (controller.signal.aborted) return
-        if (!eventsResponse) throw new Error('이벤트 응답이 비어 있습니다.')
+        if (!eventsResponse || !Array.isArray(eventsResponse.items)) {
+          throw new Error('이벤트 응답 형식이 올바르지 않습니다.')
+        }
         setEvents(eventsResponse.items)
         setEventsLoadState('success')
       } catch {
