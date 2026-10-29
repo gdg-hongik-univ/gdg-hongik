@@ -4,6 +4,7 @@
   "references": [
     { "path": "./apps/landing" },
     { "path": "./packages/wowds" },
-    { "path": "./packages/utils" }
+    { "path": "./packages/utils" },
+    { "path": "./packages/utils/tsconfig.test.json" }
   ]
 }

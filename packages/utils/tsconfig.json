@@ -10,5 +10,6 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
     "types": ["node"]
   },
-  "include": ["fetcher", "index.ts"]
+  "include": ["fetcher", "index.ts"],
+  "exclude": ["**/*.test.ts", "**/*.spec.ts", "dist", "node_modules"]
 }
