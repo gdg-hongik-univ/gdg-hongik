@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { EventItem, EventsLoadState, EventsResponse } from '../types/upcomingEvents'
 import { getStartOfToday } from '../utils/eventDate'
 import { getSemesterLabel, selectTimelineEvents } from '../utils/upcomingEvents'
+import { api } from '../api/client'
 
 export const useUpcomingEvents = () => {
   const [events, setEvents] = useState<EventItem[]>([])
@@ -13,15 +14,13 @@ export const useUpcomingEvents = () => {
 
     const loadEvents = async () => {
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}events.json`, {
+        const eventsResponse = await api.get<EventsResponse>('events.json', {
           signal: controller.signal,
         })
-
-        if (!response.ok) {
-          throw new Error(`Failed to load events: ${response.status}`)
+        if (controller.signal.aborted) return
+        if (!eventsResponse || !Array.isArray(eventsResponse.items)) {
+          throw new Error('이벤트 응답 형식이 올바르지 않습니다.')
         }
-
-        const eventsResponse = (await response.json()) as EventsResponse
         setEvents(eventsResponse.items)
         setEventsLoadState('success')
       } catch {

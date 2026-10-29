@@ -14,7 +14,7 @@ import type { regularStudyType } from '../types/study'
 import { getEvents } from '../api/event'
 import type { eventItems } from '../types/event'
 import BottomBanner from '../components/BottomBanner'
-import { fetcher } from '../api/fetcher'
+import { api } from '../api/client'
 import { RecruitmentNoticeModal } from '../components/modal/RecruitmentNoticeModal'
 
 const ACTIVITY_TABS = [
@@ -39,12 +39,15 @@ export default function LandingPage() {
   useEffect(() => {
     const controller = new AbortController()
 
-    getEvents(controller.signal).then((data) => {
-      if (!controller.signal.aborted) {
-        setEvents(data)
-        setEventsError(data === null)
-      }
-    })
+    getEvents(controller.signal)
+      .then((data) => {
+        if (!controller.signal.aborted) setEvents(data)
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        console.error('이벤트 정보를 불러오지 못했습니다.', error)
+        setEventsError(true)
+      })
 
     return () => controller.abort()
   }, [])
@@ -52,12 +55,15 @@ export default function LandingPage() {
   useEffect(() => {
     const controller = new AbortController()
 
-    getStudies(controller.signal).then((data) => {
-      if (!controller.signal.aborted) {
-        setStudies(data)
-        setStudiesError(data === null)
-      }
-    })
+    getStudies(controller.signal)
+      .then((data) => {
+        if (!controller.signal.aborted) setStudies(data)
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        console.error('스터디 정보를 불러오지 못했습니다.', error)
+        setStudiesError(true)
+      })
 
     return () => controller.abort()
   }, [])
@@ -93,15 +99,16 @@ export default function LandingPage() {
   useEffect(() => {
     const controller = new AbortController()
 
-    fetcher<{ is_recruitment?: boolean }>(
-      `${import.meta.env.BASE_URL}config.json`,
-      '모집 설정을 불러오지 못했습니다.',
-      controller.signal,
-    ).then((config) => {
-      if (!controller.signal.aborted) {
-        setIsRecruiting(config?.is_recruitment === true)
-      }
-    })
+    api
+      .get<{ is_recruitment?: boolean }>('config.json', { signal: controller.signal })
+      .then((config) => {
+        if (!controller.signal.aborted) setIsRecruiting(config?.is_recruitment === true)
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return
+        console.error('모집 설정을 불러오지 못했습니다.', error)
+        setIsRecruiting(false)
+      })
 
     return () => controller.abort()
   }, [])
