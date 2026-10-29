@@ -134,7 +134,7 @@ export default function PartCardList() {
   const [activeCard, setActiveCard] = useState<string | null>(null)
 
   return (
-    <div className="flex xs:flex-col xs:items-center flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-7 overflow-x-auto xs:overflow-visible [scrollbar:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex xs:flex-col xs:items-start flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-7 overflow-x-auto xs:overflow-visible [scrollbar:none] [&::-webkit-scrollbar]:hidden">
       {PART_ITEMS.map((part) => {
         const isActive = activeCard === part.id
 
