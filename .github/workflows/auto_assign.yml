@@ -1,0 +1,28 @@
+name: Auto Assign
+
+on:
+  # Fork PR도 처리하며, PR 코드는 체크아웃하거나 실행하지 않습니다.
+  pull_request_target:
+    types: [opened, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  assign-author:
+    if: github.event.pull_request.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign PR author
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+            const { data } = await github.rest.issues.addAssignees({
+              ...context.repo,
+              issue_number: context.payload.pull_request.number,
+              assignees: [author],
+            });
+            if (!data.assignees.some(({ login }) => login.toLowerCase() === author.toLowerCase())) {
+              core.warning(`PR 작성자 ${author}를 담당자로 지정하지 못했습니다. GitHub에서 할당 가능 여부를 확인해주세요.`);
+            }

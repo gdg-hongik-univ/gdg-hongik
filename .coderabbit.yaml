@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: ko-KR
+tone_instructions: >-
+  한국어 해요체로 동료에게 설명하듯 간결하게 리뷰해주세요.
+  문제의 원인과 사용자 영향을 설명하고, 관련 공식 문서나 신뢰할 수 있는 레퍼런스를 함께 제시해주세요.
+
+reviews:
+  profile: chill
+  high_level_summary: true
+  changed_files_summary: true
+  collapse_walkthrough: true
+  poem: false
+  auto_approvals:
+    enabled: false
+  suggested_labels: false
+  auto_apply_labels: false
+  suggested_reviewers: false
+  auto_assign_reviewers: false
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: false
+    base_branches:
+      - '^develop$'
+  path_instructions:
+    - path: '**/*'
+      instructions: |
+        이 저장소는 pnpm workspace 기반의 React·TypeScript 모노레포입니다.
+        apps/landing은 React 19·Vite 앱, packages/wowds는 공유 UI·디자인 토큰,
+        packages/config는 공유 ESLint·TypeScript 설정입니다.
+        실제 버전과 사용 방식은 변경된 브랜치의 package.json과 코드를 확인해주세요.
+
+        변경으로 발생하는 실제 버그, 기능 회귀, 보안 문제, 데이터 오류와
+        사용자의 조작을 막는 접근성 문제를 우선해서 리뷰해주세요.
+        관련 호출부와 데이터 흐름을 확인하고, 발생 조건·원인·영향을 구체적으로 설명해주세요.
+        근거가 부족한 추측은 확정적인 오류로 지적하지 말고, 확인이 필요한 조건을 밝혀주세요.
+        수정은 문제를 해결하는 가장 작은 변경으로 제안해주세요.
+
+        취향에 따른 네이밍·코드 스타일, 불필요한 추상화·의존성 추가,
+        근거 없는 성능 최적화나 변경 범위를 벗어나는 리팩토링 제안은 자제해주세요.
+        ESLint·Prettier·TypeScript 검사 결과와 중복되는 지적은 반복하지 말아주세요.
+        의미 있는 동작을 검증할 필요가 있을 때만 테스트를 제안해주세요.
+
+        React 상태·이펙트·이벤트·라우팅과 공유 패키지 변경이
+        실제 화면 동작 및 사용하는 앱에 미치는 영향을 확인해주세요.
+        디자인 토큰과 반응형 규칙은 기존 구현을 확인하고,
+        문서에 적힌 일반적인 가정만으로 현재 동작을 오류라고 판단하지 말아주세요.
+        레퍼런스는 프로젝트 버전에 맞는 공식 문서를 우선하고,
+        문제와 어떻게 관련되는지 설명해주세요. 확인하지 못한 링크는 만들지 말아주세요.
+
+chat:
+  auto_reply: false
+
+knowledge_base:
+  web_search:
+    enabled: true
