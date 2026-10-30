@@ -1,4 +1,5 @@
 export { color, palette } from './color'
 export { breakpoint, type BreakpointName } from './breakpoint'
+export { grid } from './grid'
 export { typography, fontFamily, fontWeight } from './typography'
 export { space } from './space'

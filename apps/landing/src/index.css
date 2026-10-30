@@ -115,7 +115,7 @@
   will-change: rotate;
 }
 
-@media (min-width: 360px) and (max-width: 599px) {
+@variant xs {
   .orbit-line-size {
     width: var(--orbit-line-xs-size);
     height: var(--orbit-line-xs-size);
@@ -135,7 +135,7 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 767px) {
+@variant s {
   .orbit-profile-angle-layer {
     transform: rotate(var(--orbit-profile-s-angle));
   }
@@ -145,7 +145,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@variant m {
   .orbit-profile-angle-layer {
     transform: rotate(var(--orbit-profile-m-angle));
   }
@@ -155,7 +155,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
+@variant l {
   .orbit-profile-angle-layer {
     transform: rotate(var(--orbit-profile-l-angle));
   }
