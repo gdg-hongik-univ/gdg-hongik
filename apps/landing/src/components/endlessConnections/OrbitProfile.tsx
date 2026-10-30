@@ -1,6 +1,6 @@
 import { Typography } from '@gdg/wowds'
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 interface OrbitProfileProps {
   imageSrc: string
@@ -52,9 +52,16 @@ const OrbitProfile = ({
       style={orbitStyle}
     >
       <div className="orbit-profile-angle-layer absolute inset-0">
-        <Link
+        {/* TODO: MVP에서는 페이지 이동 없이 프로필 설명만 표시한다. 다음 개발부터 주석 제거하고 적용 */}
+        {/* <Link
           className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 -mt-14 -ml-14 size-28 cursor-pointer rounded-full text-inherit no-underline outline-none xs:-mt-9.5 xs:-ml-9.5 xs:size-19 s:-mt-12 s:-ml-12 s:size-24 m:-mt-12 m:-ml-12 m:size-24"
-          to={'/'}
+          to={to}
+          aria-label={label}
+        > */}
+        <div
+          className="orbit-profile-content group pointer-events-auto absolute top-0 left-1/2 -mt-14 -ml-14 size-28 rounded-full text-inherit no-underline outline-none xs:-mt-9.5 xs:-ml-9.5 xs:size-19 s:-mt-12 s:-ml-12 s:size-24 m:-mt-12 m:-ml-12 m:size-24"
+          role="group"
+          tabIndex={0}
           aria-label={label}
         >
           <figure className="pointer-events-none absolute top-1/2 left-1/2 m-0">
@@ -85,7 +92,8 @@ const OrbitProfile = ({
               {label}
             </Typography>
           </figure>
-        </Link>
+        </div>
+        {/* </Link> */}
       </div>
     </div>
   )
