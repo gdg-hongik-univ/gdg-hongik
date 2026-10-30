@@ -1,7 +1,7 @@
-import { useState, type ComponentType } from 'react'
+import { useState } from 'react'
 import { Typography } from '@gdg/wowds'
 import { Tag, type TagVariant } from '../common/Tag'
-import { FrontendCardBg, BackendCardBg, AiCardBg } from './PartCardListBg'
+import PartCardBg from './PartCardListBg'
 
 type Breakpoint = 'xs' | 's' | 'm' | 'l' | 'xl'
 type Responsive = Record<Breakpoint, string>
@@ -36,7 +36,7 @@ function ResponsiveText({ text }: { text: Responsive }) {
 }
 
 interface PartInfo {
-  id: string
+  id: 'frontend' | 'backend' | 'ai'
   name: string
   description: Responsive
   detailDescription: Responsive
@@ -46,7 +46,6 @@ interface PartInfo {
   activeBg: string
   tagVariant: TagVariant
   numColor: string
-  Background: ComponentType
 }
 
 const PART_ITEMS: PartInfo[] = [
@@ -74,7 +73,6 @@ const PART_ITEMS: PartInfo[] = [
     activeBg: 'bg-core-blue-25',
     tagVariant: 'blue',
     numColor: 'text-core-blue-100',
-    Background: FrontendCardBg,
   },
   {
     id: 'backend',
@@ -102,7 +100,6 @@ const PART_ITEMS: PartInfo[] = [
     activeBg: 'bg-core-green-25',
     tagVariant: 'green',
     numColor: 'text-core-green-100',
-    Background: BackendCardBg,
   },
   {
     id: 'ai',
@@ -130,7 +127,6 @@ const PART_ITEMS: PartInfo[] = [
     activeBg: 'bg-core-red-25',
     tagVariant: 'red',
     numColor: 'text-core-red-100',
-    Background: AiCardBg,
   },
 ]
 
@@ -138,9 +134,8 @@ export default function PartCardList() {
   const [activeCard, setActiveCard] = useState<string | null>(null)
 
   return (
-    <div className="flex xs:flex-col flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-7 overflow-x-auto [scrollbar:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex xs:flex-col xs:items-start flex-row w-full xs:gap-4 s:gap-3.5 gap-4.5 xl:gap-7 overflow-x-auto xs:overflow-visible [scrollbar:none] [&::-webkit-scrollbar]:hidden">
       {PART_ITEMS.map((part) => {
-        const BgComponent = part.Background
         const isActive = activeCard === part.id
 
         return (
@@ -149,18 +144,18 @@ export default function PartCardList() {
             onMouseEnter={() => setActiveCard(part.id)}
             onMouseLeave={() => setActiveCard(null)}
             onClick={() => setActiveCard(isActive ? null : part.id)}
-            className="relative overflow-hidden flex flex-col rounded-xl xs:w-82 xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
+            className="relative overflow-hidden flex flex-col rounded-2xl xs:w-82 xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
           >
             <div
-              className={`pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 ${
+              className={`pointer-events-none absolute inset-0 z-0 rounded-[inherit] transition-opacity duration-300 ${
                 isActive ? 'opacity-0' : 'opacity-100'
               }`}
             >
-              <BgComponent />
+              <PartCardBg part={part.id} />
             </div>
 
             <div
-              className={`pointer-events-none absolute inset-0 z-0 rounded-xl transition-opacity duration-300 ${
+              className={`pointer-events-none absolute inset-0 z-0 rounded-[inherit] transition-opacity duration-300 ${
                 part.activeBg
               } ${isActive ? 'opacity-100' : 'opacity-0'}`}
             />
@@ -172,13 +167,13 @@ export default function PartCardList() {
                   : 'opacity-100 translate-y-0'
               }`}
             >
-              <Typography variant="subtitle4.1" isEn className={`${part.titleColor}`}>
+              <Typography variant="subtitle4.1" isEn className={`${part.titleColor} text-[20px]!`}>
                 {part.name}
               </Typography>
 
               <Typography
                 variant="body1.3"
-                className={`${part.descriptionColor} whitespace-pre-line leading-relaxed xs:text-[16px]! s:text-[16px]! m:text-[16px]!`}
+                className={`${part.descriptionColor} whitespace-pre-line text-[18px]!`}
               >
                 <ResponsiveText text={part.description} />
               </Typography>
