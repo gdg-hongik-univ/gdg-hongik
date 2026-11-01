@@ -174,10 +174,10 @@ export default function LandingPage() {
         </Tabs>
       </section>
       <section
-        className="flex w-full flex-col gap-12 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
+        className="flex w-full flex-col gap-9 xs:gap-7 s:gap-7 pt-10 pb-18 s:pt-20 s:pb-45 m:pt-20 m:pb-45 l:pt-25 l:pb-50 xl:pt-25 xl:pb-50"
         aria-label="지난 학기 활동 소개"
       >
-        <div className={`${CONTENT_LAYOUT_CLASS} flex flex-col gap-12`}>
+        <div className={`${CONTENT_LAYOUT_CLASS} flex flex-col gap-7`}>
           <Typography
             as="h2"
             variant="display3.1"
