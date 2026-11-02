@@ -4,6 +4,7 @@ type ActivityType = 'regularStudy' | 'projectTrack' | 'partStudy' | 'meetNConnec
 
 interface ActivityInfoProps {
   activityType: ActivityType
+  titleAs?: 'h3' | 'p'
 }
 
 const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: string }> = {
@@ -29,14 +30,14 @@ const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: strin
   },
 }
 
-export default function ActivityInfo({ activityType }: ActivityInfoProps) {
+export default function ActivityInfo({ activityType, titleAs = 'h3' }: ActivityInfoProps) {
   const { title, description } = ACTIVITY_CONTENT[activityType]
   const isProjectTrack = activityType === 'projectTrack'
 
   return (
     <div className={cn('flex flex-col gap-4', isProjectTrack && 'gap-3 min-[600px]:gap-4')}>
       <Typography
-        as="h3"
+        as={titleAs}
         variant="body2.3"
         className={cn(
           'text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px]',
