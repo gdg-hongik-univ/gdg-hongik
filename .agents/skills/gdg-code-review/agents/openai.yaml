@@ -1,6 +1,6 @@
 interface:
   display_name: 'GDG 코드 리뷰'
-  short_description: 'GDG 변경에서 새로 도입된 결함과 패키지 간 영향을 검토해요'
-  default_prompt: '$gdg-code-review 현재 브랜치를 develop 기준으로 리뷰해줘.'
+  short_description: '브랜치 자체 리뷰와 제출된 PR에서 새 결함과 패키지 간 영향을 검토해요'
+  default_prompt: '$gdg-code-review 현재 브랜치를 develop 기준으로 자체 리뷰해줘.'
 policy:
   allow_implicit_invocation: false

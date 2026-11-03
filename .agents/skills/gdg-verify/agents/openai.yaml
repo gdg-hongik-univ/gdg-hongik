@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GDG 실행 검증'
+  short_description: '브랜치와 PR을 직접 실행하고 검증 대상과 재현 절차 및 결과를 남겨요'
+  default_prompt: '$gdg-verify 현재 브랜치를 직접 실행해 검증하고 명령·재현 절차·미확인 항목을 정리해줘.'

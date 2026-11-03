@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GDG 브랜치 리팩토링'
+  short_description: '현재 브랜치 변경에서 동작을 유지하며 중복과 불필요한 복잡성을 줄여요'
+  default_prompt: '$gdg-refactor 현재 브랜치를 develop 기준으로 확인하고 PR 전에 리팩토링해줘.'

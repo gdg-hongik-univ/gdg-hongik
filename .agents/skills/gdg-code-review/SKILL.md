@@ -1,13 +1,13 @@
 ---
 name: gdg-code-review
-description: GDG Hongik의 브랜치·커밋·미커밋 변경에서 재현 가능한 결함을 읽기 전용으로 검토해요. 'gdg-code-review', '코드 리뷰해줘', 'develop 기준 리뷰'처럼 사용자가 리뷰를 요청할 때 사용해요. 일반 구현이나 PR 본문 작성에는 사용하지 않아요.
+description: GDG Hongik의 브랜치 자체 리뷰나 제출된 PR·커밋·미커밋 변경에서 재현 가능한 결함을 읽기 전용으로 검토해요. '자체 코드 리뷰', '이 PR 코드 리뷰', 'develop 기준 리뷰' 요청에 사용해요. 일반 구현이나 PR 본문 작성에는 사용하지 않아요.
 ---
 
 # GDG 코드 리뷰
 
 Inspect the requested target directly and return every finding that the author would likely fix.
-Do not modify files, create commits, push branches, post review comments, or delegate the review
-to another agent.
+Keep the code review read-only. Do not edit source or documentation, create commits, push branches,
+post review comments, or delegate the review to another agent.
 
 ## Review the change
 
@@ -29,10 +29,15 @@ to another agent.
   ref도 확인한다. 현재 feature 브랜치의 upstream을 `develop`의 upstream으로 혼동하지 않는다.
   사용할 ref를 모두 확인한 뒤에만 기준을 찾을 수 없다고 보고한다.
   fetch하지 않았다면 최신 원격이라고 단정하지 않는다.
-- 브랜치 리뷰는 `git merge-base HEAD <comparison-ref>`로 공통 조상을 구한 뒤
+- 현재 브랜치 자체 리뷰는 `git merge-base HEAD <comparison-ref>`로 공통 조상을 구한 뒤
   `git diff <merge-base-sha>`를 읽는다. 커밋된 변경과 staged·unstaged 변경을 함께 포함하고,
   `git ls-files --others --exclude-standard`로 미추적 파일도 확인해 필요한 내용을 직접 읽는다.
   커밋된 변경만 요청하면 `git diff <merge-base-sha> HEAD`를 사용한다.
+- 제출된 PR 리뷰는 실제 대상 저장소와 PR의 base/head SHA를 확인하고
+  `git merge-base <base-sha> <head-sha>`를 구한 뒤 `git diff <merge-base-sha> <head-sha>`를 읽는다.
+  현재 로컬 HEAD나 리뷰어의 미커밋 변경을 PR 범위에 섞지 않는다. 주변 코드도 PR head 기준으로
+  읽으며, 현재 작업 트리가 다르면 `git show <head-sha>:<path>` 등으로 확인한다.
+  PR 정보를 확인할 수 없으면 필요한 ref나 SHA를 요청하고, 로컬 브랜치로 임의 대체하지 않는다.
 - 미커밋 리뷰는 `git diff HEAD`와 `git ls-files --others --exclude-standard`를 함께 확인한다.
   미추적 파일은 필요한 내용을 직접 읽는다. staged만 요청하면 `git diff --cached`를 사용한다.
 - 커밋 리뷰는 지정한 커밋의 부모 대비 변경을 읽는다. merge commit은 어떤 부모 기준인지 밝힌다.
@@ -41,6 +46,9 @@ to another agent.
   기존 코드에서 억지로 결함을 찾지 않는다.
 - 시작한 작업 디렉터리는 바꾸지 않는다. 원본 파일을 수정하거나 checkout·stash·reset으로
   비교 환경을 만들지 않는다.
+- 직접 실행도 요청받았다면 실행 검증은 `gdg-verify` 절차로 대상 head와 일치하는 환경에서
+  수행하고, 코드 리뷰는 그 head의 diff를 검토한다. 코드 리뷰만 요청받으면 설치·실행까지
+  했다고 쓰지 않는다. PR base/head가 바뀌면 변경된 범위와 기존 결과의 유효성을 다시 확인한다.
 
 ## 결함 판단 기준
 
@@ -72,10 +80,16 @@ nits that do not obscure the code.
   확정된 요구사항으로 간주하지 않는다.
 - 필요한 검증은 현재 정의된 명령으로 실행하고 실행 여부와 결과를 정확히 기록한다.
   자동 테스트가 존재한다고 가정하지 않고, 로컬 검증에 원격 동기화 작업을 포함하지 않는다.
+- 구조·패키지·명령·개발 방식 변경이 관련 `AGENTS.md`, README와 공개 사용법에도 반영됐는지
+  확인한다. 실제 작업에 영향을 주는 누락을 구체적인 근거로 보고하고 문서는 직접 수정하지 않는다.
+- 릴리스에 영향이 있는 변경은 `docs/release-workflow.md`를 기준으로 이번 PR의 changeset 대상,
+  증가 종류와 설명을 실제 diff에 대조한다. 생략 사유의 타당성과 공개 API 호환성도 확인한다.
+  의존 패키지의 자동 버전 증가를 직접 changeset 누락으로 단정하지 않고 CLI 설정과 결과를 확인한다.
 
 ## Write the result
 
-한국어로 결과를 작성한다. 시작 부분에 비교 ref/commit과 미커밋 포함 여부를 짧게 밝힌다.
+한국어로 결과를 작성한다. 시작 부분에 비교 base/head SHA와 미커밋 포함 여부를 짧게 밝힌다.
+자체 리뷰에 미커밋 변경이 있으면 변경 목록과 해당 작업 트리를 검토했다는 점을 남긴다.
 
 Present findings first, ordered by severity. Use one entry per issue in this form:
 
@@ -94,3 +108,7 @@ Use these priorities:
 If there are no qualifying findings, say `새로 도입된 결함을 찾지 못했어요.` Do not invent a finding to fill the result.
 After the findings, add a brief overall assessment and mention any material test gaps or residual
 risks.
+
+실행 검증은 대상 커밋과 실제 확인한 범위를 함께 적고, 결과가 없으면 미실행으로 구분한다.
+작성자가 제공한 결과와 리뷰어가 직접 실행한 결과를 구분한다. 결함을 찾지 못했다는 결과를
+실행 검증 통과나 PR 승인으로 표현하지 않는다. 승인 여부는 사람이 판단한다.
