@@ -1,12 +1,43 @@
-@custom-variant xs (@media (min-width: 360px) and (max-width: 599px));
-@custom-variant s (@media (min-width: 600px) and (max-width: 767px));
-@custom-variant m (@media (min-width: 768px) and (max-width: 1023px));
-@custom-variant l (@media (min-width: 1024px) and (max-width: 1439px));
-@custom-variant xl (@media (min-width: 1440px));
+@custom-variant xs (@media (360px <= width < 600px));
+@custom-variant s (@media (600px <= width < 768px));
+@custom-variant m (@media (768px <= width < 1024px));
+@custom-variant l (@media (1024px <= width < 1440px));
+@custom-variant xl (@media (width >= 1440px));
 
 @theme {
   --breakpoint-*: initial;
+}
 
+/* 그리드 값은 TS와 Tailwind의 임의 값 유틸리티에서 함께 참조한다. */
+@theme static {
+  --grid-xs-columns: 4;
+  --grid-xs-margin: 16px;
+  --grid-xs-gutter: 16px;
+
+  --grid-s-columns: 8;
+  --grid-s-margin: 20px;
+  --grid-s-gutter: 16px;
+
+  --grid-m-columns: 8;
+  --grid-m-margin: 24px;
+  --grid-m-gutter: 20px;
+
+  --grid-l-columns: 12;
+  --grid-l-margin: 28px;
+  --grid-l-gutter: 20px;
+
+  --grid-xl-columns: 12;
+  --grid-xl-container-width: 1280px;
+  --grid-xl-gutter: 24px;
+
+  --grid-xl-admin-sidebar-width: 250px;
+  --grid-xl-admin-columns: 12;
+  --grid-xl-admin-content-padding: 48px;
+  --grid-xl-admin-gutter: var(--grid-xl-gutter);
+}
+
+/* TS 토큰과 SVG에서만 사용하는 컬러 변수도 최종 CSS에 포함한다. */
+@theme static {
   --color-core-blue-25: #e3f2fd;
   --color-core-blue-50: #bbdefb;
   --color-core-blue-100: #73b6ff;
@@ -47,30 +78,44 @@
   --color-white: #ffffff;
   --color-black: #080808;
 
-  --color-background: #ffffff;
-  --color-primary: #4285f4;
-  --color-sub: #58616a;
-  --color-outline: #cdd1d5;
-  --color-text-black: #080808;
-  --color-text-white: #ffffff;
+  --color-background: var(--color-white);
+  --color-primary: var(--color-blue-500);
+  --color-sub: var(--color-gray-600);
+  --color-outline: var(--color-gray-200);
+  --color-text-black: var(--color-black);
+  --color-text-white: var(--color-white);
 
-  --color-disabled-dark: #cdd1d5;
-  --color-disabled-light: #f4f5f6;
-  --color-disabled-text-blue: #90b7f9;
-  --color-disabled-blue: #e2ecfd;
+  --color-disabled-dark: var(--color-gray-200);
+  --color-disabled-light: var(--color-gray-50);
+  --color-disabled-text-blue: var(--color-blue-300);
+  --color-disabled-blue: var(--color-blue-100);
 
-  --color-hover-blue: #2170f2;
-  --color-hover-mono: #33363d;
-  --color-hover-elevated: #e6e8ea;
+  --color-hover-blue: var(--color-blue-600);
+  --color-hover-mono: var(--color-gray-800);
+  --color-hover-elevated: var(--color-gray-100);
 
-  --color-pressed-blue: #659bf6;
-  --color-pressed-blue-background: #e2ecfd;
-  --color-pressed-mono-background: #f4f5f6;
+  --color-pressed-blue: var(--color-blue-400);
+  --color-pressed-blue-background: var(--color-blue-100);
+  --color-pressed-mono-background: var(--color-gray-50);
 
-  --color-status-danger: #de3412;
-  --color-status-warning: #ffb114;
-  --color-status-success: #228738;
-  --color-status-information: #096ab3;
+  --color-status-danger-5: #fdefec;
+  --color-status-danger-10: #fcdfd9;
+  --color-status-danger-50: #de3412;
+  --color-status-warning-5: #fff3db;
+  --color-status-warning-10: #ffe0a3;
+  --color-status-warning-30: #ffb114;
+  --color-status-success-5: #eaf6ec;
+  --color-status-success-20: #a9dab4;
+  --color-status-success-50: #228738;
+  --color-status-information-5: #e7f4fe;
+  --color-status-information-20: #9ed2fa;
+  --color-status-information-60: #096ab3;
+
+  /* 기존 이름은 각 계열의 기본 단계를 참조한다. */
+  --color-status-danger: var(--color-status-danger-50);
+  --color-status-warning: var(--color-status-warning-30);
+  --color-status-success: var(--color-status-success-50);
+  --color-status-information: var(--color-status-information-60);
 }
 
 /* TS 토큰에서만 참조하는 폰트 변수도 빌드에 포함한다. */

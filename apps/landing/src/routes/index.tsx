@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage'
 import RootLayout from '../layout/RootLayout'
-import TypoTestPage from '../pages/TypoTestPage'
+import DesignSystemPage from '../pages/DesignSystemPage'
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: 'typo-test', element: <TypoTestPage /> },
+      { path: 'design-system', element: <DesignSystemPage /> },
     ],
   },
 ])
