@@ -15,9 +15,17 @@
     "typecheck": "tsc -b --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "changeset": "changeset",
+    "changeset:check": "node scripts/check-changesets.mjs",
+    "version-packages": "changeset version && pnpm install --lockfile-only",
+    "test:release": "node --test scripts/*.test.mjs",
+    "release:check": "node scripts/release-pr.mjs",
+    "tag-packages": "node scripts/tag-packages.mjs",
     "prepare": "husky"
   },
   "devDependencies": {
+    "@changesets/cli": "2.31.1",
+    "@changesets/parse": "0.4.3",
     "eslint": "^10.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
