@@ -19,10 +19,9 @@ flowchart TD
 ```
 
 - [ ] 최신 develop을 기준으로 작업 브랜치를 만들어요.
-- [ ] 구현과 함께 관련 문서를 갱신해요. 랜딩 동작은 [랜딩 명세](landing-spec.md),
-      공유 UI 사용법은 [WOWDS README](../packages/wowds/README.md), 실행·구조는
+- [ ] 구현과 함께 관련 문서를 갱신해요. 공유 UI 사용법은 [WOWDS README](../packages/wowds/README.md), 실행·구조는
       [루트 README](../README.md), 공통 작업 규칙은 [AGENTS.md](../AGENTS.md)를 확인해요.
-- [ ] [팀 공용 AI 스킬](../README.md#팀-공용-ai-스킬)의 순서로 리팩토링·changeset·검증·리뷰를 수행해요.
+- [ ] [팀 공용 AI 스킬](ai-skills.md)의 순서로 리팩토링·changeset·검증·리뷰를 수행해요.
       정리할 코드가 없으면 리팩토링 생략 이유를 남겨요.
 - [ ] 아래 방법으로 changeset을 작성하거나, 릴리스가 필요 없는 구체적인 사유를 준비해요.
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm build`와 변경한 동작을 확인해요.

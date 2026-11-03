@@ -1,73 +1,58 @@
 # GDG Hongik
 
-GDG Hongik 동아리 서비스 모노레포입니다. 도메인별로 **독립 배포 가능한 앱**으로 나누고, 공통 코드는 **공유 패키지**로 관리합니다.
+GDG Hongik 동아리 서비스 모노레포입니다. 랜딩 앱과 공유 패키지를 pnpm workspace로 관리합니다.
 
 ## 기술 스택
 
-- **언어/런타임**: TypeScript, Node.js 24 LTS
-- **패키지 매니저**: pnpm 12.14.0 (workspace 모노레포)
-- **프레임워크**: React 19, Vite 8
-- **코드 품질**: ESLint 10, Prettier, husky + lint-staged (pre-commit 훅)
+- TypeScript, React 19, Vite 8, Tailwind CSS 4
+- ESLint, Prettier, husky + lint-staged
+- Changesets로 패키지별 버전·CHANGELOG·GitHub Release 관리
 
 ## 프로젝트 구조
 
-```
-gdg-hongik/
-├── apps/
-│   └── landing/        # 랜딩페이지 (Vite + React + TS, 독립 배포)
-│       └── src/        # 내부는 FSD 레이어 (app/pages/widgets/features/entities/shared)
-│       # 추가 예정: onboarding (온보딩 가입), studies (스터디 관리)
-├── packages/
-│   ├── ui/             # 전역 공유 디자인 시스템 (@gdg/ui)
-│   └── config/         # 공유 tsconfig / eslint 베이스 (@gdg/config)
-├── pnpm-workspace.yaml # 워크스페이스 범위 (apps/*, packages/*)
-└── package.json        # 루트 (private)
-```
+| 경로              | 패키지         | 역할                            |
+| ----------------- | -------------- | ------------------------------- |
+| `apps/landing`    | `@gdg/landing` | React + Vite 랜딩 앱            |
+| `packages/wowds`  | `@gdg/wowds`   | 공유 UI·아이콘·디자인 토큰·폰트 |
+| `packages/utils`  | `@gdg/utils`   | 공통 HTTP 요청 유틸리티         |
+| `packages/config` | `@gdg/config`  | 공유 ESLint·TypeScript 설정     |
 
-## 아키텍처
+랜딩 앱은 `src/pages`, `components`, `hooks`, `api`, `types`, `utils`, `routes`, `layout`으로 구성됩니다.
 
-모노레포는 **앱(`apps/*`)** 과 **공유 패키지(`packages/*`)** 두 축으로 구성됩니다.
+## 설치와 실행
 
-- **도메인 = 앱**: 각 도메인은 `apps/*` 아래의 독립 앱입니다. 온보딩만 수정하면 온보딩만 배포합니다.
-- **앱 내부 = FSD**: Feature-Sliced Design 레이어로 단방향 의존성을 따릅니다. (app → pages → widgets → features → entities → shared)
-- **공유 UI = 아토믹 디자인**: `@gdg/ui` 는 도메인과 무관한 순수 UI 만 담으며 atoms/molecules 로 구분합니다.
-- **공유 설정**: `@gdg/config` 가 tsconfig 와 eslint 베이스를 제공해 앱·패키지가 동일한 규칙을 공유합니다.
-- **빌드 도구**: 현재는 pnpm workspace 만 사용합니다. 앱이 늘고 CI 빌드가 느려지면 Turborepo 를 도입할 예정입니다.
-
-### 워크스페이스 패키지
-
-| 패키지            | 이름           | 역할                                |
-| ----------------- | -------------- | ----------------------------------- |
-| `apps/landing`    | `@gdg/landing` | 랜딩페이지 앱 (독립 배포)           |
-| `packages/ui`     | `@gdg/ui`      | 공유 디자인 시스템 (React 컴포넌트) |
-| `packages/config` | `@gdg/config`  | 공유 tsconfig / eslint 설정         |
-
-## 요구사항
-
-- Node.js 24.x (`.nvmrc` 기준, GitHub Actions에서도 동일하게 사용)
-- pnpm 12.14.0 (`package.json`의 `packageManager`에 고정)
-
-nvm을 사용한다면 `nvm install && nvm use`로 Node.js 버전을 맞추고,
-`npm install -g pnpm@12.14.0`으로 pnpm을 설치합니다.
-
-## 실행 방법
+- Node.js 24.x: [.nvmrc](.nvmrc)와 [engines](package.json) 기준
+- pnpm 12.14.0: [packageManager](package.json) 기준
 
 ```bash
-pnpm install          # 전체 워크스페이스 의존성 설치
-pnpm dev              # 랜딩 앱 dev 서버 실행 (= pnpm dev:landing)
-pnpm build            # 전체 앱·패키지 빌드
-pnpm lint             # 전체 lint 검사
-pnpm typecheck        # 전체 TypeScript 프로젝트 타입 검사
-pnpm format           # Prettier 포맷 적용
-pnpm format:check     # Prettier 포맷 검사 (수정 없이 확인)
+nvm install && nvm use
+npm install -g pnpm@12.14.0
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-특정 앱·패키지만 실행하려면 `--filter` 를 사용합니다.
+## 주요 명령
 
 ```bash
-pnpm --filter @gdg/landing <script>   # 예: pnpm --filter @gdg/landing dev
+pnpm build           # 전체 앱·패키지 빌드
+pnpm lint            # 전체 린트 검사
+pnpm typecheck       # 전체 TypeScript 타입 검사
+pnpm format          # Prettier 포맷 적용
+pnpm format:check    # Prettier 포맷 검사
+pnpm changeset       # 패키지별 릴리스 변경 기록 작성
+pnpm changeset:check # changeset 검사
+pnpm test:release    # 릴리스 도구 회귀 검증
 ```
 
-## 커밋
+특정 패키지는 `pnpm --filter @gdg/landing <script>`처럼 실행합니다.
+제품 UI 자동 테스트는 없으며, HTTP 요청 유틸리티 테스트는 `pnpm --filter @gdg/utils test`로 실행합니다.
 
-husky pre-commit 훅에서 lint-staged 가 실행됩니다. 스테이징된 파일에 대해 Prettier 포맷과 ESLint 검사가 자동으로 적용됩니다.
+커밋 시 pre-commit 훅에서 lint-staged를 실행합니다. 스테이징된 파일에 Prettier를 적용하고,
+TypeScript·TSX 파일에는 ESLint도 실행합니다.
+
+## 작업 문서
+
+- [AI 작업 안내](AGENTS.md): 변경 위치와 공통 작업·검증 규칙
+- [팀 공용 AI 스킬](docs/ai-skills.md): 스킬 목록, 역할별 사용 예시와 관리 방법
+- [디자인 시스템](packages/wowds/README.md): 토큰·Typography·반응형 구간과 사용법
+- [릴리스 워크플로](docs/release-workflow.md): changeset 작성, 버전 PR·릴리스 절차와 GitHub 설정
