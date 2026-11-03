@@ -1,0 +1,33 @@
+name: PR title convention
+
+on:
+  # 기본 브랜치의 검사 규칙을 사용하며 PR 코드는 실행하지 않습니다.
+  pull_request_target:
+    branches: [develop]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions: {}
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-title:
+    name: PR title check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        shell: python3 {0}
+        run: |
+          import os
+          import re
+          import sys
+
+          title = os.environ["PR_TITLE"]
+          pattern = r"\[(FEATURE|FIX|REFACTOR|DOCS|CHORE)\] (?=\S).+"
+          if not re.fullmatch(pattern, title):
+              print("::error::PR 제목은 [FEATURE|FIX|REFACTOR|DOCS|CHORE] 설명 형식이어야 합니다. 예: [FEATURE] Add landing page header")
+              sys.exit(1)
