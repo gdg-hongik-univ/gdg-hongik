@@ -93,24 +93,20 @@ export default function ProjectTrackPage() {
                     {track.semester}학기 프로젝트 목록
                   </h2>
                   <dl className="flex flex-col gap-1 pl-2.5 min-[768px]:pl-0" aria-live="polite">
-                    <Typography as="div" variant="body2.3" className="text-sub">
-                      <dt className="inline">
-                        {track.semester}학기 총괄{' '}
-                        <span className="px-1 text-gray-400" aria-hidden="true">
-                          |
-                        </span>
-                      </dt>{' '}
-                      <dd className="inline text-text-black">{track.coordinator}</dd>
-                    </Typography>
-                    <Typography as="div" variant="body2.3" className="text-sub">
-                      <dt className="inline">
-                        {track.semester}학기 멘토{' '}
-                        <span className="px-1 text-gray-400" aria-hidden="true">
-                          |
-                        </span>
-                      </dt>{' '}
-                      <dd className="inline text-text-black">{track.mentors.join(' ')}</dd>
-                    </Typography>
+                    {[
+                      { label: '총괄', value: track.coordinator },
+                      { label: '멘토', value: track.mentors.join(' ') },
+                    ].map(({ label, value }) => (
+                      <Typography key={label} as="div" variant="body2.3" className="text-sub">
+                        <dt className="inline">
+                          {track.semester}학기 {label}{' '}
+                          <span className="px-1 text-gray-400" aria-hidden="true">
+                            |
+                          </span>
+                        </dt>{' '}
+                        <dd className="inline text-text-black">{value}</dd>
+                      </Typography>
+                    ))}
                   </dl>
                   {track.projects.length > 0 ? (
                     <ul
