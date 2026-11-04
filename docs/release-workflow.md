@@ -50,6 +50,7 @@ pnpm changeset
 | -------------- | ------------------------------------------- |
 | `@gdg/landing` | 랜딩 앱의 동작·화면·공개 콘텐츠             |
 | `@gdg/wowds`   | 공유 UI·아이콘·토큰·폰트와 공개 API         |
+| `@gdg/utils`   | 공통 HTTP 요청 유틸리티의 동작과 공개 API   |
 | `@gdg/config`  | 소비 앱·패키지에 영향을 주는 공유 개발 설정 |
 
 | 증가 종류 | 기준                                                           |
@@ -105,7 +106,7 @@ flowchart TD
 
 - [ ] 릴리스에 포함할 기능과 알려진 문제를 확인해요.
 - [ ] 미반영 changeset이 있으면 `changeset-release/develop` → `develop`의
-      **chore: version packages** PR이 최신 develop을 반영했는지 확인해요.
+      **[CHORE] version packages** PR이 최신 develop을 반영했는지 확인해요.
 - [ ] 패키지별 버전·CHANGELOG·lockfile, 반영한 changeset 삭제와 소비 앱 영향을 확인해요.
 - [ ] 버전 PR의 CI가 통과하면 develop에 병합해요.
 - [ ] 최신 develop CI가 통과했고 미반영 changeset이 없는지 확인해요.
