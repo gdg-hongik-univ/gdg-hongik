@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, renameSync, rmSync, writeFileSync } from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
@@ -128,4 +128,47 @@ test('release metadata requires changed versions to increase in SemVer precedenc
       assert.equal(result.releases.length, before === after ? 0 : 1)
     }
   }
+})
+
+test('release metadata compares moved packages by name', (t) => {
+  const repo = mkdtempSync(path.join(os.tmpdir(), 'gdg-release-moved-'))
+  t.after(() => rmSync(repo, { recursive: true, force: true }))
+  const git = (...args) =>
+    execFileSync('git', args, { cwd: repo, encoding: 'utf8', stdio: 'pipe' }).trim()
+  const save = (dir, version) => {
+    writeFileSync(
+      path.join(repo, dir, 'package.json'),
+      JSON.stringify({ name: '@sample/ui', version }),
+    )
+    writeFileSync(path.join(repo, dir, 'CHANGELOG.md'), `# UI\n\n## ${version}\n\nUpdate\n`)
+    git('add', '.')
+    git('commit', '-qm', 'Moved package fixture')
+  }
+  const inspect = () =>
+    JSON.parse(
+      execFileSync(
+        process.execPath,
+        [fileURLToPath(new URL('./release-pr.mjs', import.meta.url)), 'main', 'HEAD'],
+        { cwd: repo, encoding: 'utf8', stdio: 'pipe' },
+      ),
+    )
+  git('init', '-q', '-b', 'main')
+  git('config', 'user.name', 'Moved Package Test')
+  git('config', 'user.email', 'moved@example.invalid')
+  git('config', 'core.hooksPath', '.git/hooks')
+  mkdirSync(path.join(repo, 'packages/ui'), { recursive: true })
+  save('packages/ui', '1.0.0')
+  git('checkout', '-qb', 'develop')
+  renameSync(path.join(repo, 'packages/ui'), path.join(repo, 'packages/moved-ui'))
+  for (const version of ['0.9.0', '1.0.0+build1']) {
+    save('packages/moved-ui', version)
+    assert.throws(inspect, /Version must increase/, version)
+  }
+  save('packages/moved-ui', '1.0.0')
+  assert.deepEqual(inspect(), { title: 'chore: sync develop to main', releases: [] })
+  save('packages/moved-ui', '1.1.0')
+  assert.deepEqual(inspect(), {
+    title: 'release: @sample/ui@1.1.0',
+    releases: [{ name: '@sample/ui', oldVersion: '1.0.0', version: '1.1.0' }],
+  })
 })

@@ -8,7 +8,15 @@ const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim()
 const files = (ref) => git('ls-tree', '-r', '--name-only', ref).split('\n')
 const read = (ref, file) => git('show', `${ref}:${file}`)
 const headFiles = files(head)
-const baseFiles = new Set(files(base))
+const isPackageManifest = (file) => /^(apps|packages)\/[^/]+\/package\.json$/.test(file)
+const basePackages = new Map(
+  files(base)
+    .filter(isPackageManifest)
+    .map((file) => {
+      const pkg = JSON.parse(read(base, file))
+      return [pkg.name, pkg]
+    }),
+)
 
 for (const file of headFiles.filter((file) =>
   /^\.changeset\/(?!README\.md$)[^/]+\.md$/.test(file),
@@ -19,11 +27,9 @@ for (const file of headFiles.filter((file) =>
 }
 
 const releases = []
-for (const file of headFiles.filter((file) =>
-  /^(apps|packages)\/[^/]+\/package\.json$/.test(file),
-)) {
+for (const file of headFiles.filter(isPackageManifest)) {
   const pkg = JSON.parse(read(head, file))
-  const previous = baseFiles.has(file) ? JSON.parse(read(base, file)) : undefined
+  const previous = basePackages.get(pkg.name)
   if (!semver.valid(pkg.version) || (previous && !semver.valid(previous.version))) {
     throw new Error(`Invalid package version: ${pkg.name}`)
   }
