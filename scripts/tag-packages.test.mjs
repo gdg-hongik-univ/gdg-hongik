@@ -28,7 +28,7 @@ test('pushes released package tags, skips initial and unchanged versions, and pr
     execFileSync(
       process.execPath,
       [fileURLToPath(new URL('./tag-packages.mjs', import.meta.url))],
-      { cwd: repo },
+      { cwd: repo, encoding: 'utf8', stdio: 'pipe' },
     )
   const remoteTags = () => git('ls-remote', '--tags', 'origin')
 
@@ -48,6 +48,7 @@ test('pushes released package tags, skips initial and unchanged versions, and pr
   writePackage('packages/config', '@sample/config', '0.0.1')
   writePackage('packages/unchanged', '@sample/unchanged', '1.0.0')
   commit()
+  const initialCommit = git('rev-parse', 'HEAD')
   git('checkout', '-qb', 'develop')
   git('checkout', '-qb', 'changeset-release/develop')
   writePackage('.', 'root', '9.9.9')
@@ -63,7 +64,7 @@ test('pushes released package tags, skips initial and unchanged versions, and pr
   git('merge', '--no-ff', '--no-edit', 'develop')
   const releaseCommit = git('rev-parse', 'HEAD')
   git('tag', '-a', '-m', 'Unrelated local tag', 'unrelated', 'HEAD')
-  git('tag', '-a', '-m', 'Existing tag', '@sample/wowds@0.1.0', 'HEAD^')
+  git('tag', '-a', '-m', 'Existing tag', '@sample/wowds@0.1.0', releaseCommit)
   const existingTag = git('rev-parse', 'refs/tags/@sample/wowds@0.1.0')
   const manifest = readFileSync(path.join(repo, 'apps/web/package.json'), 'utf8')
 
@@ -110,5 +111,9 @@ test('pushes released package tags, skips initial and unchanged versions, and pr
   )
   commit()
   run()
+  assert.equal(remoteTags(), tags)
+
+  git('tag', '-f', '-a', '-m', 'Wrong package version', '@sample/web@0.0.1', initialCommit)
+  assert.throws(run, /Existing tag does not match package/)
   assert.equal(remoteTags(), tags)
 })

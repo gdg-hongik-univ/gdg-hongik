@@ -1,19 +1,35 @@
 import { execFileSync } from 'node:child_process'
+import { resolveReleaseTarget } from './release-target.mjs'
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim()
-const manifests = git('ls-tree', '-r', '--name-only', 'HEAD')
+const target = resolveReleaseTarget(process.argv[2])
+const manifests = git('ls-tree', '-r', '--name-only', target)
   .split('\n')
   .filter((file) => /^(apps|packages)\/[^/]+\/package\.json$/.test(file))
 const existingTags = new Set(git('tag', '--list').split('\n'))
 const tags = []
 
 for (const manifest of manifests) {
-  const pkg = JSON.parse(git('show', `HEAD:${manifest}`))
+  const pkg = JSON.parse(git('show', `${target}:${manifest}`))
   if (pkg.version === '0.0.0') continue
 
   const tag = `${pkg.name}@${pkg.version}`
+  if (existingTags.has(tag)) {
+    const tagged = JSON.parse(git('show', `refs/tags/${tag}:${manifest}`))
+    if (tagged.name !== pkg.name || tagged.version !== pkg.version) {
+      throw new Error(`Existing tag does not match package: ${tag}`)
+    }
+  }
   if (!existingTags.has(tag)) {
-    const commits = git('log', '--first-parent', '--format=%H', '--diff-filter=AM', '--', manifest)
+    const commits = git(
+      'log',
+      '--first-parent',
+      '--format=%H',
+      '--diff-filter=AM',
+      target,
+      '--',
+      manifest,
+    )
       .split('\n')
       .filter(Boolean)
     const releaseCommit = commits.find((commit) => {

@@ -74,3 +74,52 @@ test('release metadata uses prepared versions and rejects pending changesets or 
   commit()
   assert.throws(inspect, /Missing CHANGELOG entry/)
 })
+
+test('release metadata rejects downgrades and compares prereleases with SemVer precedence', (t) => {
+  const repo = mkdtempSync(path.join(os.tmpdir(), 'gdg-release-versions-'))
+  t.after(() => rmSync(repo, { recursive: true, force: true }))
+  const git = (...args) =>
+    execFileSync('git', args, { cwd: repo, encoding: 'utf8', stdio: 'pipe' }).trim()
+  const save = (version) => {
+    writeFileSync(
+      path.join(repo, 'packages/ui/package.json'),
+      JSON.stringify({ name: '@sample/ui', version }),
+    )
+    writeFileSync(path.join(repo, 'packages/ui/CHANGELOG.md'), `# UI\n\n## ${version}\n\nUpdate\n`)
+    git('add', '.')
+    git('commit', '--allow-empty', '-qm', 'Version fixture')
+    return git('rev-parse', 'HEAD')
+  }
+  git('init', '-q', '-b', 'main')
+  git('config', 'user.name', 'Version Test')
+  git('config', 'user.email', 'versions@example.invalid')
+  git('config', 'core.hooksPath', '.git/hooks')
+  mkdirSync(path.join(repo, 'packages/ui'), { recursive: true })
+  for (const [before, after, error] of [
+    ['0.2.0', '0.1.0', /Version downgrade/],
+    ['1.0.0', '0.0.0', /Version downgrade/],
+    ['1.0.0', '1.0.0-rc.1', /Version downgrade/],
+    ['1.10.0', '1.9.0', /Version downgrade/],
+    ['0.0.0', '0.1.0', null],
+    ['1.9.0', '1.10.0', null],
+    ['1.0.0-rc.1', '1.0.0', null],
+    ['1.0.0-rc.2', '1.0.0-rc.10', null],
+    ['1.0.0', '1.0.0', null],
+    ['1.0.0', 'invalid', /Invalid package version/],
+  ]) {
+    const base = save(before)
+    const head = save(after)
+    const inspect = () =>
+      execFileSync(
+        process.execPath,
+        [fileURLToPath(new URL('./release-pr.mjs', import.meta.url)), base, head],
+        { cwd: repo, encoding: 'utf8', stdio: 'pipe' },
+      )
+    if (error) {
+      assert.throws(inspect, error, `${before} → ${after}`)
+    } else {
+      const result = JSON.parse(inspect())
+      assert.equal(result.releases.length, before === after ? 0 : 1)
+    }
+  }
+})

@@ -1,12 +1,14 @@
 import { execFileSync } from 'node:child_process'
+import { resolveReleaseTarget } from './release-target.mjs'
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim()
+const target = resolveReleaseTarget(process.argv[2])
 const tags = new Set(git('tag', '--list').split('\n'))
 const releases = []
 
-for (const file of git('ls-tree', '-r', '--name-only', 'HEAD').split('\n')) {
+for (const file of git('ls-tree', '-r', '--name-only', target).split('\n')) {
   if (!/^(apps|packages)\/[^/]+\/package\.json$/.test(file)) continue
-  const pkg = JSON.parse(git('show', `HEAD:${file}`))
+  const pkg = JSON.parse(git('show', `${target}:${file}`))
   const tag = `${pkg.name}@${pkg.version}`
   if (pkg.version === '0.0.0' || !tags.has(tag)) continue
 

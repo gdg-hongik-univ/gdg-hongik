@@ -1,5 +1,6 @@
 import { execFileSync } from 'node:child_process'
 import parse from '@changesets/parse'
+import semver from 'semver'
 
 const [base, head] = process.argv.slice(2)
 if (!base || !head) throw new Error('Usage: node scripts/release-pr.mjs <base-ref> <head-ref>')
@@ -23,6 +24,14 @@ for (const file of headFiles.filter((file) =>
 )) {
   const pkg = JSON.parse(read(head, file))
   const previous = baseFiles.has(file) ? JSON.parse(read(base, file)) : undefined
+  if (!semver.valid(pkg.version) || (previous && !semver.valid(previous.version))) {
+    throw new Error(`Invalid package version: ${pkg.name}`)
+  }
+  if (previous && semver.lt(pkg.version, previous.version)) {
+    throw new Error(
+      `Version downgrade is not allowed: ${pkg.name} ${previous.version} → ${pkg.version}`,
+    )
+  }
   if (pkg.version === previous?.version || pkg.version === '0.0.0') continue
 
   const changelog = file.replace(/package\.json$/, 'CHANGELOG.md')
