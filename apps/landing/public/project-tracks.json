@@ -1,0 +1,451 @@
+{
+  "items": [
+    {
+      "semester": "2025-2",
+      "coordinator": "김지디",
+      "mentors": [
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디"
+      ],
+      "projects": [
+        {
+          "id": "project-1",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "AI"
+          ]
+        },
+        {
+          "id": "project-2",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "FE",
+            "BE"
+          ]
+        },
+        {
+          "id": "project-3",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "FE",
+            "BE"
+          ]
+        },
+        {
+          "id": "project-4",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "FE",
+            "BE"
+          ]
+        },
+        {
+          "id": "project-5",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "FE",
+            "BE"
+          ]
+        },
+        {
+          "id": "project-6",
+          "name": "프로젝트명",
+          "description": "간단한 설명어쩌고저쩌고 이런 플젝이에요",
+          "team": "팀명",
+          "members": [
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디",
+            "김지디"
+          ],
+          "repositories": [
+            "FE",
+            "BE"
+          ]
+        }
+      ],
+      "courses": [
+        {
+          "name": "미션 코스",
+          "activities": [
+            {
+              "name": "프로젝트 트랙 온보딩",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "API 연결 세션",
+              "online": false,
+              "description": "논문을 살펴보고, API를 연결하는 시간을 가졌어요."
+            }
+          ]
+        },
+        {
+          "name": "기획 코스",
+          "activities": [
+            {
+              "name": "브레인스토밍",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "기획 발표",
+              "online": true,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            }
+          ]
+        },
+        {
+          "name": "개발 코스",
+          "activities": [
+            {
+              "name": "1차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "중간 데모 데이",
+              "online": false,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            },
+            {
+              "name": "2차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "최종 데모 데이",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "semester": "2025-1",
+      "coordinator": "김지디",
+      "mentors": [
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디"
+      ],
+      "projects": [],
+      "courses": [
+        {
+          "name": "미션 코스",
+          "activities": [
+            {
+              "name": "프로젝트 트랙 온보딩",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "API 연결 세션",
+              "online": false,
+              "description": "논문을 살펴보고, API를 연결하는 시간을 가졌어요."
+            }
+          ]
+        },
+        {
+          "name": "기획 코스",
+          "activities": [
+            {
+              "name": "브레인스토밍",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "기획 발표",
+              "online": true,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            }
+          ]
+        },
+        {
+          "name": "개발 코스",
+          "activities": [
+            {
+              "name": "1차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "중간 데모 데이",
+              "online": false,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            },
+            {
+              "name": "2차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "최종 데모 데이",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "semester": "2024-2",
+      "coordinator": "김지디",
+      "mentors": [
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디"
+      ],
+      "projects": [],
+      "courses": [
+        {
+          "name": "미션 코스",
+          "activities": [
+            {
+              "name": "프로젝트 트랙 온보딩",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "API 연결 세션",
+              "online": false,
+              "description": "논문을 살펴보고, API를 연결하는 시간을 가졌어요."
+            }
+          ]
+        },
+        {
+          "name": "기획 코스",
+          "activities": [
+            {
+              "name": "브레인스토밍",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "기획 발표",
+              "online": true,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            }
+          ]
+        },
+        {
+          "name": "개발 코스",
+          "activities": [
+            {
+              "name": "1차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "중간 데모 데이",
+              "online": false,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            },
+            {
+              "name": "2차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "최종 데모 데이",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "semester": "2024-1",
+      "coordinator": "김지디",
+      "mentors": [
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디"
+      ],
+      "projects": [],
+      "courses": [
+        {
+          "name": "미션 코스",
+          "activities": [
+            {
+              "name": "프로젝트 트랙 온보딩",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "API 연결 세션",
+              "online": false,
+              "description": "논문을 살펴보고, API를 연결하는 시간을 가졌어요."
+            }
+          ]
+        },
+        {
+          "name": "기획 코스",
+          "activities": [
+            {
+              "name": "브레인스토밍",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "기획 발표",
+              "online": true,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            }
+          ]
+        },
+        {
+          "name": "개발 코스",
+          "activities": [
+            {
+              "name": "1차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "중간 데모 데이",
+              "online": false,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            },
+            {
+              "name": "2차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "최종 데모 데이",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "semester": "2023-2",
+      "coordinator": "김지디",
+      "mentors": [
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디",
+        "김지디"
+      ],
+      "projects": [],
+      "courses": [
+        {
+          "name": "미션 코스",
+          "activities": [
+            {
+              "name": "프로젝트 트랙 온보딩",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "API 연결 세션",
+              "online": false,
+              "description": "논문을 살펴보고, API를 연결하는 시간을 가졌어요."
+            }
+          ]
+        },
+        {
+          "name": "기획 코스",
+          "activities": [
+            {
+              "name": "브레인스토밍",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "기획 발표",
+              "online": true,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            }
+          ]
+        },
+        {
+          "name": "개발 코스",
+          "activities": [
+            {
+              "name": "1차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "중간 데모 데이",
+              "online": false,
+              "description": "한 주간 파트별로 간단한 미션들을 수행하며 스스로 공부하고, 팀원들과 공유하며 서로 피드백하는 과정에서 실력을 키우는 기간을 가져요."
+            },
+            {
+              "name": "2차 커피챗",
+              "online": true,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            },
+            {
+              "name": "최종 데모 데이",
+              "online": false,
+              "description": "프론트엔드 파트장과 파트원들과 함께 어쩌구 저쩌구 첫 만남을 진행했어요."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
