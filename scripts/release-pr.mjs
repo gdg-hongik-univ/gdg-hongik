@@ -27,10 +27,8 @@ for (const file of headFiles.filter((file) =>
   if (!semver.valid(pkg.version) || (previous && !semver.valid(previous.version))) {
     throw new Error(`Invalid package version: ${pkg.name}`)
   }
-  if (previous && semver.lt(pkg.version, previous.version)) {
-    throw new Error(
-      `Version downgrade is not allowed: ${pkg.name} ${previous.version} → ${pkg.version}`,
-    )
+  if (previous && pkg.version !== previous.version && semver.lte(pkg.version, previous.version)) {
+    throw new Error(`Version must increase: ${pkg.name} ${previous.version} → ${pkg.version}`)
   }
   if (pkg.version === previous?.version || pkg.version === '0.0.0') continue
 

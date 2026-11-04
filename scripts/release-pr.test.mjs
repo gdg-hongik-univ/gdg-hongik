@@ -75,7 +75,7 @@ test('release metadata uses prepared versions and rejects pending changesets or 
   assert.throws(inspect, /Missing CHANGELOG entry/)
 })
 
-test('release metadata rejects downgrades and compares prereleases with SemVer precedence', (t) => {
+test('release metadata requires changed versions to increase in SemVer precedence', (t) => {
   const repo = mkdtempSync(path.join(os.tmpdir(), 'gdg-release-versions-'))
   t.after(() => rmSync(repo, { recursive: true, force: true }))
   const git = (...args) =>
@@ -96,15 +96,21 @@ test('release metadata rejects downgrades and compares prereleases with SemVer p
   git('config', 'core.hooksPath', '.git/hooks')
   mkdirSync(path.join(repo, 'packages/ui'), { recursive: true })
   for (const [before, after, error] of [
-    ['0.2.0', '0.1.0', /Version downgrade/],
-    ['1.0.0', '0.0.0', /Version downgrade/],
-    ['1.0.0', '1.0.0-rc.1', /Version downgrade/],
-    ['1.10.0', '1.9.0', /Version downgrade/],
+    ['0.2.0', '0.1.0', /Version must increase/],
+    ['1.0.0', '0.0.0', /Version must increase/],
+    ['1.0.0', '1.0.0-rc.1', /Version must increase/],
+    ['1.10.0', '1.9.0', /Version must increase/],
+    ['1.0.0+build1', '1.0.0+build2', /Version must increase/],
+    ['1.0.0', '1.0.0+build1', /Version must increase/],
+    ['1.0.0+build1', '1.0.0', /Version must increase/],
+    ['1.0.0-rc.1+build1', '1.0.0-rc.1+build2', /Version must increase/],
     ['0.0.0', '0.1.0', null],
     ['1.9.0', '1.10.0', null],
     ['1.0.0-rc.1', '1.0.0', null],
     ['1.0.0-rc.2', '1.0.0-rc.10', null],
     ['1.0.0', '1.0.0', null],
+    ['1.0.0+build1', '1.0.0+build1', null],
+    ['1.0.0+build2', '1.0.1+build1', null],
     ['1.0.0', 'invalid', /Invalid package version/],
   ]) {
     const base = save(before)
