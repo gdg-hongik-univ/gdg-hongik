@@ -25,11 +25,17 @@ description: GDG Hongik의 develop에서 main으로 릴리스할 준비 상태�
 ## 병합 전
 
 - 같은 저장소의 develop → main PR인지, 버전 PR이 최신 변경을 반영했는지 확인해요.
+- 최신 develop head SHA의 `push` 이벤트로 실행된 `CI, Releases & Synchronization`에서
+  `QA & Build Verification`이 통과했는지 확인해요. 같은 SHA의 PR·수동 실행과 구분하고,
+  미실행·진행 중·실패·접근 불가는 통과로 보지 않고 남은 TODO에 기록해요.
 - 대상 환경에서 `pnpm changeset:check`, `pnpm changeset status --verbose`,
   `pnpm release:check <main-sha> <develop-sha>`를 실행해요. 버전 계산을 별도로 구현하지 않아요.
   미반영 changeset, 패키지별 증가 종류·CHANGELOG·lockfile과 소비 앱 영향을 실제 diff로 확인해요.
 - `QA & Build Verification`, `Release PR Metadata`의 결과가 해당 PR의 최신 head에 대한 것인지
   확인해요. 실행 중·미실행·실패·접근 불가를 통과와 구분해요. 원격 결과와 로컬 실행도 구분해요.
+- 최신 PR head에 대한 팀 리뷰의 승인·변경 요청·대기 상태를 확인해요. 이전 SHA의 승인만으로
+  최신 head의 검토 완료를 판단하지 않고, 변경 요청·대기·미확인은 남은 TODO에 기록해요.
+  승인 요건은 저장소 기준을 따르며 최종 승인은 사람이 판단해요.
 - merge commit 방식과 저장소 설정의 미확인 항목을 남겨요. 자동 검사가 놓칠 수 있는
   changeset 누락·잘못된 설명은 실제 기능 diff와 대조해요.
 
@@ -38,7 +44,10 @@ description: GDG Hongik의 develop에서 main으로 릴리스할 준비 상태�
 - main의 실제 병합 SHA와 그 SHA의 CI·릴리스 작업 결과를 확인해요.
 - 예상한 패키지 태그·GitHub Release가 존재하고, 태그가 버전을 반영한 main 병합 커밋을
   가리키는지 확인해요. Release 설명은 그 태그의 CHANGELOG 항목과 비교해요.
-- main → develop 역병합 반영 여부를 확인해요. 브랜치 이름 대신 대상 커밋의 ancestry로 판단해요.
+- main → develop 역병합 PR이 merge commit으로 병합됐는지 확인해요.
+  `git merge-base --is-ancestor <release-main-sha> <develop-sha>`로 대상 main 릴리스 커밋이
+  develop의 조상인지 확인해요. squash/rebase 병합이나 파일 내용 일치만으로 완료 처리하지 않고,
+  이력 반영을 확인하지 못하면 남은 TODO에 기록해요.
 - 실패한 작업의 재실행은 방법만 안내해요. 점검 요청으로 workflow dispatch·원격 게시·병합을
   실행하지 않아요. 서비스 배포는 릴리스 완료와 별도로 확인해요.
 

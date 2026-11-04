@@ -62,8 +62,9 @@
   [릴리스 워크플로](docs/release-workflow.md)를 원본으로 사용한다.
 - 기능 코드와 changeset을 함께 반영한다. 릴리스가 필요 없으면 PR에 구체적인 생략 사유를 적는다.
   버전 PR·릴리스 PR·역병합 PR은 기능 changeset 누락 안내 대상에서 제외한다.
-- 버전과 CHANGELOG는 develop 대상 버전 PR에서 반영한다. main 릴리스는 같은 저장소의
-  develop → main PR을 merge commit으로 병합하고, 패키지 태그·GitHub Release와 역병합을 확인한다.
+- 버전과 CHANGELOG는 develop 대상 버전 PR에서 반영한다. 같은 저장소의 develop → main 릴리스 PR과
+  main → develop 역병합 PR은 모두 merge commit으로 병합하고, 패키지 태그·GitHub Release와
+  역병합을 확인한다. 상세 절차는 [릴리스 워크플로](docs/release-workflow.md)를 따른다.
 - 자동화는 npm 게시나 서비스 배포를 수행하지 않는다. GitHub 설정 적용·PR 게시·병합·원격
   재실행은 해당 작업의 명시적인 요청 범위에서만 수행한다.
 - 수동 릴리스 복구는 `release_sha`로 지정한 main 병합 커밋을 기준으로 검사·태그·Release를 처리한다.

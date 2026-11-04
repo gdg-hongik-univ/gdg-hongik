@@ -36,5 +36,6 @@
 PR 작성자가 직접 리베이스하고 충돌을 해결하며, 머지까지 본인이 책임지고 진행합니다.
 develop으로 보내는 작업 PR: 작성자가 Squash and merge합니다.
 기능 작업의 최종 커밋 제목: [FEATURE] 설명 (PR 번호 접미사는 유지해도 됩니다.)
-develop → main 릴리스 PR은 merge commit으로 병합합니다. 절차는 docs/release-workflow.md를 따릅니다.
+develop → main 릴리스 PR과 main → develop 역병합 PR은 merge commit으로 병합합니다.
+역병합 PR은 위 Squash and merge 안내의 예외입니다. 절차는 docs/release-workflow.md를 따릅니다.
 -->

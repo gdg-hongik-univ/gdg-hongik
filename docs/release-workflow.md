@@ -101,7 +101,7 @@ flowchart TD
     G -->|수정 후 재확인| A
     G -->|통과| H[Create a merge commit으로 병합]
     H --> I[main CI와 패키지 태그·GitHub Release 확인]
-    I --> J[main → develop 역병합 PR 확인·병합]
+    I --> J[main → develop 역병합 PR을 merge commit으로 병합]
 ```
 
 - [ ] 릴리스에 포함할 기능과 알려진 문제를 확인해요.
@@ -109,15 +109,21 @@ flowchart TD
       **[CHORE] version packages** PR이 최신 develop을 반영했는지 확인해요.
 - [ ] 패키지별 버전·CHANGELOG·lockfile, 반영한 changeset 삭제와 소비 앱 영향을 확인해요.
 - [ ] 버전 PR의 CI가 통과하면 develop에 병합해요.
-- [ ] 최신 develop CI가 통과했고 미반영 changeset이 없는지 확인해요.
+- [ ] 최신 develop head SHA의 `push` 이벤트로 실행된 `CI, Releases & Synchronization`에서
+      `QA & Build Verification`이 통과했고 미반영 changeset이 없는지 확인해요.
+      같은 SHA의 PR·수동 실행과 구분하고, 미실행·진행 중·실패·접근 불가는 통과로 보지 않아요.
 - [ ] develop → main PR을 만들고 자동 갱신된 제목과 릴리스 범위를 확인해요.
 - [ ] `QA & Build Verification`, `Release PR Metadata`와 팀 리뷰가 최신 대상에 대해 통과했는지 확인해요.
+      팀 리뷰는 최신 PR head의 승인·변경 요청·대기 상태를 확인하고, 미확인·대기는 남은 TODO로 남겨요.
       새 changeset이 추가되면 버전 PR 반영부터 다시 확인해요.
 - [ ] **Create a merge commit**으로 main에 병합해요. 이 릴리스 경로는 squash/rebase 병합을 지원하지 않아요.
 - [ ] main CI와 `Publish Package Releases`의 성공을 확인해요.
 - [ ] `@gdg/landing@<version>` 등 패키지별 태그가 해당 버전을 반영한 main 병합 커밋을 가리키는지 확인해요.
 - [ ] GitHub Release 설명이 해당 태그에 저장된 CHANGELOG의 버전 항목과 일치하는지 확인해요.
-- [ ] main → develop 역병합 PR을 만들고 CI·리뷰 확인 후 병합해요.
+- [ ] main → develop 역병합 PR을 만들고 CI·리뷰 확인 후 **Create a merge commit**으로 병합해요.
+      develop 대상 일반 작업 PR의 squash 규칙은 이 역병합에 적용하지 않아요.
+      대상 main 릴리스 커밋이 develop의 조상인지 확인해 이력 반영을 판단해요.
+      squash/rebase 병합이나 파일 내용 일치만으로 역병합 완료로 보지 않아요.
 
 `$gdg-release-check`는 위 항목을 읽기 전용으로 점검해 완료 항목과 남은 TODO를 정리해요.
 로컬의 커밋된 두 ref를 검사할 때는 아래처럼 실행해요. 원격 최신 여부와 미커밋 제외 여부를 별도로 확인해요.
