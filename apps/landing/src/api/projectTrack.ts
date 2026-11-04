@@ -1,4 +1,9 @@
-import type { ProjectTrackSemester, ProjectTracksResponse } from '../types/projectTrack'
+import type {
+  ProjectTrackCourse,
+  ProjectTrackProject,
+  ProjectTrackSemester,
+  ProjectTracksResponse,
+} from '../types/projectTrack'
 import { api } from './client'
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -6,6 +11,33 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 
 const isStringArray = (value: unknown): value is string[] =>
   Array.isArray(value) && value.every((item) => typeof item === 'string')
+
+function isProjectTrackProject(value: unknown): value is ProjectTrackProject {
+  return (
+    isRecord(value) &&
+    typeof value.id === 'string' &&
+    typeof value.name === 'string' &&
+    typeof value.description === 'string' &&
+    typeof value.team === 'string' &&
+    isStringArray(value.members) &&
+    isStringArray(value.repositories)
+  )
+}
+
+function isProjectTrackCourse(value: unknown): value is ProjectTrackCourse {
+  return (
+    isRecord(value) &&
+    typeof value.name === 'string' &&
+    Array.isArray(value.activities) &&
+    value.activities.every(
+      (activity) =>
+        isRecord(activity) &&
+        typeof activity.name === 'string' &&
+        typeof activity.online === 'boolean' &&
+        typeof activity.description === 'string',
+    )
+  )
+}
 
 function isProjectTrackSemester(value: unknown): value is ProjectTrackSemester {
   return (
@@ -15,31 +47,10 @@ function isProjectTrackSemester(value: unknown): value is ProjectTrackSemester {
     typeof value.coordinator === 'string' &&
     isStringArray(value.mentors) &&
     Array.isArray(value.projects) &&
-    value.projects.every(
-      (project) =>
-        isRecord(project) &&
-        typeof project.id === 'string' &&
-        typeof project.name === 'string' &&
-        typeof project.description === 'string' &&
-        typeof project.team === 'string' &&
-        isStringArray(project.members) &&
-        isStringArray(project.repositories),
-    ) &&
+    value.projects.every(isProjectTrackProject) &&
     new Set(value.projects.map((project) => project.id)).size === value.projects.length &&
     Array.isArray(value.courses) &&
-    value.courses.every(
-      (course) =>
-        isRecord(course) &&
-        typeof course.name === 'string' &&
-        Array.isArray(course.activities) &&
-        course.activities.every(
-          (activity) =>
-            isRecord(activity) &&
-            typeof activity.name === 'string' &&
-            typeof activity.online === 'boolean' &&
-            typeof activity.description === 'string',
-        ),
-    )
+    value.courses.every(isProjectTrackCourse)
   )
 }
 
