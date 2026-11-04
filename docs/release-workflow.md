@@ -9,9 +9,10 @@
 ```mermaid
 flowchart TD
     A[최신 develop에서 feature 브랜치 생성] --> B[기능 구현과 관련 문서 갱신]
-    B --> C[리팩토링 → changeset 작성 또는 생략 사유 정리]
-    C --> D[실행 검증 → 자체 리뷰 → 필요한 수정과 재검증]
-    D --> E[코드·문서·changeset 커밋과 feature → develop PR]
+    B --> C[리팩토링]
+    C --> D[실행 검증 → 자체 리뷰 → 필요한 수정과 재검증·재리뷰]
+    D --> P[changeset 작성 또는 생략 사유 정리와 확인]
+    P --> E[코드·문서·changeset 커밋과 feature → develop PR]
     E --> F{CI와 팀 리뷰 통과?}
     F -->|수정 필요| D
     F -->|통과| G[사람이 병합]
@@ -19,21 +20,22 @@ flowchart TD
 ```
 
 - [ ] 최신 develop을 기준으로 작업 브랜치를 만들어요.
-- [ ] 구현과 함께 관련 문서를 갱신해요. 랜딩 동작은 [랜딩 명세](landing-spec.md),
-      공유 UI 사용법은 [WOWDS README](../packages/wowds/README.md), 실행·구조는
+- [ ] 구현과 함께 관련 문서를 갱신해요. 공유 UI 사용법은 [WOWDS README](../packages/wowds/README.md), 실행·구조는
       [루트 README](../README.md), 공통 작업 규칙은 [AGENTS.md](../AGENTS.md)를 확인해요.
-- [ ] [팀 공용 AI 스킬](../README.md#팀-공용-ai-스킬)의 순서로 리팩토링·changeset·검증·리뷰를 수행해요.
+- [ ] [공통 PR 준비 기준](../AGENTS.md#pr-준비와-리뷰)에 따라 리팩토링·검증·리뷰와 수정·재검증을 수행해요.
       정리할 코드가 없으면 리팩토링 생략 이유를 남겨요.
-- [ ] 아래 방법으로 changeset을 작성하거나, 릴리스가 필요 없는 구체적인 사유를 준비해요.
 - [ ] `pnpm lint`, `pnpm typecheck`, `pnpm build`와 변경한 동작을 확인해요.
+- [ ] 리뷰와 수정·재검증 후 확정된 코드 기준으로 changeset을 작성하거나 생략 사유를 준비해요.
       changeset 검사는 `pnpm changeset:check`, 계획 확인은 `pnpm changeset status --verbose`예요.
-- [ ] 최종 코드·문서·changeset을 함께 커밋하고 PR 본문에 실제 검증 대상과 결과를 남겨요.
+- [ ] 최종 변경 기준 PR 제목·본문을 작성하고, 검증 대상과 결과는 별도로 남겨요.
+      `$gdg-pr-description`으로 제목·본문 작성을 요청할 수 있어요.
+- [ ] 최종 코드·문서·changeset을 함께 커밋하고 feature → develop PR을 게시해요.
 - [ ] feature → develop PR의 CI·리뷰와 changeset 또는 생략 사유를 확인하고 병합해요.
 - [ ] develop CI와 버전 PR 생성·갱신 결과를 확인해요. 버전 PR 병합은 릴리스 담당자가 맡아요.
 
 ### Changeset 작성
 
-저장소 루트에서 다음 명령을 실행하거나 `$gdg-changeset`에 작성을 요청해요.
+저장소 루트에서 다음 명령을 실행하거나 [공유 스킬](ai-skills.md) `$gdg-changeset`에 작성을 요청해요.
 
 ```bash
 pnpm changeset
