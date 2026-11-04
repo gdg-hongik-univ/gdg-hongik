@@ -52,7 +52,8 @@ TypeScript·TSX 파일에는 ESLint도 실행합니다.
 
 ## 작업 문서
 
-- [AI 작업 안내](AGENTS.md): 변경 위치와 공통 작업·검증 규칙
+- [AI 작업 안내](AGENTS.md): 공통 작업·검증 규칙과 작업별 문서 안내
+- [PR 준비와 리뷰](docs/pr-workflow.md): 작성자·리뷰어 절차와 검증 결과 기록 기준
 - [팀 공용 AI 스킬](docs/ai-skills.md): changeset 작성·릴리스 점검·PR 제목과 본문 작성 스킬
 - [디자인 시스템](packages/wowds/README.md): 토큰·Typography·반응형 구간과 사용법
 - [릴리스 워크플로](docs/release-workflow.md): changeset 작성, 버전 PR·릴리스 절차와 GitHub 설정
