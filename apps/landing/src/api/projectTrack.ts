@@ -50,7 +50,13 @@ function isProjectTrackSemester(value: unknown): value is ProjectTrackSemester {
     value.projects.every(isProjectTrackProject) &&
     new Set(value.projects.map((project) => project.id)).size === value.projects.length &&
     Array.isArray(value.courses) &&
-    value.courses.every(isProjectTrackCourse)
+    value.courses.every(isProjectTrackCourse) &&
+    new Set(value.courses.map((course) => course.name)).size === value.courses.length &&
+    value.courses.every(
+      (course) =>
+        new Set(course.activities.map((activity) => activity.name)).size ===
+        course.activities.length,
+    )
   )
 }
 

@@ -37,7 +37,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <Typography as="p" variant="body2.3" className="text-sub max-[599px]:text-[12px]!">
           {project.description}
-          <span className="xl:hidden"> {project.description}</span>
         </Typography>
         <div className="flex flex-wrap items-center gap-x-1.5 min-[600px]:gap-y-1.5">
           <Typography variant="body2.3" className="inline-flex items-center gap-1 text-sub">
