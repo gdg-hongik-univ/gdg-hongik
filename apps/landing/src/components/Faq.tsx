@@ -48,7 +48,7 @@ export const Faq = () => {
           return (
             <div
               key={faq.id}
-              className="w-full border-t border-blue-500/30 transition-all duration-200 px-6 py-8 xs:p-3 s:pl-5 s:py-5 s:pr-4"
+              className="w-full border-t border-blue-500/30 transition-all duration-200 px-6 py-8 xs:p-3 s:pl-5 s:py-6 s:pr-4"
             >
               <button
                 id={triggerId}
