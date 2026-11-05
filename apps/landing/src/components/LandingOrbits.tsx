@@ -8,7 +8,7 @@ const orbitProfiles = [
     imageSrc: '/img/crew.jpg',
     label: 'Community Member',
     description:
-      '관심 있는 세션과 행사에 자유롭게 참여하며 사람들을 만나고 다양한 활동을 경험해요.',
+      '관심 있는 세션과 행사에 자유롭게 참여하며\n사람들을 만나고 다양한 활동을 경험해요.',
     to: '/community-member',
     orbitSize: 1053,
     angle: -42,
@@ -20,7 +20,7 @@ const orbitProfiles = [
   {
     imageSrc: '/img/frontend.jpg',
     label: 'Part Member',
-    description: '관심 있는 파트에서 정기적으로 함께 공부하고, 서로의 지식을 공유해요.',
+    description: '관심 있는 파트에서 정기적으로 함께 공부하고,\n서로의 지식을 공유해요.',
     to: '/part-member',
     orbitSize: 810,
     xsOrbitSize: 870,
@@ -34,7 +34,7 @@ const orbitProfiles = [
     imageSrc: '/img/alumni.jpg',
     label: 'Alumni',
     description:
-      '활동이 끝난 뒤에도 커뮤니티와 연결되어, 선배와 후배 기수가 경험을 나누며 꾸준히 교류해요.',
+      '활동이 끝난 뒤에도 커뮤니티와 연결되어,\n선배와 후배 기수가 경험을 나누며 꾸준히 교류해요.',
     to: '/alumni',
     orbitSize: 1247,
     angle: 27,

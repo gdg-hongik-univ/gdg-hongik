@@ -35,15 +35,10 @@ const OrbitProfile = ({
     '--orbit-profile-size': `${orbitSize}px`,
     '--orbit-profile-xs-size': `${xsOrbitSize}px`,
     '--orbit-profile-angle': `${angle}deg`,
-    '--orbit-profile-counter-angle': `${-angle}deg`,
     '--orbit-profile-xs-angle': `${xsAngle}deg`,
-    '--orbit-profile-xs-counter-angle': `${-xsAngle}deg`,
     '--orbit-profile-s-angle': `${sAngle}deg`,
-    '--orbit-profile-s-counter-angle': `${-sAngle}deg`,
     '--orbit-profile-m-angle': `${mAngle}deg`,
-    '--orbit-profile-m-counter-angle': `${-mAngle}deg`,
     '--orbit-profile-l-angle': `${lAngle}deg`,
-    '--orbit-profile-l-counter-angle': `${-lAngle}deg`,
   } as CSSProperties
 
   return (
@@ -65,9 +60,12 @@ const OrbitProfile = ({
           aria-label={label}
         >
           <figure className="pointer-events-none absolute top-1/2 left-1/2 m-0">
-            <div className="invisible absolute bottom-24.75 left-0 z-50 flex w-max max-w-90 -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-21.25 m:bottom-21.25">
-              <div className="rounded-xl bg-blue-100 px-5 py-3.5 text-center">
-                <Typography variant="body2.2" className="text-black max-[1024px]:text-caption1!">
+            <div className="invisible absolute bottom-24.75 left-0 z-50 flex w-max -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-21.25 m:bottom-21.25">
+              <div className="orbit-profile-bubble rounded-xl bg-blue-100 px-5 py-3.5 text-center">
+                <Typography
+                  variant="body2.2"
+                  className="whitespace-pre text-black [--text-body2:16px] [--text-caption1:14px] max-[768px]:text-caption1!"
+                >
                   {description}
                 </Typography>
               </div>
