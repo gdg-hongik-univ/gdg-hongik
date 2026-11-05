@@ -23,11 +23,9 @@ const UpcomingEventTimeline = ({
   today,
 }: UpcomingEventTimelineProps) => {
   const {
-    markTimelineAnimationComplete,
     expandedEventId,
     getEventInteractionProps,
     hasTimelineEnteredViewport,
-    isInteractionHintHidden,
     registerEventElement,
     scrollContainerRef,
     timelineRef,
@@ -92,9 +90,6 @@ const UpcomingEventTimeline = ({
                         ? { animationDelay: `${1.2 + index * 0.15}s` }
                         : undefined
                     }
-                    onAnimationEnd={
-                      index === events.length - 1 ? markTimelineAnimationComplete : undefined
-                    }
                   >
                     <UpcomingEventCard
                       dateLabel={formatMonthDay(event.date)}
@@ -116,18 +111,9 @@ const UpcomingEventTimeline = ({
       <Typography
         as="p"
         variant="caption1.3"
-        aria-hidden={isInteractionHintHidden}
-        className={cn(
-          'text-center text-gray-400 transition-opacity duration-300 s:!text-[16px] m:!text-[16px] l:!text-[18px] xl:!text-[18px]',
-          isInteractionHintHidden ? 'opacity-0' : 'opacity-100',
-        )}
+        className="text-center text-gray-400 s:!text-[16px] m:!text-[16px] l:!text-[18px] xl:!text-[18px]"
       >
-        <span className="hidden [@media(hover:hover)_and_(pointer:fine)]:inline">
-          일정을 마우스로 호버하여 자세히 확인해보세요
-        </span>
-        <span className="[@media(hover:hover)_and_(pointer:fine)]:hidden">
-          일정을 탭하여 자세히 확인해보세요
-        </span>
+        일정을 클릭하여 자세히 확인해보세요
       </Typography>
     </>
   )

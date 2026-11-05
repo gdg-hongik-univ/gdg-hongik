@@ -17,9 +17,7 @@ const scrollEventToCenter = (
 
 export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimelineParams) => {
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
-  const [hasViewedEventDetails, setHasViewedEventDetails] = useState(false)
   const [hasTimelineEnteredViewport, setHasTimelineEnteredViewport] = useState(false)
-  const [isTimelineAnimationComplete, setIsTimelineAnimationComplete] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const eventElementsRef = useRef(new Map<string, HTMLLIElement>())
   const timelineRef = useRef<HTMLDivElement>(null)
@@ -84,7 +82,6 @@ export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimeli
     const showEventDetails = () => {
       if (isPast) return
       setExpandedEventId(eventId)
-      setHasViewedEventDetails(true)
     }
 
     return {
@@ -118,11 +115,9 @@ export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimeli
   }
 
   return {
-    markTimelineAnimationComplete: () => setIsTimelineAnimationComplete(true),
     expandedEventId,
     getEventInteractionProps,
     hasTimelineEnteredViewport,
-    isInteractionHintHidden: hasViewedEventDetails && isTimelineAnimationComplete,
     registerEventElement,
     scrollContainerRef,
     timelineRef,
