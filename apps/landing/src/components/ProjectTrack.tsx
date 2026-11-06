@@ -26,6 +26,10 @@ const COURSES = [
   },
 ] as const
 
+/**
+ * 프로젝트 트랙이 화면에 들어오면 등장 애니메이션을 한 번 재생한다.
+ * 점이 먼저 나타나고, 선과 코스 제목이 함께 나타나기 시작한 뒤 사진과 설명이 코스별로 이어진다.
+ */
 export default function ProjectTrack() {
   const listRef = useRef<HTMLOListElement>(null)
   const [hasEntered, setHasEntered] = useState(false)
@@ -58,10 +62,10 @@ export default function ProjectTrack() {
       ref={listRef}
       aria-label="프로젝트 트랙 진행 과정"
       className={cn(
-        'grid gap-(--course-gap) font-primary leading-[1.5] tracking-[-0.015em] [--course-gap:20px] [--marker-x:14px] [--marker-y:14px] [--content-delay:1100ms]',
+        'grid gap-(--course-gap) font-primary leading-[1.5] tracking-[-0.015em] [--course-gap:20px] [--marker-x:14px] [--marker-y:14px] [--content-delay:800ms]',
         'min-[600px]:[--course-gap:24px] min-[600px]:[--image-width:210px] min-[600px]:[--image-gap:20px] min-[600px]:[--marker-x:calc(var(--image-width)+var(--image-gap)+14px)] min-[600px]:[--marker-y:26px]',
         'm:[--image-width:230px] m:[--image-gap:24px]',
-        'min-[1024px]:grid-cols-3 min-[1024px]:pr-(--marker-x) min-[1024px]:[--course-gap:12px] min-[1024px]:[--marker-x:18px] min-[1024px]:[--marker-y:18px] min-[1024px]:[--content-delay:1400ms]',
+        'min-[1024px]:grid-cols-3 min-[1024px]:pr-(--marker-x) min-[1024px]:[--course-gap:12px] min-[1024px]:[--marker-x:18px] min-[1024px]:[--marker-y:18px] min-[1024px]:[--content-delay:1100ms]',
         'xl:px-6 xl:[--course-gap:16px]',
       )}
     >
@@ -123,6 +127,8 @@ export default function ProjectTrack() {
             <h3
               className={cn(
                 revealClass,
+                'delay-300 translate-y-0',
+                !hasEntered && '-translate-x-3',
                 'col-start-2 row-start-1 w-fit bg-white pl-1 text-[16px] font-bold text-blue-700',
                 'min-[600px]:col-start-3 min-[600px]:mt-3 min-[600px]:px-2 min-[600px]:text-[20px]',
                 'min-[1024px]:col-start-2 min-[1024px]:mt-0 min-[1024px]:text-[22px]',
