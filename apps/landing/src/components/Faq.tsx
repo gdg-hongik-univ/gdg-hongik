@@ -4,10 +4,18 @@ import { ChevronIcon, KakaotalkBarIcon } from '@gdg/wowds/icon'
 import { FAQ_DATA } from '../constants/faqData'
 
 export const Faq = () => {
-  const [openId, setOpenId] = useState<string | null>(null)
+  const [openIds, setOpenIds] = useState<Set<string>>(() => new Set())
 
   const toggleAccordion = (id: string) => {
-    setOpenId((prev) => (prev === id ? null : id))
+    setOpenIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) {
+        next.delete(id)
+      } else {
+        next.add(id)
+      }
+      return next
+    })
   }
 
   return (
@@ -41,14 +49,14 @@ export const Faq = () => {
 
       <div className="flex w-full flex-col">
         {FAQ_DATA.map((faq) => {
-          const isOpen = openId === faq.id
+          const isOpen = openIds.has(faq.id)
           const triggerId = `faq-trigger-${faq.id}`
           const panelId = `faq-panel-${faq.id}`
 
           return (
             <div
               key={faq.id}
-              className="w-full border-t border-blue-500/30 transition-all duration-200 px-6 py-8 xs:p-3 s:pl-5 s:py-5 s:pr-4"
+              className="w-full border-t border-blue-500/30 transition-all duration-200 px-6 py-8 xs:p-3 s:pl-5 s:py-6 s:pr-4"
             >
               <button
                 id={triggerId}
