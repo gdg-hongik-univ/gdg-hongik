@@ -123,10 +123,11 @@
     sin(var(--orbit-profile-current-angle)) * var(--orbit-profile-current-size) / 2
   );
   position: relative;
+  max-width: calc(100cqw - 16px);
   left: clamp(
-    calc((100% - 100vw) / 2 - var(--orbit-profile-x) + 8px),
+    calc((100% - 100cqw) / 2 - var(--orbit-profile-x) + 8px),
     0px,
-    calc((100vw - 100%) / 2 - var(--orbit-profile-x) - 8px)
+    calc((100cqw - 100%) / 2 - var(--orbit-profile-x) - 8px)
   );
 }
 

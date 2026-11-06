@@ -64,7 +64,7 @@ const OrbitProfile = ({
               <div className="orbit-profile-bubble rounded-xl bg-blue-100 px-5 py-3.5 text-center">
                 <Typography
                   variant="body2.2"
-                  className="whitespace-pre text-black [--text-body2:16px] [--text-caption1:14px] max-[768px]:text-caption1!"
+                  className="wrap-anywhere whitespace-pre-line text-[16px]! text-black max-[768px]:text-[14px]!"
                 >
                   {description}
                 </Typography>
