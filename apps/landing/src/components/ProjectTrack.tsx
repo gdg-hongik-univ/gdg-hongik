@@ -26,6 +26,10 @@ const COURSES = [
   },
 ] as const
 
+/**
+ * 프로젝트 트랙이 화면에 들어오면 등장 애니메이션을 한 번 재생한다.
+ * 점이 먼저 나타나고, 선과 코스 제목이 함께 나타나기 시작한 뒤 사진과 설명이 코스별로 이어진다.
+ */
 export default function ProjectTrack() {
   const listRef = useRef<HTMLOListElement>(null)
   const [hasEntered, setHasEntered] = useState(false)
