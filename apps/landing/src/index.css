@@ -4,8 +4,11 @@
 
 @source '../../../packages/wowds/ui';
 
+@custom-variant xs (@media (max-width: 599px));
+
 @layer base {
   body {
+    min-width: 360px;
     font-family: var(--font-primary);
   }
 }
@@ -139,7 +142,7 @@
   );
 }
 
-@media (min-width: 360px) and (max-width: 599px) {
+@media (max-width: 599px) {
   .orbit-line-size {
     width: var(--orbit-line-xs-size);
     height: var(--orbit-line-xs-size);
