@@ -1,4 +1,11 @@
-import { type KeyboardEvent, type PointerEvent, useEffect, useRef, useState } from 'react'
+import {
+  type KeyboardEvent,
+  type PointerEvent,
+  type UIEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 
 type UseUpcomingEventTimelineParams = {
   nextEventId: string | null
@@ -17,6 +24,7 @@ const scrollEventToCenter = (
 
 export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimelineParams) => {
   const [expandedEventId, setExpandedEventId] = useState<string | null>(null)
+  const [focusedEventId, setFocusedEventId] = useState<string | null>(null)
   const [hasTimelineEnteredViewport, setHasTimelineEnteredViewport] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const eventElementsRef = useRef(new Map<string, HTMLLIElement>())
@@ -78,10 +86,32 @@ export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimeli
     return () => observer.disconnect()
   }, [])
 
+  const handleScroll = ({ currentTarget }: UIEvent<HTMLDivElement>) => {
+    const viewportHalfWidth = currentTarget.clientWidth / 2
+    const viewportCenter = currentTarget.scrollLeft + viewportHalfWidth
+    let closestEventId: string | null = null
+    let closestDistance = Infinity
+
+    for (const [eventId, element] of eventElementsRef.current) {
+      const distance = Math.abs(element.offsetLeft + element.offsetWidth / 2 - viewportCenter)
+      if (eventId === expandedEventId && distance <= viewportHalfWidth) {
+        setFocusedEventId(eventId)
+        return
+      }
+      if (distance < closestDistance) {
+        closestEventId = eventId
+        closestDistance = distance
+      }
+    }
+
+    setFocusedEventId(closestEventId)
+  }
+
   const getEventInteractionProps = (eventId: string, isPast: boolean) => {
     const showEventDetails = () => {
       if (isPast) return
       setExpandedEventId(eventId)
+      setFocusedEventId(eventId)
     }
 
     return {
@@ -116,7 +146,9 @@ export const useUpcomingEventTimeline = ({ nextEventId }: UseUpcomingEventTimeli
 
   return {
     expandedEventId,
+    focusedEventId,
     getEventInteractionProps,
+    handleScroll,
     hasTimelineEnteredViewport,
     registerEventElement,
     scrollContainerRef,
