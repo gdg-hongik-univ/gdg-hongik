@@ -38,12 +38,12 @@ const DescriptionLines = ({ lines }: DescriptionLinesProps) =>
   ))
 
 const TopBannerContent = () => (
-  <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 px-5 s:items-center s:gap-3 s:px-0 m:w-auto m:items-center m:justify-center m:gap-3 m:px-0 l:flex-row l:items-center l:justify-center l:gap-13 xl:w-auto xl:max-w-none xl:flex-row xl:items-center xl:justify-center xl:gap-32">
+  <div className="mx-auto flex w-full max-w-7xl flex-col xs:gap-4 xs:px-4 s:items-center s:gap-3 s:px-0 m:w-auto m:items-center m:justify-center m:gap-3 m:px-0 l:flex-row l:items-center l:justify-center l:gap-13 xl:w-auto xl:max-w-none xl:flex-row xl:items-center xl:justify-center xl:gap-32">
     <Typography
-      variant="title1.2"
+      variant="display3.2"
       as="h2"
       isEn
-      className="shrink-0 tracking-[-0.54px]! s:whitespace-nowrap m:whitespace-nowrap m:tracking-normal! l:w-90.5 l:whitespace-nowrap l:text-[44px]! l:tracking-normal! xl:w-98.5 xl:whitespace-nowrap xl:text-[48px]! xl:tracking-normal!"
+      className="shrink-0 tracking-[-0.54px]! xs:text-[36px]! s:whitespace-nowrap m:whitespace-nowrap m:tracking-normal! l:w-90.5 l:whitespace-nowrap l:text-[44px]! l:tracking-normal! xl:w-98.5 xl:whitespace-nowrap xl:text-[48px]! xl:tracking-normal!"
     >
       <span className="block s:inline m:inline l:inline xl:inline">Choose </span>
       <span className="block s:inline m:inline l:inline xl:inline">Your Path!</span>
