@@ -1,4 +1,5 @@
 import { cn, Typography } from '@gdg/wowds'
+import type { CSSProperties } from 'react'
 import { useUpcomingEventTimeline } from '../../hooks/useUpcomingEventTimeline'
 import type { EventItem, UpcomingEventCardState } from '../../types/upcomingEvents'
 import {
@@ -23,15 +24,25 @@ const UpcomingEventTimeline = ({
   today,
 }: UpcomingEventTimelineProps) => {
   const {
-    markTimelineAnimationComplete,
     expandedEventId,
+    focusedEventId,
     getEventInteractionProps,
+    handleScroll,
     hasTimelineEnteredViewport,
-    isInteractionHintHidden,
     registerEventElement,
     scrollContainerRef,
     timelineRef,
   } = useUpcomingEventTimeline({ nextEventId })
+
+  const focusedIndex = events.findIndex((event) => event.id === (focusedEventId ?? nextEventId))
+  const connectedCount = Math.min(events.length, 3)
+  const firstConnectedIndex = Math.min(
+    Math.max(0, focusedIndex - 1),
+    events.length - connectedCount,
+  )
+  // At the ends, shift the line inward so it still connects three events when available.
+  const lineCenterIndex = firstConnectedIndex + (connectedCount - 1) / 2
+  const timelineCenterIndex = (events.length - 1) / 2
 
   return (
     <>
@@ -46,13 +57,21 @@ const UpcomingEventTimeline = ({
 
         <div
           ref={scrollContainerRef}
+          onScroll={handleScroll}
           className="-mt-2 w-full overflow-x-auto pt-2 [scrollbar-width:none] s:mt-0 s:pt-0 m:mt-0 m:pt-0 l:mt-0 l:overflow-visible l:pt-0 xl:mt-0 xl:overflow-visible xl:pt-0 [&::-webkit-scrollbar]:hidden"
         >
           <div
             ref={timelineRef}
             className="relative mx-auto w-max min-w-full s:py-15 m:py-15 l:py-15 xl:py-15"
           >
-            <div className="absolute top-5 left-1/2 -translate-x-1/2 s:top-20 m:top-20 l:top-20 xl:top-20">
+            <div
+              className="absolute top-5 left-1/2 -translate-x-1/2 xs:left-[calc(50%+var(--timeline-line-offset))] xs:motion-safe:transition-[left] s:top-20 m:top-20 l:top-20 xl:top-20"
+              style={
+                {
+                  '--timeline-line-offset': `calc(${lineCenterIndex - timelineCenterIndex} * 32 * var(--spacing))`,
+                } as CSSProperties
+              }
+            >
               <div
                 aria-hidden="true"
                 className={cn(
@@ -92,9 +111,6 @@ const UpcomingEventTimeline = ({
                         ? { animationDelay: `${1.2 + index * 0.15}s` }
                         : undefined
                     }
-                    onAnimationEnd={
-                      index === events.length - 1 ? markTimelineAnimationComplete : undefined
-                    }
                   >
                     <UpcomingEventCard
                       dateLabel={formatMonthDay(event.date)}
@@ -116,18 +132,9 @@ const UpcomingEventTimeline = ({
       <Typography
         as="p"
         variant="caption1.3"
-        aria-hidden={isInteractionHintHidden}
-        className={cn(
-          'text-center text-gray-400 transition-opacity duration-300 s:!text-[16px] m:!text-[16px] l:!text-[18px] xl:!text-[18px]',
-          isInteractionHintHidden ? 'opacity-0' : 'opacity-100',
-        )}
+        className="text-center text-gray-400 s:!text-[16px] m:!text-[16px] l:!text-[18px] xl:!text-[18px]"
       >
-        <span className="hidden [@media(hover:hover)_and_(pointer:fine)]:inline">
-          일정을 마우스로 호버하여 자세히 확인해보세요
-        </span>
-        <span className="[@media(hover:hover)_and_(pointer:fine)]:hidden">
-          일정을 탭하여 자세히 확인해보세요
-        </span>
+        일정을 클릭하여 자세히 확인해보세요
       </Typography>
     </>
   )

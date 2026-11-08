@@ -4,8 +4,11 @@
 
 @source '../../../packages/wowds/ui';
 
+@custom-variant xs (@media (max-width: 599px));
+
 @layer base {
   body {
+    min-width: 360px;
     font-family: var(--font-primary);
   }
 }
@@ -95,8 +98,9 @@
 }
 
 .orbit-profile-size {
-  width: var(--orbit-profile-size);
-  height: var(--orbit-profile-size);
+  --orbit-profile-current-size: var(--orbit-profile-size);
+  width: var(--orbit-profile-current-size);
+  height: var(--orbit-profile-current-size);
   transition:
     width 500ms cubic-bezier(0.4, 0, 0.2, 1),
     height 500ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,64 +108,70 @@
 }
 
 .orbit-profile-angle-layer {
-  transform: rotate(var(--orbit-profile-angle));
+  --orbit-profile-current-angle: var(--orbit-profile-angle);
+  transform: rotate(var(--orbit-profile-current-angle));
   transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
 .orbit-profile-content {
-  rotate: var(--orbit-profile-counter-angle);
+  --orbit-profile-x: calc(
+    sin(var(--orbit-profile-current-angle)) * var(--orbit-profile-current-size) / 2
+  );
+  rotate: calc(-1 * var(--orbit-profile-current-angle));
   transition: rotate 500ms cubic-bezier(0.4, 0, 0.2, 1);
   will-change: rotate;
 }
 
-@media (min-width: 360px) and (max-width: 599px) {
+.orbit-profile-bubble {
+  /* 화면 가장자리에서는 꼬리 위치를 유지하고 말풍선 본문만 안쪽으로 옮긴다. */
+  position: relative;
+  max-width: calc(100cqw - 16px);
+  left: clamp(
+    calc((100% - 100cqw) / 2 - var(--orbit-profile-x) + 8px),
+    0px,
+    calc((100cqw - 100%) / 2 - var(--orbit-profile-x) - 8px)
+  );
+}
+
+.orbit-profile-label {
+  translate: clamp(
+    calc(8px - 50cqw - var(--orbit-profile-x)),
+    -50%,
+    calc(50cqw - var(--orbit-profile-x) - 100% - 8px)
+  );
+}
+
+@media (max-width: 599px) {
   .orbit-line-size {
     width: var(--orbit-line-xs-size);
     height: var(--orbit-line-xs-size);
   }
 
   .orbit-profile-size {
-    width: var(--orbit-profile-xs-size);
-    height: var(--orbit-profile-xs-size);
+    --orbit-profile-current-size: var(--orbit-profile-xs-size);
   }
 
   .orbit-profile-angle-layer {
-    transform: rotate(var(--orbit-profile-xs-angle));
-  }
-
-  .orbit-profile-content {
-    rotate: var(--orbit-profile-xs-counter-angle);
+    --orbit-profile-current-angle: var(--orbit-profile-xs-angle);
   }
 }
 
 @media (min-width: 600px) and (max-width: 767px) {
   .orbit-profile-angle-layer {
-    transform: rotate(var(--orbit-profile-s-angle));
-  }
-
-  .orbit-profile-content {
-    rotate: var(--orbit-profile-s-counter-angle);
+    --orbit-profile-current-angle: var(--orbit-profile-s-angle);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .orbit-profile-angle-layer {
-    transform: rotate(var(--orbit-profile-m-angle));
-  }
-
-  .orbit-profile-content {
-    rotate: var(--orbit-profile-m-counter-angle);
+    --orbit-profile-current-angle: var(--orbit-profile-m-angle);
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
   .orbit-profile-angle-layer {
-    transform: rotate(var(--orbit-profile-l-angle));
-  }
-
-  .orbit-profile-content {
-    rotate: var(--orbit-profile-l-counter-angle);
+    --orbit-profile-current-angle: var(--orbit-profile-l-angle);
   }
 }
 
