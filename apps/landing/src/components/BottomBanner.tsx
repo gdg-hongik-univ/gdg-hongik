@@ -1,5 +1,6 @@
 import { Typography } from '@gdg/wowds'
 import CTAButton from './common/CTAButton'
+import { Skeleton } from './common/Skeleton'
 import { BottomBannerBg } from './banner/BottomBannerBg'
 
 interface RecruitmentStatusProps {
@@ -8,21 +9,20 @@ interface RecruitmentStatusProps {
 }
 
 const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusProps) => {
+  const isLoading = isRecruiting === null
+
   return (
     <section className="relative w-full overflow-hidden xs:h-73 s:h-75 m:h-75 h-87">
       <BottomBannerBg />
       <div className="absolute inset-0 z-10 flex flex-col justify-center xs:items-start xs:text-left xs:pl-8 items-center text-center gap-8 text-white">
-        <div className="flex flex-col xs:gap-2 s:gap-2 gap-3">
+        <div className={`flex flex-col xs:gap-2 s:gap-2 gap-3 ${isLoading ? 'xl:gap-3.5' : ''}`}>
           <Typography
             variant="display2.1"
             isEn={isRecruiting === true}
             className="xs:text-[30px]! s:text-[40px]! m:text-[40px]!"
           >
-            {isRecruiting === null ? (
-              <span
-                aria-hidden="true"
-                className="block h-[1lh] w-[7em] max-w-[85vw] rounded-lg bg-white/20 motion-safe:animate-pulse xs:h-[2lh]"
-              />
+            {isLoading ? (
+              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-[7em] max-w-[85vw] xs:h-[2lh] xl:h-[62px] xl:w-[699px]" />
             ) : isRecruiting ? (
               'Join Us!'
             ) : (
@@ -36,11 +36,8 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
             variant="subtitle4.3"
             className="xs:text-[14px]! s:text-[18px]! m:text-[18px]! break-keep"
           >
-            {isRecruiting === null ? (
-              <span
-                aria-hidden="true"
-                className="block h-[1lh] w-[20em] max-w-[85vw] rounded-lg bg-white/20 motion-safe:animate-pulse xs:h-[2lh] s:h-[2lh]"
-              />
+            {isLoading ? (
+              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-[20em] max-w-[85vw] xs:h-[2lh] s:h-[2lh] xl:h-[30px] xl:w-[699px]" />
             ) : isRecruiting ? (
               <>
                 GDG Hongik Univ.에서 함께 배우고 만들며
@@ -58,11 +55,16 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
         <CTAButton
           property="sub"
           size="auto"
+          className={
+            isLoading
+              ? 'motion-safe:animate-recruitment-loading [--loading-background:color-mix(in_srgb,var(--color-white)_90%,transparent)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-light)_80%,transparent)]'
+              : undefined
+          }
           onClick={onRecruitmentClick}
-          disabled={isRecruiting === null}
-          aria-busy={isRecruiting === null}
+          disabled={isLoading}
+          aria-busy={isLoading}
         >
-          {isRecruiting === null
+          {isLoading
             ? '모집 정보 확인 중'
             : isRecruiting
               ? 'GDG 가입하러 가기'

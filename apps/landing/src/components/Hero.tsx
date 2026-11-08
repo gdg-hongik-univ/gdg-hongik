@@ -28,7 +28,11 @@ interface HeroProps {
   onRecruitmentClick: () => void
 }
 
+const LOADING_CTA_CLASS =
+  'xl:min-w-[242px] motion-safe:animate-recruitment-loading motion-safe:shadow-[inset_0_0_0_1.5px_var(--color-disabled-blue)] [--loading-background:var(--color-disabled-blue)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-blue)_60%,transparent)]'
+
 export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
+  const isLoading = isRecruiting === null
   const isM = useIsMedium()
   const introductionRef = useRef<HTMLElement>(null)
   const scrollFrameRef = useRef(0)
@@ -116,12 +120,12 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
           </section>
           <CTAButton
             property="main"
-            className="min-w-42 min-[600px]:min-w-50 min-[1024px]:min-w-67"
+            className={`min-w-42 min-[600px]:min-w-50 l:min-w-67 ${isLoading ? LOADING_CTA_CLASS : 'xl:min-w-67'}`}
             onClick={onRecruitmentClick}
-            disabled={isRecruiting === null}
-            aria-busy={isRecruiting === null}
+            disabled={isLoading}
+            aria-busy={isLoading}
           >
-            {isRecruiting === null
+            {isLoading
               ? '모집 정보 확인 중'
               : isRecruiting
                 ? 'GDG 가입하러 가기'
