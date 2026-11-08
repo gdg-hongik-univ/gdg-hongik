@@ -1,5 +1,5 @@
 import { Typography } from '@gdg/wowds'
-import CTAButton from './common/CTAButton'
+import { RecruitmentCTA } from './common/RecruitmentCTA'
 import { Skeleton } from './common/Skeleton'
 import { BottomBannerBg } from './banner/BottomBannerBg'
 
@@ -54,24 +54,17 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
           </Typography>
         </div>
 
-        <CTAButton
+        <RecruitmentCTA
           property="sub"
-          size="auto"
           className={
             isLoading
               ? 'motion-safe:animate-recruitment-loading [--loading-background:color-mix(in_srgb,var(--color-white)_90%,transparent)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-light)_80%,transparent)]'
               : undefined
           }
+          isRecruiting={isRecruiting}
+          closedLabel="GDG 채널 둘러보기"
           onClick={onRecruitmentClick}
-          disabled={isLoading}
-          aria-busy={isLoading}
-        >
-          {isLoading
-            ? '모집 정보 확인 중'
-            : isRecruiting
-              ? 'GDG 가입하러 가기'
-              : 'GDG 채널 둘러보기'}
-        </CTAButton>
+        />
       </div>
     </section>
   )
