@@ -15,14 +15,16 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
     <section className="relative w-full overflow-hidden xs:h-73 s:h-75 m:h-75 h-87">
       <BottomBannerBg />
       <div className="absolute inset-0 z-10 flex flex-col justify-center xs:items-start xs:text-left xs:pl-8 items-center text-center gap-8 text-white">
-        <div className={`flex flex-col xs:gap-2 s:gap-2 gap-3 ${isLoading ? 'xl:gap-3.5' : ''}`}>
+        <div
+          className={`flex flex-col xs:gap-2 s:gap-2 gap-3 ${isLoading ? 'w-70 max-w-[85vw] s:w-90 m:w-105 l:w-120 xl:w-[699px] xl:gap-3.5' : ''}`}
+        >
           <Typography
             variant="display2.1"
             isEn={isRecruiting === true}
             className="xs:text-[30px]! s:text-[40px]! m:text-[40px]!"
           >
             {isLoading ? (
-              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-[7em] max-w-[85vw] xs:h-[2lh] xl:h-[62px] xl:w-[699px]" />
+              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-full xs:h-[2lh] xl:h-[62px]" />
             ) : isRecruiting ? (
               'Join Us!'
             ) : (
@@ -37,7 +39,7 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
             className="xs:text-[14px]! s:text-[18px]! m:text-[18px]! break-keep"
           >
             {isLoading ? (
-              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-[20em] max-w-[85vw] xs:h-[2lh] s:h-[2lh] xl:h-[30px] xl:w-[699px]" />
+              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-full xs:h-[2lh] s:h-[2lh] xl:h-[30px]" />
             ) : isRecruiting ? (
               <>
                 GDG Hongik Univ.에서 함께 배우고 만들며
