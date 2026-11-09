@@ -49,8 +49,8 @@ export default function PartCardBg({ part }: { part: keyof typeof BACKGROUNDS })
         className="absolute inset-0 h-full w-full"
         preserveAspectRatio="none"
       >
-        <rect width="408" height="408" fill={`var(--color-core-${background.color}-50)`} />
-        <rect width="408" height="408" fill={`url(#${gradientId})`} fillOpacity="0.3" />
+        <rect width="100%" height="100%" fill={`var(--color-core-${background.color}-50)`} />
+        <rect width="100%" height="100%" fill={`url(#${gradientId})`} fillOpacity="0.3" />
         <defs>
           <radialGradient
             id={gradientId}

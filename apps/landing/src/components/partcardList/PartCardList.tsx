@@ -39,8 +39,8 @@ interface PartInfo {
   id: 'frontend' | 'backend' | 'ai'
   name: string
   description: Responsive
-  detailDescription: Responsive
-  recommendations: Responsive[]
+  detailDescription: string
+  recommendations: string[]
   titleColor: string
   descriptionColor: string
   activeBg: string
@@ -53,20 +53,11 @@ const PART_ITEMS: PartInfo[] = [
     id: 'frontend',
     name: 'FRONTEND',
     description: rt('사용자와 가장 먼저 만나는 화면을,\n오래 쓰이는 코드로 만들어요.'),
-    detailDescription: rt(
-      '자바스크립트와 타입스크립트의 핵심 원리부터\n디자인 패턴까지 파고들며, 더 나은 코드로 개선\n하는 경험을 함께 쌓아요.',
-      {
-        s: '자바스크립트와 타입스크립트의 핵심 원리\n부터 디자인 패턴까지 파고들며, 더 나은\n코드로 개선하는 경험을 함께 쌓아요.',
-      },
-    ),
+    detailDescription:
+      '자바스크립트와 타입스크립트의 핵심 원리부터 디자인 패턴까지 파고들며, 더 나은 코드로 개선하는 경험을 함께 쌓아요.',
     recommendations: [
-      rt('사용자 경험과 코드의 완성도까지 고민하고 싶은 분', {
-        xs: '사용자 경험과 코드의 완성도까지 고민하고\n싶은 분',
-        s: '사용자 경험과 코드의 완성도까지 고민하고\n싶은 분',
-      }),
-      rt('유지보수가 쉬운 프론트엔드를 함께 만들어가고\n싶은 분', {
-        s: '유지보수가 쉬운 프론트엔드를 함께 만들어\n가고 싶은 분',
-      }),
+      '사용자 경험과 코드의 완성도까지 고민하고 싶은 분',
+      '유지보수가 쉬운 프론트엔드를 함께 만들어가고 싶은 분',
     ],
     titleColor: 'text-core-blue-500',
     descriptionColor: 'text-gray-700',
@@ -80,20 +71,11 @@ const PART_ITEMS: PartInfo[] = [
     description: rt('눈에 보이지 않는 곳에서\n서비스를 떠받치는 구조를 설계해요.', {
       s: '눈에 보이지 않는 곳에서 서비스를\n떠받치는 구조를 설계해요.',
     }),
-    detailDescription: rt(
-      'Spring의 내부 원리부터 대규모 시스템 설계\n까지, 문제를 함께 탐구해요. 깊이 있는 학습과\n경험 나눔으로 함께 성장해봐요.',
-      {
-        m: 'Spring의 내부 원리부터 대규모 시스템 설계까지,\n문제를 함께 탐구해요. 깊이 있는 학습과 경험 나눔\n으로 함께 성장해봐요.',
-        s: 'Spring의 내부 원리부터 대규모 시스템\n설계까지, 문제를 함께 탐구해요. 깊이 있는\n학습과 경험 나눔으로 함께 성장해봐요.',
-      },
-    ),
+    detailDescription:
+      'Spring의 내부 원리부터 대규모 시스템 설계까지, 문제를 함께 탐구해요. 깊이 있는 학습과 경험 나눔으로 함께 성장해봐요.',
     recommendations: [
-      rt('Spring의 동작 방식과 대규모 서비스 설계를 깊게\n공부해보고 싶은 분', {
-        m: 'Spring의 동작 방식과 대규모 서비스 설계를 깊게 공\n부해보고 싶은 분',
-        s: 'Spring의 동작 방식과 대규모 서비스 설계\n를 깊게 공부해보고 싶은 분',
-        xs: 'Spring의 동작 방식과 대규모 서비스 설계를 깊\n게 공부해보고 싶은 분',
-      }),
-      rt('문제를 파고든 경험을 함께 나누고 싶은 분'),
+      'Spring의 동작 방식과 대규모 서비스 설계를 깊게 공부해보고 싶은 분',
+      '문제를 파고든 경험을 함께 나누고 싶은 분',
     ],
     titleColor: 'text-core-green-500',
     descriptionColor: 'text-gray-700',
@@ -107,20 +89,11 @@ const PART_ITEMS: PartInfo[] = [
     description: rt('데이터로 배우는 모델을 직접 만들고,\n실험으로 결과를 확인해요.', {
       s: '데이터로 배우는 모델을 직접\n만들고, 실험으로 결과를 확인해요.',
     }),
-    detailDescription: rt(
-      'AI를 더 깊이 공부하고 싶은 사람들이 함께 모여\n최신 AI 연구와 논문을 바탕으로 다양한 주제를\n탐구하고, 발표와 토론을 통해 서로의 지식과\n경험을 공유해요.',
-      {
-        m: 'AI를 더 깊이 공부하고 싶은 사람들이 함께 모여\n최신 AI 연구와 논문을 바탕으로 다양한 주제를\n탐구하고, 발표와 토론을 통해 서로의 지식과 경험을\n공유해요.',
-        s: 'AI를 더 깊이 공부하고 싶은 사람들이 함께\n모여 최신 AI 연구와 논문을 바탕으로\n다양한 주제를 탐구하고, 발표와 토론을\n통해 서로의 지식과 경험을 공유해요.',
-      },
-    ),
+    detailDescription:
+      'AI를 더 깊이 공부하고 싶은 사람들이 함께 모여 최신 AI 연구와 논문을 바탕으로 다양한 주제를 탐구하고, 발표와 토론을 통해 서로의 지식과 경험을 공유해요.',
     recommendations: [
-      rt('머신러닝을 직접 구현하고 실험해보고 싶은 분', {
-        s: '머신러닝을 직접 구현하고 실험해보고\n싶은 분',
-      }),
-      rt('함께 토론하며 더 나은 결과를 만들어가고 싶은 분', {
-        s: '함께 토론하며 더 나은 결과를 만들어\n가고 싶은 분',
-      }),
+      '머신러닝을 직접 구현하고 실험해보고 싶은 분',
+      '함께 토론하며 더 나은 결과를 만들어가고 싶은 분',
     ],
     titleColor: 'text-core-red-500',
     descriptionColor: 'text-gray-700',
@@ -144,7 +117,7 @@ export default function PartCardList() {
             onMouseEnter={() => setActiveCard(part.id)}
             onMouseLeave={() => setActiveCard(null)}
             onClick={() => setActiveCard(isActive ? null : part.id)}
-            className="relative overflow-hidden flex flex-col rounded-2xl xs:w-82 xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
+            className="relative overflow-hidden flex flex-col rounded-2xl xs:w-full xs:h-82 s:w-75 s:h-85 m:w-90 m:h-90 w-102 h-102 shrink-0 cursor-pointer"
           >
             <div
               className={`pointer-events-none absolute inset-0 z-0 rounded-[inherit] transition-opacity duration-300 ${
@@ -203,9 +176,9 @@ export default function PartCardList() {
 
                 <Typography
                   variant="body2.3"
-                  className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                  className="min-w-0 break-keep leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
                 >
-                  <ResponsiveText text={part.detailDescription} />
+                  {part.detailDescription}
                 </Typography>
               </div>
 
@@ -230,9 +203,9 @@ export default function PartCardList() {
 
                       <Typography
                         variant="body2.3"
-                        className="leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
+                        className="min-w-0 break-keep leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
                       >
-                        <ResponsiveText text={recommendation} />
+                        {recommendation}
                       </Typography>
                     </div>
                   ))}
