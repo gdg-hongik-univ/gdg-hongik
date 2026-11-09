@@ -1,5 +1,5 @@
 import { Typography } from '@gdg/wowds'
-import { useRef, useState, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import type { regularStudyType } from '../types/study'
 import type { eventItems } from '../types/event'
 
@@ -8,8 +8,38 @@ type CarouselCardListProps =
   | { type: 'event'; events: eventItems }
 
 export default function CarouselCardList(props: CarouselCardListProps) {
+  const listRef = useRef<HTMLUListElement>(null)
   const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [hasHiddenCards, setHasHiddenCards] = useState(false)
+  const items = props.type === 'study' ? props.studies.items : props.events.items
+
+  useEffect(() => {
+    const list = listRef.current
+    if (!list) return
+
+    const lastCard = list.lastElementChild
+    const updateHiddenCards = () => {
+      // Ignore trailing padding: hide the hint as soon as the last card is fully visible.
+      setHasHiddenCards(
+        list.clientWidth > 0 &&
+          lastCard !== null &&
+          lastCard.getBoundingClientRect().right > list.getBoundingClientRect().right + 1,
+      )
+    }
+
+    updateHiddenCards()
+    list.addEventListener('scroll', updateHiddenCards, { passive: true })
+
+    const resizeObserver = new ResizeObserver(updateHiddenCards)
+    resizeObserver.observe(list)
+    if (lastCard) resizeObserver.observe(lastCard)
+
+    return () => {
+      list.removeEventListener('scroll', updateHiddenCards)
+      resizeObserver.disconnect()
+    }
+  }, [items])
 
   function handlePointerDown(event: PointerEvent<HTMLUListElement>) {
     if (event.pointerType !== 'mouse' || event.button !== 0) return
@@ -85,8 +115,9 @@ export default function CarouselCardList(props: CarouselCardListProps) {
         }))
 
   return (
-    <div className="min-w-0 w-full">
+    <div className="relative min-w-0 w-full">
       <ul
+        ref={listRef}
         aria-label={props.type === 'study' ? '정규 스터디 활동 카드' : '이벤트 활동 카드'}
         tabIndex={0}
         onPointerDown={handlePointerDown}
@@ -131,6 +162,12 @@ export default function CarouselCardList(props: CarouselCardListProps) {
           </li>
         ))}
       </ul>
+      {hasHiddenCards && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-0 right-0 bottom-4 w-9 bg-linear-to-r from-white/0 to-white/50 s:w-10 m:w-11 l:w-12 xl:w-[calc((100%-1280px)/2+20px)]"
+        />
+      )}
     </div>
   )
 }
