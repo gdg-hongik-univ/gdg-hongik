@@ -24,7 +24,7 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
             className="xs:text-[30px]! s:text-[40px]! m:text-[40px]!"
           >
             {isLoading ? (
-              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-full xs:h-[2lh] xl:h-[62px]" />
+              <Skeleton className="h-[1lh] w-full xs:h-[2lh] xl:h-[62px]" />
             ) : isRecruiting ? (
               'Join Us!'
             ) : (
@@ -39,7 +39,7 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
             className="xs:text-[14px]! s:text-[18px]! m:text-[18px]! break-keep"
           >
             {isLoading ? (
-              <Skeleton className="motion-safe:animate-recruitment-loading h-[1lh] w-full xs:h-[2lh] s:h-[2lh] xl:h-[30px]" />
+              <Skeleton className="h-[1lh] w-full xs:h-[2lh] s:h-[2lh] xl:h-[30px]" />
             ) : isRecruiting ? (
               <>
                 GDG Hongik Univ.에서 함께 배우고 만들며
