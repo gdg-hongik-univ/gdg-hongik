@@ -9,16 +9,21 @@ export interface CTAButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEle
   size?: CTAButtonSize
 }
 
-const PROPERTY_BASE_STYLES: Record<CTAButtonProperty, { border: string; inner: string }> = {
+const PROPERTY_BASE_STYLES: Record<
+  CTAButtonProperty,
+  { border: string; inner: string; disabledBackground: string }
+> = {
   main: {
     border:
       'bg-[conic-gradient(from_0deg,#CCDFFF_0%_20%,#0D5FE7_25%_25%,#CCDFFF_30%_70%,#0D5FE7_75%_75%,#CCDFFF_80%_100%)]',
     inner: 'bg-gradient-to-r from-blue-700/90 to-[#5897ff]/90 text-white',
+    disabledBackground: 'bg-disabled-blue',
   },
   sub: {
     border:
       'bg-[conic-gradient(from_0deg,#E8F7FC_0%_20%,#C1D8FF_25%_25%,#E8F7FC_30%_70%,#C1D8FF_75%_75%,#E8F7FC_80%_100%)]',
     inner: 'text-blue-500 bg-white',
+    disabledBackground: 'bg-disabled-light',
   },
 }
 
@@ -75,12 +80,16 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
     ref,
   ) => {
     const buttonBaseStyle =
-      'inline-flex p-[1.5px] rounded-full transition-all select-none cursor-pointer disabled:cursor-not-allowed disabled:opacity-50'
+      'inline-flex p-[1.5px] rounded-full transition-all select-none cursor-pointer disabled:cursor-not-allowed'
 
     const innerBaseStyle =
-      'w-full h-full rounded-full inline-flex items-center justify-center gap-2.5 [text-shadow:_0_0_12px_rgb(33_112_242_/_0.15)]'
+      'w-full h-full rounded-full inline-flex items-center justify-center gap-2.5'
 
-    const { border: borderStyle, inner: innerStyle } = PROPERTY_BASE_STYLES[property]
+    const { border, inner, disabledBackground } = PROPERTY_BASE_STYLES[property]
+    const buttonStyle = disabled ? disabledBackground : border
+    const innerStyle = disabled
+      ? 'text-disabled-text-blue'
+      : `${inner} [text-shadow:_0_0_12px_rgb(33_112_242_/_0.15)]`
     const sizeStyle = PROPERTY_SIZE_STYLES[property][size]
     const { variant, className: typographyClassName = '' } = PROPERTY_TYPOGRAPHY[property][size]
 
@@ -89,7 +98,7 @@ const CTAButton = forwardRef<HTMLButtonElement, CTAButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled}
-        className={` font-primary ${buttonBaseStyle} ${borderStyle} ${className}`}
+        className={`font-primary ${buttonBaseStyle} ${buttonStyle} ${className}`}
         {...restProps}
       >
         <Typography
