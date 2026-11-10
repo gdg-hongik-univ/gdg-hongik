@@ -1,6 +1,7 @@
 import { ChevronIcon, palette, Typography } from '@gdg/wowds'
 import { useEffect, useRef, useState } from 'react'
 import { CountUp } from '../hooks/CountUp'
+import { useCommunityStatistics } from '../hooks/useCommunityStatistics'
 import { RecruitmentCTA } from './common/RecruitmentCTA'
 import { GoogleColorText } from './common/GoogleColorText'
 
@@ -34,6 +35,7 @@ const LOADING_CTA_CLASS =
 export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
   const isLoading = isRecruiting === null
   const isM = useIsMedium()
+  const statisticsQuery = useCommunityStatistics()
   const introductionRef = useRef<HTMLElement>(null)
   const scrollFrameRef = useRef(0)
 
@@ -180,7 +182,10 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
             성장을 함께 만들어가고 있어요.
           </Typography>
         </section>
-        <section className="w-full max-w-124.5 pt-[27px] min-[600px]:pt-[31px] border-t border-[#4285f4]/30 pb-35 min-[1024px]:pb-40">
+        <section
+          aria-busy={statisticsQuery.isPending}
+          className="w-full max-w-124.5 pt-[27px] min-[600px]:pt-[31px] border-t border-[#4285f4]/30 pb-35 min-[1024px]:pb-40"
+        >
           <ol className="flex flex-row justify-center w-full gap-0.5 min-[600px]:gap-18 text-gray-600">
             <li className="flex min-w-0 flex-1 flex-col items-center min-[600px]:w-29.5 min-[600px]:flex-none gap-3">
               <Typography
@@ -196,7 +201,11 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
                 isEn
                 className="text-blue-700 text-[36px]! leading-[50px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!"
               >
-                <CountUp end={532} />
+                {statisticsQuery.data ? (
+                  <CountUp end={statisticsQuery.data.totalMemberCount} />
+                ) : (
+                  <span aria-hidden="true">-</span>
+                )}
               </Typography>
             </li>
             <li className="flex min-w-0 flex-1 flex-col items-center min-[600px]:w-29.5 min-[600px]:flex-none gap-3">
@@ -213,7 +222,11 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
                 isEn
                 className="text-blue-700 text-[36px]! leading-[50px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!"
               >
-                <CountUp end={38} />
+                {statisticsQuery.data ? (
+                  <CountUp end={statisticsQuery.data.totalProjectCount} />
+                ) : (
+                  <span aria-hidden="true">-</span>
+                )}
               </Typography>
             </li>
             <li className="flex min-w-0 flex-1 flex-col items-center min-[600px]:w-29.5 min-[600px]:flex-none gap-3">
@@ -230,7 +243,11 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
                 isEn
                 className="text-blue-700 text-[36px]! leading-[50px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!"
               >
-                <CountUp end={57} />
+                {statisticsQuery.data ? (
+                  <CountUp end={statisticsQuery.data.totalSeminarCount} />
+                ) : (
+                  <span aria-hidden="true">-</span>
+                )}
               </Typography>
             </li>
           </ol>
