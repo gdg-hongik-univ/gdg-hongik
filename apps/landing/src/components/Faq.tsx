@@ -105,7 +105,7 @@ export const Faq = () => {
                     <Typography
                       variant="subtitle4.2"
                       as="p"
-                      className="leading-relaxed text-gray-400 whitespace-pre-line xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
+                      className="break-keep leading-relaxed text-gray-400 whitespace-pre-line xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
                     >
                       {faq.answer}
                     </Typography>
