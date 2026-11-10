@@ -14,7 +14,7 @@ const TopBannerArtwork = () => (
     aria-hidden="true"
     className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none"
   >
-    <ArtworkImage className="absolute -left-24 top-12.25 xs:-top-19 xs:right-[-685.721px] h-auto w-282.75 max-w-none mix-blend-luminosity opacity-40 s:-left-19 s:-top-11 s:w-314 m:-left-24 m:-top-8.5 m:w-314 l:-left-19 l:top-4 l:w-314 xl:-left-19 xl:top-4 xl:w-314" />
+    <ArtworkImage className="absolute -left-24 top-12.25 xs:-top-19 h-auto w-282.75 max-w-none mix-blend-luminosity opacity-40 s:-left-19 s:-top-11 s:w-314 m:-left-24 m:-top-8.5 m:w-314 l:-left-19 l:top-4 l:w-314 xl:-left-19 xl:top-4 xl:w-314" />
     <ArtworkImage className="absolute -right-56.5 top-129.5 h-auto w-282.75 max-w-none rotate-180 mix-blend-luminosity opacity-50 s:hidden m:hidden l:hidden xl:hidden" />
     <div className="absolute right-13.75 top-147.75 h-5 w-5 overflow-hidden s:hidden m:hidden l:hidden xl:hidden">
       <ArtworkImage className="absolute -left-122.75 -top-30.75 h-auto w-141.25 max-w-none mix-blend-luminosity opacity-50" />
