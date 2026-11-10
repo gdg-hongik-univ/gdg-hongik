@@ -7,11 +7,15 @@ type CarouselCardListProps =
   | { type: 'study'; studies: regularStudyType }
   | { type: 'event'; events: eventItems }
 
+const GRADIENT_CLASS_NAME =
+  'pointer-events-none absolute top-0 bottom-4 w-9 from-white/0 to-white/50 s:w-10 m:w-11 l:w-12 xl:w-[calc((100%-1280px)/2+20px)]'
+
 export default function CarouselCardList(props: CarouselCardListProps) {
   const listRef = useRef<HTMLUListElement>(null)
   const dragStart = useRef<{ pointerId: number; x: number; scrollLeft: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
-  const [hasHiddenCards, setHasHiddenCards] = useState(false)
+  const [showLeftGradient, setShowLeftGradient] = useState(false)
+  const [showRightGradient, setShowRightGradient] = useState(false)
   const items = props.type === 'study' ? props.studies.items : props.events.items
 
   useEffect(() => {
@@ -20,8 +24,10 @@ export default function CarouselCardList(props: CarouselCardListProps) {
 
     const lastCard = list.lastElementChild
     const updateHiddenCards = () => {
+      setShowLeftGradient(list.clientWidth > 0 && lastCard !== null && list.scrollLeft > 1)
+
       // Ignore trailing padding: hide the hint as soon as the last card is fully visible.
-      setHasHiddenCards(
+      setShowRightGradient(
         list.clientWidth > 0 &&
           lastCard !== null &&
           lastCard.getBoundingClientRect().right > list.getBoundingClientRect().right + 1,
@@ -162,11 +168,11 @@ export default function CarouselCardList(props: CarouselCardListProps) {
           </li>
         ))}
       </ul>
-      {hasHiddenCards && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 right-0 bottom-4 w-9 bg-linear-to-r from-white/0 to-white/50 s:w-10 m:w-11 l:w-12 xl:w-[calc((100%-1280px)/2+20px)]"
-        />
+      {showLeftGradient && (
+        <div aria-hidden="true" className={`${GRADIENT_CLASS_NAME} left-0 bg-linear-to-l`} />
+      )}
+      {showRightGradient && (
+        <div aria-hidden="true" className={`${GRADIENT_CLASS_NAME} right-0 bg-linear-to-r`} />
       )}
     </div>
   )
