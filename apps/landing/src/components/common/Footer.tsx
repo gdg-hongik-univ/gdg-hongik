@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from '@gdg/wowds/ui'
-import { GithubIcon, InstagramIcon, LogoIcon } from '@gdg/wowds/icon'
+import { GithubIcon, InstagramIcon, LogoIcon, YoutubeIcon } from '@gdg/wowds/icon'
 import { Typography } from '@gdg/wowds/ui'
 import { palette } from '@gdg/wowds/tokens'
 
@@ -87,6 +87,14 @@ export const Footer = ({ className, ...props }: FooterProps) => {
               aria-label="Instagram"
             >
               <InstagramIcon size="lg" />
+            </a>
+            <a
+              href="https://www.youtube.com/@gdg.hongikuniv"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+            >
+              <YoutubeIcon size="xl" width={32} height={32} aria-hidden="true" />
             </a>
           </div>
 
