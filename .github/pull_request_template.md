@@ -1,6 +1,7 @@
 <!--
 제목은 [FEATURE] / [FIX] / [REFACTOR] / [DOCS] / [CHORE] 뒤에 설명을 작성해주세요. 설명에 사용하는 언어와 문자는 제한하지 않습니다.
 일반 작업 PR의 base는 develop입니다. 담당자(Assignee)는 PR 작성자로 자동 지정됩니다.
+develop 대상 PR의 작업 유형 라벨은 제목 접두어에 따라 자동 추가됩니다. 자세한 규칙은 docs/pr-workflow.md를 참고해주세요.
 아래 안내 주석을 참고해서 작성하고, 예시나 자리표시자는 실제 내용으로 바꿔주세요.
 -->
 
@@ -21,6 +22,13 @@
 
 관련 이슈: #번호
 
+## 📦 Changeset
+
+<!-- 기능 PR: 이번 PR의 .changeset 파일과 패키지·patch/minor/major를 적거나 생략 사유를 적어 주세요. -->
+<!-- 버전 PR·릴리스 PR·역병합 PR이면 그 역할을 적어 주세요. 절차: docs/release-workflow.md -->
+
+- 파일·대상 패키지·증가 종류 또는 생략 사유:
+
 ## 🙏 여기는 꼭 봐주세요!
 
 <!-- 집중해서 리뷰할 부분, 구현 방식의 이유, 질문이나 남은 작업을 적어주세요. 없으면 '없음'으로 작성합니다. -->
@@ -29,5 +37,6 @@
 PR 작성자가 직접 리베이스하고 충돌을 해결하며, 머지까지 본인이 책임지고 진행합니다.
 develop으로 보내는 작업 PR: 작성자가 Squash and merge합니다.
 기능 작업의 최종 커밋 제목: [FEATURE] 설명 (PR 번호 접미사는 유지해도 됩니다.)
-main 병합은 머지 커밋과 버전명 명시 방식으로 운영할 예정이며, 세부 규칙은 팀에서 확인합니다.
+develop → main 릴리스 PR과 main → develop 역병합 PR은 merge commit으로 병합합니다.
+역병합 PR은 위 Squash and merge 안내의 예외입니다. 절차는 docs/release-workflow.md를 따릅니다.
 -->
