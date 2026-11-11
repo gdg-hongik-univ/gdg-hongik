@@ -67,7 +67,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
 
   return (
     <>
-      <section className="relative w-full pt-50 min-[600px]:pt-61 s:px-5 m:px-6 flex items-center flex-col">
+      <section className="relative w-full pt-50 min-[600px]:pt-61 s:px-5 m:px-6 flex items-center flex-col min-[1024px]:min-h-dvh min-[1024px]:pt-18 min-[1024px]:pb-[min(3rem,5dvh)]">
         <div
           aria-hidden="true"
           className="landing-background absolute inset-0 z-0
@@ -76,7 +76,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick }: HeroProps) {
     min-[600px]:[mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]
     pointer-events-none select-none"
         />
-        <section className="relative z-10 w-full max-w-4xl mx-auto text-center flex flex-col items-center pb-46 s:pb-58.5 m:pb-53.5 l:pb-58.5 xl:pb-58.5">
+        <section className="relative z-10 w-full max-w-4xl mx-auto text-center flex flex-col items-center pb-46 s:pb-58.5 m:pb-53.5 min-[1024px]:my-auto min-[1024px]:pb-16">
           <Typography
             as="p"
             variant="subtitle2.2"
