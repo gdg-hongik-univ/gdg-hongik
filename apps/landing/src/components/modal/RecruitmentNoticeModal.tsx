@@ -1,4 +1,4 @@
-import { KakaotalkIcon, InstagramIcon } from '@gdg/wowds/icon'
+import { KakaotalkIcon, InstagramIcon, YoutubeIcon } from '@gdg/wowds/icon'
 import { Typography } from '@gdg/wowds'
 import { CalendarGraphic } from './CalendarGraphic'
 import { CalendarGraphicMobile } from './CalendarGraphicMobile'
@@ -80,6 +80,15 @@ export const RecruitmentNoticeModal = ({ isOpen, onClose }: ModalProps) => {
             >
               <KakaotalkIcon className="xs:hidden" size="xl" />
               <KakaotalkIcon className="hidden xs:block" size="xs" />
+            </a>
+            <a
+              href="https://www.youtube.com/@gdg.hongikuniv"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+            >
+              <YoutubeIcon className="xs:hidden" size="xl" aria-hidden="true" />
+              <YoutubeIcon className="hidden xs:block" size="xs" aria-hidden="true" />
             </a>
           </div>
         </div>

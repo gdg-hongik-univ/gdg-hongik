@@ -38,3 +38,5 @@ export {
 } from './src/assets/trackIndicator'
 
 export { LogoIcon } from './src/assets/logo'
+
+export { YoutubeIcon, type YoutubeIconProps, type YoutubeSize } from './src/assets/youtube'
