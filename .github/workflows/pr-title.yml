@@ -31,3 +31,28 @@ jobs:
           if not re.fullmatch(pattern, title):
               print("::error::PR 제목은 [FEATURE|FIX|REFACTOR|DOCS|CHORE] 설명 형식이어야 합니다. 예: [FEATURE] Add landing page header")
               sys.exit(1)
+
+  label-pr:
+    name: Label PR by title
+    needs: pr-title
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Add PR type label
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const labels = {
+              FEATURE: 'feature',
+              FIX: 'bug',
+              REFACTOR: 'refactoring',
+              DOCS: 'documentation',
+              CHORE: 'chore',
+            };
+            const type = context.payload.pull_request.title.match(/^\[([A-Z]+)\]/)[1];
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: context.payload.pull_request.number,
+              labels: [labels[type]],
+            });
