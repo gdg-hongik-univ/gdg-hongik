@@ -72,10 +72,10 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
         className="landing-background absolute inset-0 z-0
     bg-cover max-[600px]:[background-size:100%_auto] bg-top bg-no-repeat opacity-90
     [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]
-    min-[600px]:[mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]
+    min-[600px]:[mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] min-[1024px]:max-h-[901px]
     pointer-events-none select-none"
       />
-      <section className="relative z-10 w-full max-w-4xl mx-auto text-center flex flex-col items-center pb-46 s:pb-58.5 m:pb-53.5 min-[1024px]:my-auto min-[1024px]:pb-16">
+      <section className="relative z-10 w-full max-w-4xl mx-auto text-center flex flex-col items-center pb-46 s:pb-58.5 m:pb-53.5 min-[1024px]:flex-1 min-[1024px]:max-h-[764px] min-[1024px]:justify-center min-[1024px]:pb-16">
         <Typography
           as="p"
           variant="subtitle2.2"
