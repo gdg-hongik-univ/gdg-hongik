@@ -12,6 +12,7 @@
   "dependencies": {
     "@gdg/utils": "workspace:*",
     "@gdg/wowds": "workspace:*",
+    "@tanstack/react-query": "^5.106.1",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.18.2"
