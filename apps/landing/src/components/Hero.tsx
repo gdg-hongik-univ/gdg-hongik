@@ -1,27 +1,8 @@
 import { ChevronIcon, palette, Typography } from '@gdg/wowds'
-import { type RefObject, useEffect, useRef, useState } from 'react'
+import { type RefObject, useEffect, useRef } from 'react'
 import { CountUp } from '../hooks/CountUp'
 import { RecruitmentCTA } from './common/RecruitmentCTA'
 import { GoogleColorText } from './common/GoogleColorText'
-
-function useIsMedium() {
-  const query = '(min-width: 768px)'
-
-  const [isMedium, setIsMedium] = useState(() => window.matchMedia(query).matches)
-
-  useEffect(() => {
-    const media = window.matchMedia(query)
-
-    const onChange = (event: MediaQueryListEvent) => {
-      setIsMedium(event.matches)
-    }
-
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
-  }, [])
-
-  return isMedium
-}
 
 interface HeroProps {
   isRecruiting: boolean | null
@@ -32,9 +13,11 @@ interface HeroProps {
 const LOADING_CTA_CLASS =
   'xl:min-w-[242px] motion-safe:animate-recruitment-loading motion-safe:shadow-[inset_0_0_0_1.5px_var(--color-disabled-blue)] [--loading-background:var(--color-disabled-blue)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-blue)_60%,transparent)]'
 
+const HERO_TITLE_CLASS =
+  'text-[26px]! leading-[36px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!'
+
 export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef }: HeroProps) {
   const isLoading = isRecruiting === null
-  const isM = useIsMedium()
   const scrollFrameRef = useRef(0)
 
   useEffect(() => () => cancelAnimationFrame(scrollFrameRef.current), [])
@@ -90,7 +73,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           <Typography
             as="h1"
             variant="display1.2"
-            className="whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] text-[26px]! leading-[36px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]! l:font-bold! xl:font-bold!"
+            className={`${HERO_TITLE_CLASS} whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] l:font-bold! xl:font-bold!`}
           >
             부담 없는{' '}
             <Typography
@@ -112,7 +95,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           <Typography
             as="h1"
             variant="display1.2"
-            className="animate-[fadeInUp_0.8s_ease-out_0.2s_both] text-[26px]! leading-[36px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!"
+            className={`${HERO_TITLE_CLASS} animate-[fadeInUp_0.8s_ease-out_0.2s_both]`}
           >
             혼자 공부하지 않아도 되는 <br className="block min-[1024px]:hidden" /> 개발 커뮤니티
           </Typography>
@@ -139,15 +122,12 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           스크롤해서 더 살펴보세요
         </Typography>
 
-        <div className="flex flex-col items-center animate-[bounceDown_1.5s_ease-in-out_infinite]">
-          <ChevronIcon size={isM ? 'lg' : 'md'} direction="down" color={palette.gray[200]} />
-        </div>
-        <div className="flex flex-col items-center animate-[bounceDown_1.5s_ease-in-out_infinite]">
+        <div className="flex flex-col items-center animate-[bounceDown_1.5s_ease-in-out_infinite] [&>svg]:size-[20px] min-[768px]:[&>svg]:size-[24px]">
+          <ChevronIcon direction="down" color={palette.gray[200]} />
           <ChevronIcon
-            size={isM ? 'lg' : 'md'}
             direction="down"
             color={palette.gray[200]}
-            style={{ marginTop: isM ? -14 : -12 }}
+            className="-mt-[12px] min-[768px]:-mt-[14px]"
           />
         </div>
       </button>
