@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "semester": "2025-2",
+      "studies": [
+        {
+          "id": "2025-2-ai",
+          "name": "AI 정규 스터디",
+          "mentors": ["김지디"],
+          "format": "offline",
+          "introductionUrl": null
+        },
+        {
+          "id": "2025-2-cs",
+          "name": "CS 정규 스터디",
+          "mentors": ["김지디"],
+          "format": "offline",
+          "introductionUrl": null
+        },
+        {
+          "id": "2025-2-development-basics",
+          "name": "개발 입문 스터디",
+          "mentors": ["김지디"],
+          "format": "offline",
+          "introductionUrl": null
+        },
+        {
+          "id": "2025-2-frontend",
+          "name": "프론트엔드 정규 스터디",
+          "mentors": ["김지디"],
+          "format": "offline",
+          "introductionUrl": null
+        },
+        {
+          "id": "2025-2-backend",
+          "name": "백엔드 정규 스터디",
+          "mentors": ["김지디"],
+          "format": "online",
+          "introductionUrl": null
+        },
+        {
+          "id": "2025-2-spring-security",
+          "name": "스프링 시큐리티 스터디",
+          "mentors": ["김지디"],
+          "format": "assignment",
+          "introductionUrl": null
+        }
+      ]
+    },
+    { "semester": "2025-1", "studies": [] },
+    { "semester": "2024-2", "studies": [] },
+    { "semester": "2024-1", "studies": [] },
+    { "semester": "2023-2", "studies": [] }
+  ]
+}

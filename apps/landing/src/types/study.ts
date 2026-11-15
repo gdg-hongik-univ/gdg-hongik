@@ -9,3 +9,22 @@ export interface studyItem {
   mentors: string[]
   thumbnail: string | null
 }
+
+export type StudyFormat = 'offline' | 'online' | 'assignment'
+
+export interface StudyDetail {
+  id: string
+  name: string
+  mentors: string[]
+  format: StudyFormat
+  introductionUrl: string | null
+}
+
+export interface StudySemester {
+  semester: string
+  studies: StudyDetail[]
+}
+
+export interface StudySemestersResponse {
+  items: StudySemester[]
+}
