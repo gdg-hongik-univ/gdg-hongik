@@ -25,6 +25,6 @@ export interface StudySemester {
   studies: StudyDetail[]
 }
 
-export interface StudySemestersResponse {
+export interface StudyDetailResponse {
   items: StudySemester[]
 }
