@@ -1,6 +1,6 @@
-import Hero from '../components/Hero'
+import Hero, { HeroIntroduction } from '../components/Hero'
 import { Tabs, Typography } from '@gdg/wowds'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
@@ -26,6 +26,7 @@ const ACTIVITY_TABS = [
 const CONTENT_LAYOUT_CLASS = 'mx-auto w-full px-4 s:px-5 m:px-6 l:px-7 xl:max-w-320 xl:px-0'
 
 export default function LandingPage() {
+  const introductionRef = useRef<HTMLElement>(null)
   const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
 
   const [studies, setStudies] = useState<regularStudyType | null>(null)
@@ -126,8 +127,18 @@ export default function LandingPage() {
 
   return (
     <div className="w-full flex flex-col items-center">
-      <Hero isRecruiting={isRecruiting} onRecruitmentClick={handleRecruitmentClick} />
-      <TopBanner />
+      <Hero
+        isRecruiting={isRecruiting}
+        onRecruitmentClick={handleRecruitmentClick}
+        introductionRef={introductionRef}
+      />
+      <section
+        ref={introductionRef}
+        className="flex w-full flex-col min-[1024px]:min-h-svh min-[1024px]:pt-18"
+      >
+        <HeroIntroduction />
+        <TopBanner />
+      </section>
       <section
         className="flex w-full flex-col gap-3 pt-18 pb-8 s:pt-30 s:pb-15 m:pt-30 m:pb-15 l:pt-35 l:pb-20 xl:pt-35 xl:pb-20 min-[600px]:gap-4"
         aria-label="스터디 소개"
