@@ -33,13 +33,13 @@ export default function StudyPage() {
   }
 
   return (
-    <div className="mx-auto flex w-full flex-col gap-8 px-4 pt-22 pb-30 s:gap-13 s:px-5 s:pt-26 s:pb-80 min-[768px]:gap-13 min-[768px]:pt-38 min-[768px]:pb-80 m:px-6 l:px-7 xl:max-w-320 xl:px-0">
+    <div className="mx-auto flex w-full flex-col gap-8 px-4 pt-22 pb-30 s:gap-12 s:px-5 s:pt-26 s:pb-80 min-[768px]:gap-13 min-[768px]:pt-38 min-[768px]:pb-80 m:px-6 l:px-7 xl:max-w-320 xl:px-0">
       <Link
         to="/"
         className="flex w-fit items-center py-1 text-gray-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
       >
         <ChevronIcon direction="left" size="lg" aria-hidden="true" />
-        <Typography variant="body1.2" className="max-[599px]:text-[14px]!">
+        <Typography variant="body1.2" className="max-[600px]:text-[14px]!">
           뒤로 가기
         </Typography>
       </Link>
@@ -59,7 +59,7 @@ export default function StudyPage() {
               <Tabs.Trigger
                 key={page.value}
                 value={page.value}
-                className="px-3 py-2 font-primary text-[14px] leading-[1.5] tracking-[-0.015em] whitespace-nowrap min-[600px]:px-4 min-[600px]:py-3.5 min-[600px]:text-[18px] min-[1024px]:text-[20px] aria-selected:font-bold"
+                className="border-b-0 px-3 py-2 font-primary text-[14px] leading-[1.5] tracking-[-0.015em] whitespace-nowrap aria-selected:shadow-[inset_0_-2px_var(--color-black)] min-[600px]:px-4 min-[600px]:py-3.5 min-[600px]:text-[18px] min-[600px]:aria-selected:font-bold min-[1024px]:text-[20px]"
               >
                 {page.label}
               </Tabs.Trigger>
@@ -69,13 +69,13 @@ export default function StudyPage() {
             onClick={focusStudyList}
             disabled={!semester}
             endIcon={<ChevronIcon direction="right" size="lg" />}
-            className="hidden shrink-0 px-0 py-1 text-body1 text-gray-400 disabled:cursor-default disabled:opacity-50 min-[600px]:flex"
+            className="hidden shrink-0 px-0 py-1 text-body1 text-gray-400 disabled:cursor-default disabled:opacity-50 xl:flex"
           />
         </div>
 
         <Tabs.Content
           value="study"
-          className="flex flex-col gap-7 pt-7 min-[600px]:gap-8 min-[600px]:pt-9 min-[768px]:gap-13"
+          className="flex flex-col gap-7 pt-7 min-[600px]:gap-8 s:pt-8 min-[768px]:gap-13 min-[768px]:pt-9"
         >
           <ActivityInfo activityType="regularStudy" titleAs="p" />
           {state.status === 'loading' ? (
@@ -100,7 +100,7 @@ export default function StudyPage() {
               등록된 스터디가 없어요.
             </Typography>
           ) : (
-            <div className="flex flex-col gap-6 min-[768px]:flex-row min-[768px]:gap-10 min-[1024px]:gap-18">
+            <div className="flex flex-col gap-4 s:gap-6 min-[768px]:flex-row min-[768px]:gap-10 min-[1024px]:gap-18">
               <SemesterSelector
                 semesters={semesters.map((item) => item.semester)}
                 value={semester.semester}
@@ -119,7 +119,23 @@ export default function StudyPage() {
                 <p className="sr-only" role="status">
                   {semester.semester}학기 스터디 {semester.studies.length}개
                 </p>
-                <StudyList studies={semester.studies} />
+                <div className="rounded-xl bg-white px-4 py-6 ring-1 ring-gray-100 ring-inset m:px-6 m:py-7 l:px-8 l:py-9 xl:px-9 xl:py-10">
+                  {semester.studies.length === 0 ? (
+                    <Typography as="p" variant="body2.3" className="py-6 text-center text-gray-500">
+                      등록된 스터디가 없어요.
+                    </Typography>
+                  ) : (
+                    <ul className="flex flex-col gap-4.5 min-[600px]:gap-5">
+                      {semester.studies.map((study, index) => (
+                        <StudyList
+                          key={study.id}
+                          study={study}
+                          underline={index < semester.studies.length - 1}
+                        />
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
           )}
