@@ -1,5 +1,12 @@
 {
   "items": [
+    { "semester": "2026-1", "studies": [{
+          "id": "2026-1-ai",
+          "name": "AI 마스터가 되고 싶은 감자만두의 AI 스터디는 과연 26년에는 열리는가",
+          "mentors": ["김지디"],
+          "format": "offline",
+          "introductionUrl": null
+        }] },
     {
       "semester": "2025-2",
       "studies": [
