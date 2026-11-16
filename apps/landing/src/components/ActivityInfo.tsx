@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { cn, Typography } from '@gdg/wowds'
 
 type ActivityType = 'regularStudy' | 'projectTrack' | 'partStudy' | 'meetNConnect'
@@ -7,11 +8,17 @@ interface ActivityInfoProps {
   titleAs?: 'h3' | 'p'
 }
 
-const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: string }> = {
+const ACTIVITY_CONTENT: Record<ActivityType, { title: string; description: ReactNode }> = {
   regularStudy: {
     title: '어떤 개발 분야가 나에게 맞을지 아직 모르겠다면?',
-    description:
-      '아직 어떤 분야가 나에게 맞는지 몰라도 괜찮아요.\n정규스터디에서 다양한 분야를 함께 경험하며, 나만의 관심과 방향을 찾아가요.',
+    description: (
+      <>
+        {
+          '아직 어떤 분야가 나에게 맞는지 몰라도 괜찮아요.\n정규스터디에서 다양한 분야를 함께 경험하며,'
+        }
+        <br className="hidden xs:block" /> 나만의 관심과 방향을 찾아가요.
+      </>
+    ),
   },
   projectTrack: {
     title: '포트폴리오에 담을 실전 경험을 해보고 싶다면?',
@@ -40,7 +47,7 @@ export default function ActivityInfo({ activityType, titleAs = 'h3' }: ActivityI
         as={titleAs}
         variant="body2.3"
         className={cn(
-          'text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px]',
+          'text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px] xs:text-[12px]!',
           isProjectTrack &&
             'max-w-full px-3 text-[12px]! tracking-[-0.015em]! min-[600px]:text-[14px]! min-[1024px]:text-[16px]!',
         )}
@@ -52,7 +59,7 @@ export default function ActivityInfo({ activityType, titleAs = 'h3' }: ActivityI
         as="p"
         variant="body1.3"
         className={cn(
-          'whitespace-pre-line pl-4 border-l-2 border-blue-500 text-gray-950',
+          'whitespace-pre-line pl-4 border-l-2 border-blue-500 text-gray-950 xs:text-[14px]!',
           isProjectTrack &&
             'ml-1 min-w-0 break-keep text-[14px]! tracking-[-0.015em]! min-[600px]:text-[16px]! min-[1024px]:text-[18px]!',
         )}
