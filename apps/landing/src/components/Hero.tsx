@@ -1,12 +1,12 @@
 import { ChevronIcon, palette, Typography } from '@gdg/wowds'
-import { type RefObject, useEffect, useRef } from 'react'
+import { type MouseEventHandler, type RefObject, useEffect, useRef } from 'react'
 import { CountUp } from '../hooks/CountUp'
 import { RecruitmentCTA } from './common/RecruitmentCTA'
 import { GoogleColorText } from './common/GoogleColorText'
 
 interface HeroProps {
   isRecruiting: boolean | null
-  onRecruitmentClick: () => void
+  onRecruitmentClick: MouseEventHandler<HTMLButtonElement>
   introductionRef: RefObject<HTMLElement | null>
 }
 

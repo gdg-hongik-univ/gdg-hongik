@@ -1,11 +1,12 @@
 import { Typography } from '@gdg/wowds'
+import type { MouseEventHandler } from 'react'
 import { RecruitmentCTA } from '../common/RecruitmentCTA'
 import { Skeleton } from '../common/Skeleton'
 import { BottomBannerBg } from './BottomBannerBg'
 
 interface RecruitmentStatusProps {
   isRecruiting: boolean | null
-  onRecruitmentClick: () => void
+  onRecruitmentClick: MouseEventHandler<HTMLButtonElement>
 }
 
 const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusProps) => {
