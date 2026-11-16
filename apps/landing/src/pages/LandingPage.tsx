@@ -1,7 +1,7 @@
 import Hero from '../components/Hero'
 import { Tabs, Typography } from '@gdg/wowds'
 import { useEffect, useState } from 'react'
-import MarkUp from '../components/ActivityInfo'
+import ActivityInfo from '../components/ActivityInfo'
 import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
 import { Faq } from '../components/Faq'
@@ -164,7 +164,7 @@ export default function LandingPage() {
               className="flex flex-col gap-7 pt-7 min-[600px]:gap-9 min-[600px]:pt-9"
             >
               <div className={`${CONTENT_LAYOUT_CLASS} flex flex-col gap-7 min-[600px]:gap-9`}>
-                <MarkUp activityType={tab.value} />
+                <ActivityInfo activityType={tab.value} />
                 {tab.value === 'partStudy' && <PartCardList />}
                 {tab.value === 'projectTrack' && <ProjectTrack />}
               </div>
@@ -186,7 +186,7 @@ export default function LandingPage() {
           >
             Meet & Connect
           </Typography>
-          <MarkUp activityType="meetNConnect" />
+          <ActivityInfo activityType="meetNConnect" />
         </div>
         {eventCards}
       </section>
