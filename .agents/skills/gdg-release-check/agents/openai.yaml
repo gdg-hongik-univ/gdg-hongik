@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GDG 릴리스 점검'
+  short_description: 'develop에서 main으로 릴리스할 준비와 태그 및 브랜치 동기화 상태를 확인해요'
+  default_prompt: '$gdg-release-check develop에서 main으로 릴리스할 준비 상태와 남은 TODO를 확인해줘.'

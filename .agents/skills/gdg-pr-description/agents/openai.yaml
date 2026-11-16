@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GDG PR 제목과 본문 작성'
+  short_description: 'GDG 브랜치의 실제 변경을 확인하고 PR 제목과 해요체 본문을 작성해요'
+  default_prompt: '$gdg-pr-description 현재 브랜치의 변경 내용을 확인하고 리뷰 전 PR 제목과 본문을 작성해줘.'

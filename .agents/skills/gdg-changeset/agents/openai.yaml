@@ -1,0 +1,4 @@
+interface:
+  display_name: 'GDG Changeset 작성'
+  short_description: '실제 변경을 읽고 패키지별 증가 종류와 변경 설명을 changeset으로 작성해요'
+  default_prompt: '$gdg-changeset 현재 브랜치의 PR 대상과 비교 기준을 확인하고 changeset을 작성해줘.'

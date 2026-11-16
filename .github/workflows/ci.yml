@@ -1,4 +1,4 @@
-name: Continuous Integration & Synchronization
+name: CI, Releases & Synchronization
 
 on:
   pull_request:
@@ -11,10 +11,25 @@ on:
       - main
       - develop
 
-# 중복 실행 방지: 동일 PR에서 새 커밋이 푸시되면 이전 CI 빌드를 즉시 취소하여 자원 절약
+  workflow_dispatch:
+    inputs:
+      task:
+        description: 실행할 작업
+        type: choice
+        options: [check, prepare-version, tag-release]
+        default: check
+      release_sha:
+        description: tag-release 복구 대상 main 릴리스 병합 커밋의 전체 SHA (수동 tag-release에 필수)
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+# PR의 오래된 실행만 취소하고, push의 버전·릴리스·동기화 작업은 진행 중에 취소하지 않는다.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   quality-assurance:
@@ -25,7 +40,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
@@ -45,8 +60,17 @@ jobs:
       - name: Run Type Check
         run: pnpm typecheck
 
-      #      - name: Run Unit Tests
-      #        run: pnpm test
+      - name: Test release tooling
+        run: pnpm test:release
+
+      - name: Validate changesets
+        run: pnpm changeset:check
+
+      - name: Advise on feature PR changeset
+        if: github.event_name == 'pull_request' && github.base_ref == 'develop' && github.head_ref != 'main' && !startsWith(github.head_ref, 'changeset-release/')
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: pnpm changeset:check "$BASE_SHA"
 
       - name: Verify Production Build
         run: pnpm build
@@ -55,7 +79,7 @@ jobs:
     name: Sync forked repo
     runs-on: ubuntu-latest
     needs: quality-assurance
-    if: github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
+    if: github.repository == 'gdg-hongik-univ/gdg-hongik' && github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'develop')
 
     steps:
       - name: Checkout branch
@@ -63,7 +87,7 @@ jobs:
         with:
           token: ${{ secrets.AUTO_ACTIONS }}
           fetch-depth: 0
-          ref: ${{ github.ref_name }}
+          ref: ${{ github.sha }}
 
       - name: Add remote-url
         run: |
@@ -72,9 +96,122 @@ jobs:
           git config user.email "${{ secrets.EMAIL }}"
 
       - name: Push changes to forked-repo
+        env:
+          SYNC_BRANCH: ${{ github.ref_name }}
         run: |
-          git push -f forked-repo ${{ github.ref_name }}
+          git push -f forked-repo "HEAD:refs/heads/$SYNC_BRANCH"
 
       - name: Clean up
+        if: always()
         run: |
           git remote remove forked-repo
+
+  prepare-version:
+    name: Prepare Version Packages PR
+    needs: quality-assurance
+    if: github.repository == 'gdg-hongik-univ/gdg-hongik' && github.ref_name == 'develop' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.task == 'prepare-version'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Create or update version PR into develop
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm version-packages
+          title: '[CHORE] version packages'
+          commit: 'chore: version packages'
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run QA on the generated version branch
+        if: steps.changesets.outputs.pullRequestNumber != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              ...context.repo,
+              workflow_id: 'ci.yml',
+              ref: 'changeset-release/develop',
+              inputs: { task: 'check' },
+            })
+
+  tag-packages:
+    name: Publish Package Releases
+    needs: quality-assurance
+    if: github.repository == 'gdg-hongik-univ/gdg-hongik' && github.ref_name == 'main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.task == 'tag-release'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.sha }}
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Resolve release commit
+        id: release
+        env:
+          RELEASE_SHA: ${{ inputs.release_sha }}
+        run: |
+          node --input-type=module <<'JS' >> "$GITHUB_OUTPUT"
+          import { resolveReleaseTarget } from './scripts/release-target.mjs'
+          const requested = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch'
+            ? process.env.RELEASE_SHA
+            : process.env.GITHUB_SHA
+          console.log(`sha=${resolveReleaseTarget(requested)}`)
+          JS
+      - name: Verify prepared main merge commit
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          git rev-parse --verify "${RELEASE_SHA}^2"
+          pnpm release:check "${RELEASE_SHA}^" "$RELEASE_SHA"
+      - name: Tag released package versions on main
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          pnpm tag-packages "$RELEASE_SHA"
+      - name: Publish GitHub Releases from package changelogs
+        uses: actions/github-script@v7
+        env:
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        with:
+          script: |
+            const { execFileSync } = require('node:child_process')
+            const releases = JSON.parse(execFileSync('node', ['scripts/release-notes.mjs', process.env.RELEASE_SHA], { encoding: 'utf8' }))
+            for (const { tag, body } of releases) {
+              try {
+                await github.rest.repos.getReleaseByTag({ ...context.repo, tag })
+                core.info(`Release already exists: ${tag}`)
+                continue
+              } catch (error) {
+                if (error.status !== 404) throw error
+              }
+              const { data } = await github.rest.repos.createRelease({
+                ...context.repo,
+                tag_name: tag,
+                name: tag,
+                body,
+                make_latest: 'false',
+              })
+              await core.summary.addLink(tag, data.html_url).addBreak().write()
+            }
