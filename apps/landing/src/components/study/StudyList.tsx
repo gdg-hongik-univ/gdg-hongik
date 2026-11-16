@@ -28,11 +28,11 @@ export default function StudyList({ study, underline = true }: StudyListProps) {
   return (
     <li
       className={cn(
-        'grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 px-2 min-[600px]:flex min-[600px]:items-start min-[600px]:gap-4 min-[600px]:px-4 m:px-5 min-[1024px]:justify-between min-[1024px]:px-6',
+        'grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-2 px-2 min-[600px]:flex min-[600px]:items-start min-[600px]:gap-4 min-[600px]:px-4 m:px-5 min-[1024px]:px-6',
         underline && 'pb-4.5 shadow-[inset_0_-1px_var(--color-gray-100)] min-[600px]:pb-5',
       )}
     >
-      <div className="col-span-2 flex min-w-0 items-center gap-2 min-[600px]:flex-1 min-[1024px]:w-80 min-[1024px]:flex-none">
+      <div className="col-span-2 flex min-w-0 items-center gap-2 min-[600px]:flex-1">
         <Typography
           as="h3"
           variant="body1.2"
@@ -46,7 +46,7 @@ export default function StudyList({ study, underline = true }: StudyListProps) {
         </Tag>
       </div>
 
-      <dl className="flex min-w-0 items-center gap-1.5 min-[600px]:max-w-1/2">
+      <dl className="flex min-w-0 items-center gap-1.5 min-[600px]:max-w-1/2 min-[600px]:shrink-0">
         <Typography as="dt" variant="body2.3" className="flex shrink-0 items-center gap-1 text-sub">
           <span>멘토</span>
           <span className="text-gray-400" aria-hidden="true">
