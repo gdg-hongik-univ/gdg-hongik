@@ -1,6 +1,6 @@
 import Hero, { HeroIntroduction } from '../components/Hero'
 import { Tabs, Typography } from '@gdg/wowds'
-import { useEffect, useRef, useState } from 'react'
+import { type MouseEventHandler, useEffect, useRef, useState } from 'react'
 import MarkUp from '../components/ActivityInfo'
 import UpcomingEvents from '../components/upcomingEvents/UpcomingEvents'
 import LandingOrbits from '../components/LandingOrbits'
@@ -27,6 +27,7 @@ const CONTENT_LAYOUT_CLASS = 'mx-auto w-full px-4 s:px-5 m:px-6 l:px-7 xl:max-w-
 
 export default function LandingPage() {
   const introductionRef = useRef<HTMLElement>(null)
+  const recruitmentNoticeRef = useRef<HTMLDialogElement>(null)
   const [activeActivity, setActiveActivity] = useState<string>(ACTIVITY_TABS[0].value)
 
   const [studies, setStudies] = useState<regularStudyType | null>(null)
@@ -35,7 +36,6 @@ export default function LandingPage() {
   const [events, setEvents] = useState<eventItems | null>(null)
   const [eventsError, setEventsError] = useState(false)
   const [isRecruiting, setIsRecruiting] = useState<boolean | null>(null)
-  const [isNoticeOpen, setIsNoticeOpen] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -114,7 +114,7 @@ export default function LandingPage() {
     return () => controller.abort()
   }, [])
 
-  const handleRecruitmentClick = () => {
+  const handleRecruitmentClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     if (isRecruiting === null) return
 
     if (isRecruiting) {
@@ -122,7 +122,8 @@ export default function LandingPage() {
       return
     }
 
-    setIsNoticeOpen(true)
+    event.currentTarget.focus({ preventScroll: true })
+    recruitmentNoticeRef.current?.showModal()
   }
 
   return (
@@ -205,7 +206,7 @@ export default function LandingPage() {
       <LandingOrbits />
       <BottomBanner isRecruiting={isRecruiting} onRecruitmentClick={handleRecruitmentClick} />
       <Faq />
-      <RecruitmentNoticeModal isOpen={isNoticeOpen} onClose={() => setIsNoticeOpen(false)} />
+      <RecruitmentNoticeModal dialogRef={recruitmentNoticeRef} />
     </div>
   )
 }
