@@ -3,9 +3,10 @@ name: Auto Assign
 on:
   # Fork PR도 처리하며, PR 코드는 체크아웃하거나 실행하지 않습니다.
   pull_request_target:
-    types: [opened, reopened, ready_for_review]
+    types: [opened, reopened, ready_for_review, edited]
 
 permissions:
+  issues: write
   pull-requests: write
 
 jobs:
@@ -14,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Assign PR author
+        if: github.event.action != 'edited'
         uses: actions/github-script@v9
         with:
           script: |
@@ -25,4 +27,49 @@ jobs:
             });
             if (!data.assignees.some(({ login }) => login.toLowerCase() === author.toLowerCase())) {
               core.warning(`PR 작성자 ${author}를 담당자로 지정하지 못했습니다. GitHub에서 할당 가능 여부를 확인해주세요.`);
+            }
+      - name: Assign PR author to mentioned issues
+        if: github.event.pull_request.body && (github.event.action != 'edited' || github.event.changes.body)
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const pull = context.payload.pull_request;
+            const author = pull.user.login;
+            const { data: { body_html: body } } = await github.rest.pulls.get({
+              ...context.repo,
+              pull_number: pull.number,
+              headers: { accept: 'application/vnd.github.html+json' },
+            });
+            const repositoryUrl = new URL(pull.base.repo.html_url);
+            const issuePath = `${repositoryUrl.pathname.toLowerCase()}/issues/`;
+            const issueNumbers = new Set();
+            for (const [, href] of (body ?? '').matchAll(/<a\b[^>]*?\shref="([^"]+)"/gi)) {
+              if (!URL.canParse(href, repositoryUrl)) continue;
+              const url = new URL(href, repositoryUrl);
+              const path = url.pathname.toLowerCase();
+              if (url.origin !== repositoryUrl.origin || !path.startsWith(issuePath)) continue;
+              const match = /^([1-9]\d*)\/?$/.exec(path.slice(issuePath.length));
+              const number = Number(match?.[1]);
+              if (Number.isSafeInteger(number)) issueNumbers.add(number);
+            }
+
+            const hasAuthor = (issue) =>
+              issue.assignees.some(({ login }) => login.toLowerCase() === author.toLowerCase());
+            for (const number of issueNumbers) {
+              const params = { ...context.repo, issue_number: number };
+              let issue;
+              try {
+                ({ data: issue } = await github.rest.issues.get(params));
+              } catch (error) {
+                if (error.status === 404 || error.status === 410) continue;
+                throw error;
+              }
+              const issueUrl = `${repositoryUrl.origin}${issuePath}${number}`;
+              if (issue.pull_request || issue.html_url.toLowerCase() !== issueUrl || hasAuthor(issue)) {
+                continue;
+              }
+              const { data } = await github.rest.issues.addAssignees({ ...params, assignees: [author] });
+              if (!hasAuthor(data)) {
+                core.warning(`이슈 #${number}에 PR 작성자 ${author}를 담당자로 추가하지 못했습니다.`);
+              }
             }
