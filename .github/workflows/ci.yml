@@ -64,12 +64,11 @@ jobs:
         run: pnpm test:release
 
       - name: Validate changesets
-        run: pnpm changeset:check
-
-      - name: Advise on feature PR changeset
-        if: github.event_name == 'pull_request' && github.base_ref == 'develop' && github.head_ref != 'main' && !startsWith(github.head_ref, 'changeset-release/')
         env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BASE_SHA: >-
+            ${{ github.event_name == 'pull_request' && github.base_ref == 'develop' &&
+                github.head_ref != 'main' && !startsWith(github.head_ref, 'changeset-release/') &&
+                github.event.pull_request.base.sha || '' }}
         run: pnpm changeset:check "$BASE_SHA"
 
       - name: Verify Production Build

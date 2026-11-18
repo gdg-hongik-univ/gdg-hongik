@@ -148,6 +148,7 @@ pnpm release:check origin/main origin/develop
 | develop → main PR      | 출발 브랜치·미반영 changeset·CHANGELOG 검사, 제목 갱신  | 최종 범위·검사·리뷰, merge commit 병합      |
 | main push + QA 성공    | 릴리스 준비 검사, 패키지별 annotated tag·GitHub Release | 태그 대상·설명·실패 여부, 역병합            |
 
+CI는 changeset 형식 검사와 기능 PR의 누락 경고를 한 단계에서 처리해요.
 changeset 누락은 경고이며 병합 차단이 아니에요. 잘못된 형식·패키지 이름·증가 종류·빈 릴리스 설명은
 실패해요. 버전 PR·릴리스 PR·역병합 PR에는 기능 changeset 누락 경고를 적용하지 않아요.
 누적 changeset의 존재만으로 이번 기능 PR의 작성 완료를 판단하지 않아요.
