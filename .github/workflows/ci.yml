@@ -145,6 +145,18 @@ jobs:
               ref: 'changeset-release/develop',
               inputs: { task: 'check' },
             })
+      - name: Label the version PR as chore
+        if: ${{ !cancelled() && steps.changesets.outcome == 'success' && steps.changesets.outputs.pullRequestNumber != '' }}
+        uses: actions/github-script@v7
+        env:
+          PR_NUMBER: ${{ steps.changesets.outputs.pullRequestNumber }}
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: Number(process.env.PR_NUMBER),
+              labels: ['chore'],
+            })
 
   tag-packages:
     name: Publish Package Releases

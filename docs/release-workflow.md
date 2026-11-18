@@ -106,13 +106,13 @@ flowchart TD
 
 - [ ] 릴리스에 포함할 기능과 알려진 문제를 확인해요.
 - [ ] 미반영 changeset이 있으면 `changeset-release/develop` → `develop`의
-      **[CHORE] version packages** PR이 최신 develop을 반영했는지 확인해요.
+      **[CHORE] version packages** PR이 최신 develop을 반영했고 자동으로 `chore` 라벨이 붙었는지 확인해요.
 - [ ] 패키지별 버전·CHANGELOG·lockfile, 반영한 changeset 삭제와 소비 앱 영향을 확인해요.
 - [ ] 버전 PR의 CI가 통과하면 develop에 병합해요.
 - [ ] 최신 develop head SHA의 `push` 이벤트로 실행된 `CI, Releases & Synchronization`에서
       `QA & Build Verification`이 통과했고 미반영 changeset이 없는지 확인해요.
       같은 SHA의 PR·수동 실행과 구분하고, 미실행·진행 중·실패·접근 불가는 통과로 보지 않아요.
-- [ ] develop → main PR을 만들고 자동 갱신된 제목과 릴리스 범위를 확인해요.
+- [ ] develop → main PR을 만들고 자동으로 붙은 `deploy` 라벨, 갱신된 제목과 릴리스 범위를 확인해요.
 - [ ] `QA & Build Verification`, `Release PR Metadata`와 팀 리뷰가 최신 대상에 대해 통과했는지 확인해요.
       팀 리뷰는 최신 PR head의 승인·변경 요청·대기 상태를 확인하고, 미확인·대기는 남은 TODO로 남겨요.
       새 changeset이 추가되면 버전 PR 반영부터 다시 확인해요.
@@ -163,6 +163,7 @@ changeset 누락은 경고이며 병합 차단이 아니에요. 잘못된 형식
 
 - [ ] Actions → General의 **Allow GitHub Actions to create and approve pull requests**를 켜요.
       자동화는 PR을 생성하며 승인·병합은 수행하지 않아요. 별도 PAT를 추가하지 않고 `GITHUB_TOKEN`을 사용해요.
+- [ ] 저장소에 `deploy` 라벨이 없으면 **Issues → Labels**에서 만들어요.
 - [ ] 저장소에서 merge commit 병합을 허용해요.
 - [ ] 검사가 한 번 실행된 뒤 main에 `QA & Build Verification`, `Release PR Metadata`를 필수 검사로 설정해요.
       [main ruleset 정의](../.github/main-release-ruleset.json)를 가져와 사용할 수 있어요.

@@ -43,6 +43,22 @@ jobs:
             core.setOutput('base_sha', pr.base.sha)
             core.setOutput('head_sha', pr.head.sha)
 
+      - name: Label the release PR as deploy
+        continue-on-error: true
+        uses: actions/github-script@v7
+        env:
+          PR_NUMBER: ${{ steps.candidate.outputs.number }}
+        with:
+          script: |
+            const { data: labels } = await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: Number(process.env.PR_NUMBER),
+              labels: ['deploy'],
+            })
+            if (!labels.some(label => label.name === 'deploy')) {
+              core.warning('Check that the deploy label exists and is active in this repository.')
+            }
+
       - name: Checkout release candidate
         uses: actions/checkout@v7
         with:
