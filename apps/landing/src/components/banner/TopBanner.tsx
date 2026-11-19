@@ -1,5 +1,5 @@
-import TopBannerArtwork from './banner/TopBannerArtwork'
-import TopBannerContent from './banner/TopBannerContent'
+import TopBannerArtwork from './TopBannerArtwork'
+import TopBannerContent from './TopBannerContent'
 
 const TopBanner = () => {
   return (
