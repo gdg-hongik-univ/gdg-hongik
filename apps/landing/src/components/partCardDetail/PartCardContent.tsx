@@ -82,11 +82,7 @@ function PartIntroductionCard({
 
   return (
     <section className="flex flex-col gap-5">
-      <div
-        className="flex w-full xl:w-262 items-center justify-between
-      xs:gap-3 xs:flex-col
-      "
-      >
+      <div className="flex w-full xl:w-262 items-center justify-between xs:gap-3 xs:flex-col">
         <Typography as="h2" variant="title2.2" isEn className={`${colors.title} xs:text-[20px]!`}>
           {part}
         </Typography>
@@ -120,17 +116,14 @@ function PartIntroductionCard({
 
       <div
         className={`flex flex-col gap-8 rounded-xl p-8 w-full
-          xl:flex-row xl:w-262 xl:h-94 
+          xl:flex-row xl:h-94 
           l:px-9 l:pb-10 l:pt-9 l:h-210
           m:px-7 m:pb-8 m:pt-7 m:h-173 m:gap-6
           s:px-5 s:pb-6 s:pt-5 s:h-165 s:gap-6
           xs:px-4 xs:pb-5 xs:pt-4 xs:h-134 xs:gap-5.5
           ${colors.background}`}
       >
-        <div
-          className="w-full xl:h-78 xl:w-95 l:h-110 m:h-86 s:h-83 xs:h-49.5
-          shrink-0 overflow-hidden rounded-lg"
-        >
+        <div className="w-full xl:h-78 xl:w-95 l:h-110 m:h-86 s:h-83 xs:h-49.5 shrink-0 overflow-hidden rounded-lg">
           <img src={partStudyPhoto} alt="Part introduction" className="size-full object-cover" />
         </div>
 
