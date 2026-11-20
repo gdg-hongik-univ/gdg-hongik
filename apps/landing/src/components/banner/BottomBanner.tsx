@@ -1,7 +1,7 @@
 import { Typography } from '@gdg/wowds'
-import { RecruitmentCTA } from './common/RecruitmentCTA'
-import { Skeleton } from './common/Skeleton'
-import { BottomBannerBg } from './banner/BottomBannerBg'
+import { RecruitmentCTA } from '../common/RecruitmentCTA'
+import { Skeleton } from '../common/Skeleton'
+import { BottomBannerBg } from './BottomBannerBg'
 
 interface RecruitmentStatusProps {
   isRecruiting: boolean | null
