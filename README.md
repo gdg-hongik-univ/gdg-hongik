@@ -19,6 +19,10 @@ GDG Hongik 동아리 서비스 모노레포입니다. 랜딩 앱과 공유 패�
 
 랜딩 앱은 `src/pages`, `components`, `hooks`, `api`, `types`, `utils`, `routes`, `layout`으로 구성됩니다.
 
+React, React DOM과 관련 타입 패키지의 버전 범위는 [pnpm workspace catalog](pnpm-workspace.yaml)에서 관리합니다.
+React와 React DOM은 랜딩 앱의 `dependencies`와 WOWDS의 `peerDependencies`에서,
+타입 패키지는 두 패키지의 `devDependencies`에서 `catalog:`로 참조합니다.
+
 ## 설치와 실행
 
 - Node.js 24.x: [.nvmrc](.nvmrc)와 [engines](package.json) 기준

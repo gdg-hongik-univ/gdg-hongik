@@ -187,6 +187,21 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/react':
+      specifier: ^19.2.14
+      version: 19.2.17
+    '@types/react-dom':
+      specifier: ^19.2.3
+      version: 19.2.3
+    react:
+      specifier: ^19.2.6
+      version: 19.2.7
+    react-dom:
+      specifier: ^19.2.6
+      version: 19.2.7
+
 importers:
 
   .:
@@ -228,10 +243,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/wowds
       react:
-        specifier: ^19.2.6
+        specifier: 'catalog:'
         version: 19.2.7
       react-dom:
-        specifier: ^19.2.6
+        specifier: 'catalog:'
         version: 19.2.7(react@19.2.7)
       react-router-dom:
         specifier: ^7.18.2
@@ -247,10 +262,10 @@ importers:
         specifier: ^24.12.3
         version: 24.13.2
       '@types/react':
-        specifier: ^19.2.14
+        specifier: 'catalog:'
         version: 19.2.17
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.17)
       '@vitejs/plugin-react':
         specifier: ^6.0.1
@@ -313,10 +328,10 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       react:
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.7
       react-dom:
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.7(react@19.2.7)
       tailwind-merge:
         specifier: ^3.6.0
@@ -326,10 +341,10 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/react':
-        specifier: ^19.2.14
+        specifier: 'catalog:'
         version: 19.2.17
       '@types/react-dom':
-        specifier: ^19.2.3
+        specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.17)
       autoprefixer:
         specifier: ^10.5.2
