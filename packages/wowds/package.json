@@ -33,10 +33,10 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "autoprefixer": "^10.5.2",
-    "eslint": "^10.3.0",
+    "eslint": "catalog:",
     "postcss": "^8.5.16",
     "tailwindcss": "^4.3.1",
-    "typescript": "~6.0.2"
+    "typescript": "catalog:"
   },
   "dependencies": {
     "clsx": "^2.1.1",
