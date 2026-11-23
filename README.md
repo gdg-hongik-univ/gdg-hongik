@@ -50,6 +50,14 @@ pnpm test:release    # 릴리스 도구 회귀 검증
 커밋 시 pre-commit 훅에서 lint-staged를 실행합니다. 스테이징된 파일에 Prettier를 적용하고,
 TypeScript·TSX 파일에는 ESLint도 실행합니다.
 
+## 프로젝트 트랙 데이터
+
+프로젝트 트랙 상세 페이지(`/project-track`)는 [목 데이터](apps/landing/public/project-tracks.json)를 읽습니다.
+대표 이미지와 저장소 링크가 준비되지 않았으면 각각 `imageUrl`, `repositories[].url`에 `null`을 넣습니다.
+이미지에는 절대 URL이나 JSON 파일 기준 상대 경로를, 저장소 링크에는 절대 URL을 사용합니다.
+각 코스 활동은 `id`, `type`(`MISSION`·`PLANNING`·`DEVELOPMENT`), 같은 유형 내의 `displayOrder`, 온라인 여부와 설명을 가집니다.
+[조회 함수](apps/landing/src/api/projectTrack.ts)에서 학기를 최신순으로 정렬하고, 활동을 코스 유형과 표시 순서에 맞게 묶습니다.
+
 ## 작업 문서
 
 - [AI 작업 안내](AGENTS.md): 공통 작업·검증 규칙과 작업별 문서 안내

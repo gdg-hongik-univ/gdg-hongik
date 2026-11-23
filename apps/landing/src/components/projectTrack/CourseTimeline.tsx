@@ -40,7 +40,7 @@ export default function CourseTimeline({ courses }: { courses: ProjectTrackCours
                 </div>
                 <ol className="mt-4.5 flex flex-col pl-10 min-[600px]:mt-6 min-[600px]:gap-6 min-[600px]:pl-11 min-[1024px]:pl-13">
                   {course.activities.map((activity) => (
-                    <li key={activity.name} className="flex min-w-0 flex-col gap-2 pb-5">
+                    <li key={activity.id} className="flex min-w-0 flex-col gap-2 pb-5">
                       <div className="flex flex-wrap items-center gap-2">
                         <Typography as="h4" variant="body1.2" className="max-[599px]:text-[14px]!">
                           {activity.name}

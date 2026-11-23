@@ -1,19 +1,28 @@
+export interface ProjectTrackRepository {
+  type: 'FE' | 'BE' | 'AI'
+  url: string | null
+}
+
 export interface ProjectTrackProject {
   id: string
   name: string
   description: string
   team: string
   members: string[]
-  repositories: string[]
+  imageUrl: string | null
+  repositories: ProjectTrackRepository[]
+}
+
+export interface ProjectTrackActivity {
+  id: string
+  name: string
+  online: boolean
+  description: string
 }
 
 export interface ProjectTrackCourse {
   name: string
-  activities: {
-    name: string
-    online: boolean
-    description: string
-  }[]
+  activities: ProjectTrackActivity[]
 }
 
 export interface ProjectTrackSemester {
