@@ -54,11 +54,33 @@ test('the real CLI versions private packages, propagates runtime dependencies an
   git('config', 'core.hooksPath', '.git/hooks')
   git('add', '.')
   git('commit', '-qm', 'Fixture')
+  const sha = git('rev-parse', 'HEAD').trim()
+  const repoUrl = 'https://github.com/gdg-hongik-univ/gdg-hongik'
+  const pullUrl = `${repoUrl}/pull/42`
+  const lookup = {
+    data: {
+      repo__0: {
+        [`commit__${sha}`]: {
+          commitUrl: `${repoUrl}/commit/${sha}`,
+          associatedPullRequests: { nodes: [{ number: 42, url: pullUrl }] },
+        },
+      },
+    },
+  }
   const version = () =>
     execFileSync(
       process.execPath,
       [path.join(root, 'node_modules/@changesets/cli/bin.js'), 'version'],
-      { cwd: repo, encoding: 'utf8', stdio: 'pipe' },
+      {
+        cwd: repo,
+        encoding: 'utf8',
+        stdio: 'pipe',
+        env: {
+          ...process.env,
+          GITHUB_TOKEN: 'version-test',
+          GITHUB_GRAPHQL_URL: `data:application/json,${encodeURIComponent(JSON.stringify(lookup))}`,
+        },
+      },
     )
   const manifest = (dir) => JSON.parse(readFileSync(path.join(repo, dir, 'package.json'), 'utf8'))
 
@@ -67,10 +89,9 @@ test('the real CLI versions private packages, propagates runtime dependencies an
   assert.equal(manifest('apps/landing').version, '0.0.1')
   assert.equal(manifest('packages/config').version, '0.0.0')
   assert.equal(existsSync(path.join(repo, '.changeset/ui.md')), false)
-  assert.match(
-    readFileSync(path.join(repo, 'packages/wowds/CHANGELOG.md'), 'utf8'),
-    /Add a compatible UI option/,
-  )
+  const changelog = readFileSync(path.join(repo, 'packages/wowds/CHANGELOG.md'), 'utf8')
+  assert.match(changelog, /Add a compatible UI option/)
+  assert.ok(changelog.includes(`[#42](${pullUrl})`))
   version()
   assert.equal(manifest('apps/landing').version, '0.0.1')
 

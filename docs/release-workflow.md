@@ -87,6 +87,10 @@ pnpm changeset status --verbose
 반영하며, 같은 패키지의 여러 changeset은 가장 큰 증가 종류로 합쳐져요.
 증가 종류는 소스 코드 diff와 사용처를 검토해 결정하며, CI 통과만으로 적절성이 보장되지 않아요.
 
+버전 PR을 만들 때 `@changesets/changelog-github`가 원본 PR과 커밋을 조회해 CHANGELOG에 링크를 붙여요.
+Actions에서는 버전 PR 단계의 `GITHUB_TOKEN`을 사용해요. 로컬에서 `pnpm version-packages`를 실행할 때는
+이 저장소의 커밋과 PR을 읽을 수 있는 토큰을 `GITHUB_TOKEN` 환경 변수로 제공해요.
+
 ## 릴리스 담당자: develop → main
 
 ```mermaid
