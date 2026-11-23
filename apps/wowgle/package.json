@@ -1,5 +1,5 @@
 {
-  "name": "wowgle",
+  "name": "@gdg/wowgle",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@gdg/utils": "workspace:*",
+    "@gdg/wowds": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
