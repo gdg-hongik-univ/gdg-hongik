@@ -52,6 +52,9 @@ pnpm test:release    # 릴리스 도구 회귀 검증
 특정 패키지는 `pnpm --filter @gdg/landing <script>`처럼 실행합니다.
 제품 UI 자동 테스트는 없으며, HTTP 요청 유틸리티 테스트는 `pnpm --filter @gdg/utils test`로 실행합니다.
 
+[루트 ESLint 설정](eslint.config.js)은 전체 JavaScript·TypeScript 파일에 기본 규칙을 적용하고,
+랜딩과 WOWDS의 TypeScript 파일에만 React 규칙을 추가합니다.
+
 커밋 시 pre-commit 훅에서 lint-staged를 실행합니다. 스테이징된 파일에 Prettier를 적용하고,
 TypeScript·TSX 파일에는 ESLint도 실행합니다.
 

@@ -221,6 +221,9 @@ importers:
       '@changesets/parse':
         specifier: 0.4.3
         version: 0.4.3
+      '@gdg/config':
+        specifier: workspace:*
+        version: link:packages/config
       eslint:
         specifier: 'catalog:'
         version: 10.5.0(jiti@2.7.0)
