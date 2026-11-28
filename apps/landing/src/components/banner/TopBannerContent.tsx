@@ -43,15 +43,15 @@ const TopBannerContent = () => (
       variant="display3.2"
       as="h2"
       isEn
-      className="shrink-0 tracking-[-0.54px]! xs:text-[36px]! s:whitespace-nowrap m:whitespace-nowrap m:tracking-normal! l:w-90.5 l:whitespace-nowrap l:text-[44px]! l:tracking-normal! xl:w-98.5 xl:whitespace-nowrap xl:text-[48px]! xl:tracking-normal!"
+      className="shrink-0 xs:text-(length:--text-display1)! s:whitespace-nowrap m:whitespace-nowrap l:w-90.5 l:whitespace-nowrap xl:w-98.5 xl:whitespace-nowrap xl:text-(length:--text-display2)!"
     >
       <span className="block s:inline m:inline l:inline xl:inline">Choose </span>
       <span className="block s:inline m:inline l:inline xl:inline">Your Path!</span>
     </Typography>
     <Typography
-      variant="caption1.3"
+      variant="body2.3"
       as="p"
-      className="w-full break-keep text-[14px]! tracking-[-0.21px]! [text-shadow:0_0_8px_rgba(8,8,8,0.12)] s:w-full s:max-w-full s:text-center s:whitespace-normal m:w-128 m:max-w-full m:text-center m:whitespace-normal m:tracking-normal! l:w-115.5 l:shrink-0 l:whitespace-nowrap l:text-[16px]! l:tracking-normal! xl:w-150.75 xl:shrink-0 xl:whitespace-nowrap xl:text-[18px]! xl:tracking-normal!"
+      className="w-full break-keep [text-shadow:0_0_8px_rgba(8,8,8,0.12)] s:w-full s:max-w-full s:text-center s:whitespace-normal m:w-128 m:max-w-full m:text-center m:whitespace-normal l:w-115.5 l:shrink-0 l:whitespace-nowrap xl:w-150.75 xl:shrink-0 xl:whitespace-nowrap xl:text-(length:--text-body1)!"
     >
       <span className="s:hidden m:hidden l:hidden xl:hidden">
         <DescriptionLines lines={DESCRIPTION_LINES.mobile} />
