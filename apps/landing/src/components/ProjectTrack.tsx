@@ -1,4 +1,4 @@
-import { cn, TrackIndicator } from '@gdg/wowds'
+import { cn, TrackIndicator, Typography } from '@gdg/wowds'
 import { type CSSProperties, useEffect, useRef, useState } from 'react'
 import projectTrackPhoto from '../assets/ProjectTrack.png'
 
@@ -62,7 +62,7 @@ export default function ProjectTrack() {
       ref={listRef}
       aria-label="프로젝트 트랙 진행 과정"
       className={cn(
-        'grid gap-(--course-gap) font-primary leading-[1.5] tracking-[-0.015em] [--course-gap:20px] [--marker-x:14px] [--marker-y:14px] [--content-delay:800ms]',
+        'grid gap-(--course-gap) [--course-gap:20px] [--marker-x:14px] [--marker-y:14px] [--content-delay:800ms]',
         'min-[600px]:[--course-gap:24px] min-[600px]:[--image-width:210px] min-[600px]:[--image-gap:20px] min-[600px]:[--marker-x:calc(var(--image-width)+var(--image-gap)+14px)] min-[600px]:[--marker-y:26px]',
         'm:[--image-width:230px] m:[--image-gap:24px]',
         'min-[1024px]:grid-cols-3 min-[1024px]:pr-(--marker-x) min-[1024px]:[--course-gap:12px] min-[1024px]:[--marker-x:18px] min-[1024px]:[--marker-y:18px] min-[1024px]:[--content-delay:1100ms]',
@@ -124,18 +124,20 @@ export default function ProjectTrack() {
                 'min-[1024px]:col-start-1 min-[1024px]:mt-0.5 min-[1024px]:size-8',
               )}
             />
-            <h3
+            <Typography
+              as="h3"
+              variant="subtitle3.1"
               className={cn(
                 revealClass,
                 'delay-300 translate-y-0',
                 !hasEntered && '-translate-x-3',
-                'col-start-2 row-start-1 w-fit bg-white pl-1 text-[16px] font-bold text-blue-700',
-                'min-[600px]:col-start-3 min-[600px]:mt-3 min-[600px]:px-2 min-[600px]:text-[20px]',
-                'min-[1024px]:col-start-2 min-[1024px]:mt-0 min-[1024px]:text-[22px]',
+                'col-start-2 row-start-1 w-fit bg-white pl-1 text-blue-700 xs:text-body1!',
+                'min-[600px]:col-start-3 min-[600px]:mt-3 min-[600px]:px-2',
+                'min-[1024px]:col-start-2 min-[1024px]:mt-0',
               )}
             >
               {course.title}
-            </h3>
+            </Typography>
             <img
               src={projectTrackPhoto}
               alt=""
@@ -149,16 +151,18 @@ export default function ProjectTrack() {
                 'min-[1024px]:col-span-2 min-[1024px]:col-start-1 min-[1024px]:row-span-1 min-[1024px]:row-start-3 min-[1024px]:ml-(--marker-x) min-[1024px]:w-full',
               )}
             />
-            <p
+            <Typography
+              as="p"
+              variant="body2.3"
               className={cn(
                 revealClass,
-                'col-start-2 row-start-3 min-w-0 text-[12px] font-medium text-gray-600',
-                'min-[600px]:col-start-3 min-[600px]:row-start-2 min-[600px]:pl-2 min-[600px]:text-[14px] min-[600px]:text-gray-900',
-                'min-[1024px]:col-start-2 min-[1024px]:pb-7 min-[1024px]:pr-2 min-[1024px]:text-[16px]',
+                'col-start-2 row-start-3 min-w-0 text-gray-600 xs:text-caption1!',
+                'min-[600px]:col-start-3 min-[600px]:row-start-2 min-[600px]:pl-2 min-[600px]:text-gray-900',
+                'min-[1024px]:col-start-2 min-[1024px]:pb-7 min-[1024px]:pr-2',
               )}
             >
               {course.description}
-            </p>
+            </Typography>
           </li>
         )
       })}

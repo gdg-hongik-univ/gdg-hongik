@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react'
-import { cn } from '@gdg/wowds'
+import { cn, Typography } from '@gdg/wowds'
 import type { UpcomingEventCardEmphasis, UpcomingEventCardState } from '../../types/upcomingEvents'
 import UpcomingEventDetails from './UpcomingEventDetails'
 import UpcomingEventMarker from './UpcomingEventMarker'
@@ -42,12 +42,12 @@ const UpcomingEventCard = ({
       <UpcomingEventMarker countdownLabel={countdownLabel} emphasis={emphasis} state={state} />
 
       <div className="relative flex w-full flex-col items-center">
-        <div
+        <Typography
+          as="div"
+          variant={isActive ? 'body1.1' : 'body2.2'}
           className={cn(
             'flex w-full flex-col items-center gap-1 text-center',
-            isActive
-              ? 'text-body1 font-bold s:text-[16px] m:text-[16px] l:text-subtitle3 xl:text-subtitle3'
-              : 'text-body2 font-semibold s:text-[14px] m:text-[14px] l:text-body1 xl:text-body1',
+            isActive ? 'min-[1024px]:text-subtitle3!' : 'min-[1024px]:text-body1!',
           )}
         >
           <p className={cn('whitespace-nowrap', isDisabled ? 'text-gray-200' : 'text-gray-400')}>
@@ -62,7 +62,7 @@ const UpcomingEventCard = ({
           >
             {name}
           </p>
-        </div>
+        </Typography>
 
         {isActive && (
           <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 l:pt-5 xl:pt-5">

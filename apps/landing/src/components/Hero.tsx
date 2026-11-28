@@ -13,9 +13,6 @@ interface HeroProps {
 const LOADING_CTA_CLASS =
   'xl:min-w-[242px] motion-safe:animate-recruitment-loading motion-safe:shadow-[inset_0_0_0_1.5px_var(--color-disabled-blue)] [--loading-background:var(--color-disabled-blue)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-blue)_60%,transparent)]'
 
-const HERO_TITLE_CLASS =
-  'text-[26px]! leading-[36px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!'
-
 export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef }: HeroProps) {
   const isLoading = isRecruiting === null
   const scrollFrameRef = useRef(0)
@@ -63,7 +60,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           as="p"
           variant="subtitle2.2"
           isEn={true}
-          className="text-blue-500 pb-5 min-[600px]:pb-6 text-[18px]! s:text-[22px]! m:text-[22px]! l:text-[24px]! xl:text-[24px]!"
+          className="text-blue-500 pb-5 min-[600px]:pb-6 xs:text-subtitle4!"
         >
           <GoogleColorText /> Developer Groups <br className="block min-[768px]:hidden" /> on Campus
           Hongik University
@@ -73,7 +70,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           <Typography
             as="h1"
             variant="display1.2"
-            className={`${HERO_TITLE_CLASS} whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] l:font-bold! xl:font-bold!`}
+            className="whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] xs:text-title2! l:font-bold! xl:font-bold!"
           >
             부담 없는{' '}
             <Typography
@@ -95,7 +92,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           <Typography
             as="h1"
             variant="display1.2"
-            className={`${HERO_TITLE_CLASS} animate-[fadeInUp_0.8s_ease-out_0.2s_both]`}
+            className="animate-[fadeInUp_0.8s_ease-out_0.2s_both] xs:text-title2!"
           >
             혼자 공부하지 않아도 되는 <br className="block min-[1024px]:hidden" /> 개발 커뮤니티
           </Typography>
@@ -117,7 +114,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
         <Typography
           as="p"
           variant="caption1.3"
-          className="whitespace-nowrap text-[rgba(8,8,8,0.5)] text-[12px]! min-[1024px]:text-[14px]!"
+          className="whitespace-nowrap text-[rgba(8,8,8,0.5)]"
         >
           스크롤해서 더 살펴보세요
         </Typography>
@@ -151,15 +148,15 @@ export function HeroIntroduction() {
         </h1>
       </section>
 
-      <section className="w-full pb-10 min-[600px]:pb-15 min-[1024px]:pb-0 text-gray-800 s:text-black [&>p]:text-[14px]! l:[&>p]:text-[16px]! xl:[&>p]:text-[18px]!">
-        <Typography as="p" variant="body1.2">
+      <section className="w-full pb-10 min-[600px]:pb-15 min-[1024px]:pb-0 text-gray-800 s:text-black">
+        <Typography as="p" variant="body2.2" className="xl:text-body1!">
           GDG Hongik은 홍익대학교 학생이라면
         </Typography>
-        <Typography as="p" variant="body1.2">
+        <Typography as="p" variant="body2.2" className="xl:text-body1!">
           누구나 참여할 수 있는 <br className="block min-[600px]:hidden" /> Google Developer Groups
           개발 커뮤니티예요.
         </Typography>
-        <Typography as="p" variant="body1.2">
+        <Typography as="p" variant="body2.2" className="xl:text-body1!">
           스터디와 프로젝트, 세미나까지. <br className="block min-[768px]:hidden" />
           배우고, 만들고, 나누는 경험을 통해 혼자서는 얻기 어려운{' '}
           <br className="block min-[600px]:hidden" />
@@ -173,19 +170,10 @@ export function HeroIntroduction() {
               key={label}
               className="flex min-w-0 flex-1 flex-col items-center min-[600px]:w-29.5 min-[600px]:flex-none gap-3"
             >
-              <Typography
-                as="p"
-                variant="body2.3"
-                className="whitespace-nowrap text-[14px]! min-[1024px]:text-[16px]!"
-              >
+              <Typography as="p" variant="body2.3" className="whitespace-nowrap">
                 {label}
               </Typography>
-              <Typography
-                as="p"
-                variant="display1.2"
-                isEn
-                className="text-blue-700 text-[36px]! leading-[50px]! min-[600px]:text-[44px]! min-[600px]:leading-[62px]! min-[1024px]:text-[52px]! min-[1024px]:leading-[73px]!"
-              >
+              <Typography as="p" variant="display1.2" isEn className="text-blue-700">
                 <CountUp end={count} />
               </Typography>
             </li>

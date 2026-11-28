@@ -140,13 +140,17 @@ export default function PartCardList() {
                   : 'opacity-100 translate-y-0'
               }`}
             >
-              <Typography variant="subtitle4.1" isEn className={`${part.titleColor} text-[20px]!`}>
+              <Typography
+                variant="subtitle4.1"
+                isEn
+                className={`${part.titleColor} max-[1024px]:text-subtitle3!`}
+              >
                 {part.name}
               </Typography>
 
               <Typography
                 variant="body1.3"
-                className={`${part.descriptionColor} whitespace-pre-line text-[18px]!`}
+                className={`${part.descriptionColor} whitespace-pre-line max-[1024px]:text-subtitle4!`}
               >
                 <ResponsiveText text={part.description} />
               </Typography>
@@ -159,52 +163,33 @@ export default function PartCardList() {
                   : 'opacity-0 translate-y-2 pointer-events-none'
               }`}
             >
-              <Typography
-                variant="subtitle4.1"
-                className={`${part.titleColor} xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!`}
-              >
+              <Typography variant="body2.1" className={`${part.titleColor} xl:text-subtitle4!`}>
                 파트 소개
               </Typography>
 
               <div className="mt-2.5 flex items-start gap-2">
-                <Typography
-                  variant="caption2.2"
-                  className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
-                >
+                <Typography variant="caption2.2" className={part.numColor}>
                   01
                 </Typography>
 
-                <Typography
-                  variant="body2.3"
-                  className="min-w-0 break-keep leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
-                >
+                <Typography variant="body2.3" className="min-w-0 break-keep">
                   {part.detailDescription}
                 </Typography>
               </div>
 
               <div className="xs:mt-5 s:mt-7 mt-8">
-                <Tag
-                  size="md"
-                  variant={part.tagVariant}
-                  className="xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
-                >
+                <Tag size="md" variant={part.tagVariant}>
                   이런 사람에게 추천해요
                 </Tag>
 
                 <div className="xs:mt-2.5 mt-3 flex flex-col xs:gap-2 gap-2.5">
                   {part.recommendations.map((recommendation, index) => (
                     <div key={index} className="flex items-start gap-2">
-                      <Typography
-                        variant="caption2.2"
-                        className={`${part.numColor} xs:text-[10px]! s:text-[10px]! m:text-[10px]! l:text-[12px]!`}
-                      >
+                      <Typography variant="caption2.2" className={part.numColor}>
                         0{index + 1}
                       </Typography>
 
-                      <Typography
-                        variant="body2.3"
-                        className="min-w-0 break-keep leading-relaxed xs:text-[14px]! s:text-[14px]! m:text-[14px]! l:text-[16px]!"
-                      >
+                      <Typography variant="body2.3" className="min-w-0 break-keep">
                         {recommendation}
                       </Typography>
                     </div>

@@ -41,8 +41,7 @@ export default function ActivityInfo({ activityType, titleAs = 'h3' }: ActivityI
         variant="body2.3"
         className={cn(
           'text-blue-600 bg-blue-100 w-fit px-3 py-1.5 rounded-[8px]',
-          isProjectTrack &&
-            'max-w-full px-3 text-[12px]! tracking-[-0.015em]! min-[600px]:text-[14px]! min-[1024px]:text-[16px]!',
+          isProjectTrack && 'max-w-full xs:text-caption1!',
         )}
       >
         {title}
@@ -53,8 +52,7 @@ export default function ActivityInfo({ activityType, titleAs = 'h3' }: ActivityI
         variant="body1.3"
         className={cn(
           'whitespace-pre-line pl-4 border-l-2 border-blue-500 text-gray-950',
-          isProjectTrack &&
-            'ml-1 min-w-0 break-keep text-[14px]! tracking-[-0.015em]! min-[600px]:text-[16px]! min-[1024px]:text-[18px]!',
+          isProjectTrack && 'ml-1 min-w-0 break-keep xs:text-body2!',
         )}
       >
         {description}

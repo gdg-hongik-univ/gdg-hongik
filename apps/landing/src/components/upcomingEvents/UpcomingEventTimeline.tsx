@@ -50,7 +50,7 @@ const UpcomingEventTimeline = ({
         <Typography
           as="h3"
           variant="body2.2"
-          className="text-gray-700 s:!text-[20px] m:!text-[20px] l:!text-left l:!text-[22px] xl:!text-left xl:!text-[22px]"
+          className="text-gray-700 min-[600px]:text-subtitle3! min-[1024px]:text-left"
         >
           {semesterLabel}
         </Typography>
@@ -132,7 +132,7 @@ const UpcomingEventTimeline = ({
       <Typography
         as="p"
         variant="caption1.3"
-        className="text-center text-gray-400 s:!text-[16px] m:!text-[16px] l:!text-[18px] xl:!text-[18px]"
+        className="text-center text-gray-400 min-[600px]:text-body1!"
       >
         일정을 클릭하여 자세히 확인해보세요
       </Typography>
