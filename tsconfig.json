@@ -3,6 +3,7 @@
   "files": [],
   "references": [
     { "path": "./apps/landing" },
+    { "path": "./apps/wowgle" },
     { "path": "./packages/wowds" },
     { "path": "./packages/utils" },
     { "path": "./packages/utils/tsconfig.test.json" }
