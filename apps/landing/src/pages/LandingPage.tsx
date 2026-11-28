@@ -145,12 +145,7 @@ export default function LandingPage() {
         aria-label="스터디 소개"
       >
         <div className={CONTENT_LAYOUT_CLASS}>
-          <Typography
-            as="h2"
-            variant="display3.1"
-            isEn={true}
-            className="text-[24px]! leading-[1.5]! tracking-[-0.015em]! min-[600px]:text-[36px]! min-[600px]:leading-[1.4]! min-[1024px]:text-[44px]!"
-          >
+          <Typography as="h2" variant="display3.1" isEn={true} className="xs:text-subtitle1!">
             Learn & Build
           </Typography>
         </div>
@@ -161,7 +156,7 @@ export default function LandingPage() {
                 <Tabs.Trigger
                   key={tab.value}
                   value={tab.value}
-                  className="px-3 py-2 font-primary text-[14px] leading-[1.5] tracking-[-0.015em] min-[600px]:px-4 min-[600px]:py-3.5 min-[600px]:text-[18px] min-[1024px]:text-[20px] aria-selected:font-bold"
+                  className="px-3 py-2 font-primary text-body2 min-[600px]:px-4 min-[600px]:py-3.5 min-[600px]:text-subtitle4 aria-selected:font-bold"
                 >
                   {tab.label}
                 </Tabs.Trigger>
@@ -190,12 +185,7 @@ export default function LandingPage() {
         aria-label="지난 학기 활동 소개"
       >
         <div className={`${CONTENT_LAYOUT_CLASS} flex flex-col gap-7`}>
-          <Typography
-            as="h2"
-            variant="display3.1"
-            isEn={true}
-            className="text-[24px]! leading-[1.5]! tracking-[-0.015em]! min-[600px]:text-[36px]! min-[600px]:leading-[1.4]! min-[1024px]:text-[44px]!"
-          >
+          <Typography as="h2" variant="display3.1" isEn={true} className="xs:text-subtitle1!">
             Meet & Connect
           </Typography>
           <MarkUp activityType="meetNConnect" />

@@ -63,8 +63,8 @@ const OrbitProfile = ({
             <div className="invisible absolute bottom-24.75 left-0 z-50 flex w-max -translate-x-1/2 translate-y-1 flex-col items-center opacity-0 transition-[opacity,transform,visibility] duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:visible group-focus-visible:translate-y-0 group-focus-visible:opacity-100 s:bottom-21.25 m:bottom-21.25">
               <div className="orbit-profile-bubble rounded-xl bg-blue-100 px-5 py-3.5 text-center">
                 <Typography
-                  variant="body2.2"
-                  className="wrap-anywhere whitespace-pre-line text-[16px]! text-black max-[768px]:text-[14px]!"
+                  variant="caption1.2"
+                  className="wrap-anywhere whitespace-pre-line text-black min-[1024px]:text-body2!"
                 >
                   {description}
                 </Typography>
@@ -85,7 +85,7 @@ const OrbitProfile = ({
               as="figcaption"
               variant="subtitle2.2"
               isEn
-              className="orbit-profile-label absolute top-14.5 left-0 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:text-title2! group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:text-title2! group-focus-visible:text-blue-700 xs:top-10 xs:text-body1! xs:group-hover:text-subtitle3! xs:group-focus-visible:text-subtitle3! s:top-12.5 s:text-subtitle4! s:group-hover:top-21 s:group-hover:text-title1! s:group-focus-visible:top-21 s:group-focus-visible:text-title1! m:top-12.5 m:text-subtitle4! m:group-hover:top-21 m:group-hover:text-subtitle1! m:group-focus-visible:top-21 m:group-focus-visible:text-subtitle1!"
+              className="orbit-profile-label absolute top-14.5 left-0 whitespace-nowrap text-center text-black transition-[top,color,font-size,line-height] duration-300 ease-out group-hover:top-24.5 group-hover:text-title2! group-hover:text-blue-700 group-focus-visible:top-24.5 group-focus-visible:text-title2! group-focus-visible:text-blue-700 xs:top-10 xs:text-body2! xs:group-hover:text-subtitle3! xs:group-focus-visible:text-subtitle3! s:top-12.5 s:text-subtitle4! s:group-hover:top-21 s:group-hover:text-subtitle1! s:group-focus-visible:top-21 s:group-focus-visible:text-subtitle1! m:top-12.5 m:text-subtitle4! m:group-hover:top-21 m:group-hover:text-subtitle1! m:group-focus-visible:top-21 m:group-focus-visible:text-subtitle1!"
             >
               {label}
             </Typography>

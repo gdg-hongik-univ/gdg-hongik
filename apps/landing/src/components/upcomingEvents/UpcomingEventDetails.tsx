@@ -1,4 +1,4 @@
-import { cn } from '@gdg/wowds'
+import { cn, Typography } from '@gdg/wowds'
 import type { UpcomingEventCardEmphasis } from '../../types/upcomingEvents'
 
 type UpcomingEventDetailsProps = {
@@ -62,9 +62,13 @@ const UpcomingEventDetails = ({ description, emphasis }: UpcomingEventDetailsPro
             : 'px-3.5 py-2.5 l:px-5 l:py-3.5 xl:px-5 xl:py-3.5',
         )}
       >
-        <p className="line-clamp-3 w-[181px] break-keep text-center text-caption1 font-semibold text-black s:text-[12px] m:text-[12px] l:w-[207px] l:text-body2 xl:w-[207px] xl:text-body2">
+        <Typography
+          as="p"
+          variant="caption1.2"
+          className="line-clamp-3 w-[181px] break-keep text-center text-black min-[1024px]:w-[207px] min-[1024px]:text-body2!"
+        >
           {description}
-        </p>
+        </Typography>
       </div>
     </div>
   )

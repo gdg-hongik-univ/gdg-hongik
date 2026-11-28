@@ -56,15 +56,12 @@ export const RecruitmentNoticeModal = ({ dialogRef }: ModalProps) => {
               as="h2"
               id={titleId}
               variant="title2.1"
-              className="xs:text-[22px]! s:text-[28px]! m:text-[28px]!"
+              className="xs:text-(length:--text-subtitle2)!"
             >
               지금은 모집 기간이 아니에요
             </Typography>
 
-            <Typography
-              variant="subtitle4.3"
-              className="text-gray-600 xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
-            >
+            <Typography variant="subtitle4.3" className="text-gray-600 xs:text-body2!">
               가입 기간이 아니어도 다음 채널에서 모집 일정과
               <br />
               GDG 소식을 확인할 수 있어요.

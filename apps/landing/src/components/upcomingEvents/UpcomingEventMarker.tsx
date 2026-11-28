@@ -1,4 +1,4 @@
-import { cn } from '@gdg/wowds'
+import { cn, Typography } from '@gdg/wowds'
 import type { UpcomingEventCardEmphasis, UpcomingEventCardState } from '../../types/upcomingEvents'
 
 type UpcomingEventMarkerProps = {
@@ -17,11 +17,16 @@ const UpcomingEventMarker = ({ countdownLabel, emphasis, state }: UpcomingEventM
       {isStrong ? (
         <div
           className={cn(
-            'flex h-[35px] shrink-0 items-center justify-center rounded-lg bg-blue-500 px-2.5 py-1 text-[18px] leading-[1.5] font-bold tracking-[-0.015em] text-white s:text-[16px] m:text-[16px] l:h-auto l:min-w-[63px] l:px-3 l:py-1.5 l:text-subtitle4 xl:h-auto xl:min-w-[63px] xl:px-3 xl:py-1.5 xl:text-subtitle4',
+            'flex h-[35px] shrink-0 items-center justify-center rounded-lg bg-blue-500 px-2.5 py-1 text-white l:h-auto l:min-w-[63px] l:px-3 l:py-1.5 xl:h-auto xl:min-w-[63px] xl:px-3 xl:py-1.5',
             isActive && 'ring-[7px] ring-blue-500/20 l:ring-8 xl:ring-8',
           )}
         >
-          <span className="whitespace-nowrap">{countdownLabel}</span>
+          <Typography
+            variant="subtitle4.1"
+            className="whitespace-nowrap s:text-body1! m:text-body1!"
+          >
+            {countdownLabel}
+          </Typography>
         </div>
       ) : (
         <div

@@ -29,11 +29,7 @@ export const Faq = () => {
                       xs:flex-row xs:justify-between xs:items-center
                       s:flex-row s:justify-between s:items-center"
       >
-        <Typography
-          variant="display3.1"
-          isEn
-          className="xs:text-[24px]! s:text-[36px]! m:text-[36px]!"
-        >
+        <Typography variant="display3.1" isEn className="xs:text-(length:--text-subtitle1)!">
           FAQ
         </Typography>
         <a
@@ -67,19 +63,11 @@ export const Faq = () => {
                 className="flex w-full items-center justify-between text-left focus:outline-none"
               >
                 <div className="items-start">
-                  <Typography
-                    variant="subtitle4.2"
-                    as="span"
-                    className="xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
-                  >
+                  <Typography variant="subtitle4.2" as="span" className="xs:text-body2!">
                     Q.
                   </Typography>
 
-                  <Typography
-                    variant="subtitle4.2"
-                    as="span"
-                    className="pl-1 xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
-                  >
+                  <Typography variant="subtitle4.2" as="span" className="pl-1 xs:text-body2!">
                     {faq.question}
                   </Typography>
                 </div>
@@ -105,7 +93,7 @@ export const Faq = () => {
                     <Typography
                       variant="subtitle4.2"
                       as="p"
-                      className="break-keep leading-relaxed text-gray-400 whitespace-pre-line xs:text-[14px]! s:text-[18px]! m:text-[18px]!"
+                      className="break-keep text-gray-400 whitespace-pre-line xs:text-body2!"
                     >
                       {faq.answer}
                     </Typography>

@@ -71,19 +71,15 @@ const UpcomingEvents = () => {
       </div>
 
       <div className="relative z-10 flex w-full flex-col items-center gap-2 s:gap-3 m:gap-3 l:gap-3 xl:gap-3">
-        <Typography
-          variant="caption1.2"
-          as="p"
-          className="text-black s:!text-[20px] m:!text-[20px] l:!text-[22px] xl:!text-[22px]"
-        >
+        <Typography variant="caption1.2" as="p" className="text-black min-[600px]:text-subtitle3!">
           곧 열릴 GDG의 다음 활동을 확인해 보세요
         </Typography>
         <Typography
           id="upcoming-events-title"
-          variant="subtitle1.1"
+          variant="display3.1"
           as="h2"
           isEn
-          className="text-black s:!text-[36px] s:!leading-[1.4] m:!text-[36px] m:!leading-[1.4] l:!text-[44px] l:!leading-[1.4] xl:!text-[44px] xl:!leading-[1.4]"
+          className="text-black xs:text-subtitle1!"
         >
           Upcoming Events
         </Typography>
