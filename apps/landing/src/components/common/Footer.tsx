@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'react'
 import { cn } from '@gdg/wowds/ui'
 import { GithubIcon, InstagramIcon, LogoIcon, YoutubeIcon } from '@gdg/wowds/icon'
 import { Typography } from '@gdg/wowds/ui'
-import { palette } from '@gdg/wowds/tokens'
+import { fontWeight, palette } from '@gdg/wowds/tokens'
 
 export type FooterProps = HTMLAttributes<HTMLElement>
 
@@ -20,11 +20,10 @@ export const Footer = ({ className, ...props }: FooterProps) => {
               <Typography
                 variant="subtitle3.1"
                 isEn
+                className="leading-wordmark! max-[1024px]:text-(length:--text-subtitle2)!"
                 style={{
                   color: palette.black,
-                  fontWeight: 700,
-                  lineHeight: '130%',
-                  letterSpacing: '-0.33px',
+                  fontWeight: fontWeight.bold,
                 }}
               >
                 GDG
@@ -32,11 +31,9 @@ export const Footer = ({ className, ...props }: FooterProps) => {
               <Typography
                 variant="body2.3"
                 isEn
+                className="leading-wordmark! max-[1024px]:text-(length:--text-body1)!"
                 style={{
                   color: palette.black,
-                  fontWeight: 500,
-                  lineHeight: '130%',
-                  letterSpacing: '-0.24px',
                 }}
               >
                 Hongik Univ.
@@ -46,12 +43,12 @@ export const Footer = ({ className, ...props }: FooterProps) => {
 
           {/* 이후 링크 연결 필요 */}
           <div className="flex flex-col items-start">
-            <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
+            <Typography variant="body2.3">
               <a href="https://docs.gdghongik.com/onboarding" className="underline">
                 학회소개
               </a>
             </Typography>
-            <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
+            <Typography variant="body2.3">
               <a
                 href="https://docs.gdghongik.com/onboard-guide/community-rule"
                 className="underline"
@@ -59,7 +56,7 @@ export const Footer = ({ className, ...props }: FooterProps) => {
                 GDG 홍익대학교 회칙
               </a>
             </Typography>
-            <Typography variant="body2.3" className="xs:text-[14px]! s:text-[14px]! m:text-[14px]!">
+            <Typography variant="body2.3">
               <a
                 href="https://docs.gdghongik.com/onboard-guide/community-guideline"
                 className="underline"
@@ -100,23 +97,14 @@ export const Footer = ({ className, ...props }: FooterProps) => {
 
           <div className="flex w-full flex-col">
             <div className="flex flex-col items-start text-start">
-              <Typography
-                variant="caption1.3"
-                className="xs:text-[12px]! s:text-[12px]! m:text-[12px]!"
-              >
+              <Typography variant="caption1.3">
                 와우디벨로퍼스 | 서울특별시 동작구 상도로53길 8, 325동 606호
               </Typography>
-              <Typography
-                variant="caption1.3"
-                className="xs:text-[12px]! s:text-[12px]! m:text-[12px]!"
-              >
+              <Typography variant="caption1.3">
                 대표 박유빈 | 전화 010-5938-0188 | 사업자등록번호 <br className="hidden xs:block" />
                 311-82-77953
               </Typography>
-              <Typography
-                variant="caption1.3"
-                className="xs:text-[12px]! s:text-[12px]! m:text-[12px]!"
-              >
+              <Typography variant="caption1.3">
                 <div className="flex flex-wrap items-center gap-1">
                   <a
                     href="https://docs.gdghongik.com/wowdevelopers/privacy-policy"
@@ -140,10 +128,7 @@ export const Footer = ({ className, ...props }: FooterProps) => {
                   </a>
                 </div>
               </Typography>
-              <Typography
-                variant="caption1.3"
-                className="xs:text-[12px]! s:text-[12px]! m:text-[12px]!"
-              >
+              <Typography variant="caption1.3">
                 © 2026. 와우디벨로퍼스 all Rights Reserved.
               </Typography>
             </div>

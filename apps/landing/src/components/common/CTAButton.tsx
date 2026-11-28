@@ -59,7 +59,7 @@ const PROPERTY_TYPOGRAPHY: Record<
     lg: { variant: 'subtitle4.1' },
   },
   sub: {
-    auto: { variant: 'body2.1', className: 'max-[1024px]:text-[14px]!' },
+    auto: { variant: 'caption1.1', className: 'min-[1024px]:text-body2!' },
     sm: { variant: 'caption1.1' },
     md: { variant: 'caption1.1' },
     lg: { variant: 'body2.1' },

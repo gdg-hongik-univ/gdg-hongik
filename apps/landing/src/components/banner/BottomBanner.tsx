@@ -1,4 +1,4 @@
-import { Typography } from '@gdg/wowds'
+import { cn, Typography } from '@gdg/wowds'
 import type { MouseEventHandler } from 'react'
 import { RecruitmentCTA } from '../common/RecruitmentCTA'
 import { Skeleton } from '../common/Skeleton'
@@ -20,9 +20,9 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
           className={`flex flex-col xs:gap-2 s:gap-2 gap-3 ${isLoading ? 'w-70 max-w-[85vw] s:w-90 m:w-105 l:w-120 xl:w-[699px] xl:gap-3.5' : ''}`}
         >
           <Typography
-            variant="display2.1"
+            variant={isRecruiting === false ? 'display3.1' : 'display2.1'}
             isEn={isRecruiting === true}
-            className="xs:text-[30px]! s:text-[40px]! m:text-[40px]!"
+            className="xs:text-display3!"
           >
             {isLoading ? (
               <Skeleton className="h-[1lh] w-full xs:h-[2lh] xl:h-[62px]" />
@@ -35,10 +35,7 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
             )}
           </Typography>
 
-          <Typography
-            variant="subtitle4.3"
-            className="xs:text-[14px]! s:text-[18px]! m:text-[18px]! break-keep"
-          >
+          <Typography variant="subtitle4.3" className="break-keep xs:text-body2!">
             {isLoading ? (
               <Skeleton className="h-[1lh] w-full xs:h-[2lh] s:h-[2lh] xl:h-[30px]" />
             ) : isRecruiting ? (
@@ -57,11 +54,11 @@ const BottomBanner = ({ isRecruiting, onRecruitmentClick }: RecruitmentStatusPro
 
         <RecruitmentCTA
           property="sub"
-          className={
-            isLoading
-              ? 'motion-safe:animate-recruitment-loading [--loading-background:color-mix(in_srgb,var(--color-white)_90%,transparent)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-light)_80%,transparent)]'
-              : undefined
-          }
+          className={cn(
+            'max-[1024px]:min-w-38',
+            isLoading &&
+              'motion-safe:animate-recruitment-loading [--loading-background:color-mix(in_srgb,var(--color-white)_90%,transparent)] [--loading-background-dim:color-mix(in_srgb,var(--color-disabled-light)_80%,transparent)]',
+          )}
           isRecruiting={isRecruiting}
           closedLabel="GDG 채널 둘러보기"
           onClick={onRecruitmentClick}
