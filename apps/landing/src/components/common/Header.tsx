@@ -1,4 +1,4 @@
-import { LogoIcon } from '@gdg/wowds'
+import { fontWeight, LogoIcon, Typography } from '@gdg/wowds'
 import { Link } from 'react-router-dom'
 
 const Header = () => {
@@ -11,13 +11,22 @@ const Header = () => {
           className="flex items-center gap-2.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600"
         >
           <LogoIcon className="flex h-4 w-8 xs:h-3.5 xs:w-7" />
-          <div className="flex gap-1 items-center tracking-[-0.015em]">
-            <span className="flex h-3.5 items-center font-title font-bold text-[20px] xs:h-[13px] xs:text-[18px] leading-none">
+          <div className="flex gap-1 items-center">
+            <Typography
+              variant="subtitle4.1"
+              isEn
+              className="flex h-3.5 items-center leading-wordmark! xs:h-[13px] s:text-(length:--text-subtitle3)! m:text-(length:--text-subtitle3)!"
+              style={{ fontWeight: fontWeight.bold }}
+            >
               GDG
-            </span>
-            <span className="font-title font-semibold text-[14px] xs:text-[12px] leading-none">
+            </Typography>
+            <Typography
+              variant="caption1.2"
+              isEn
+              className="leading-wordmark! s:text-(length:--text-body2)! m:text-(length:--text-body2)!"
+            >
               Hongik Univ.
-            </span>
+            </Typography>
           </div>
         </Link>
       </div>
