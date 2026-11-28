@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ChevronIcon, Tabs, Typography } from '@gdg/wowds'
 import ActivityInfo from '../components/ActivityInfo'
+import SemesterSelector from '../components/common/SemesterSelector'
 import CourseTimeline from '../components/projectTrack/CourseTimeline'
 import ProjectCard from '../components/projectTrack/ProjectCard'
-import SemesterSelector from '../components/projectTrack/SemesterSelector'
 import { useProjectTracks } from '../hooks/useProjectTracks'
 
 const ACTIVITY_PAGES = [
