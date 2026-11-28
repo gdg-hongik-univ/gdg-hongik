@@ -70,7 +70,7 @@ export default function Hero({ isRecruiting, onRecruitmentClick, introductionRef
           <Typography
             as="h1"
             variant="display1.2"
-            className="whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] xs:text-title2! l:font-bold! xl:font-bold!"
+            className="whitespace-nowrap animate-[fadeInUp_0.8s_ease-out_forwards] xs:text-title2!"
           >
             부담 없는{' '}
             <Typography
